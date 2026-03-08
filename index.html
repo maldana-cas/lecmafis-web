@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LECMAFI - Plataforma Educativa Inteligente</title>
+    <title>LECMAFIS - Plataforma Educativa Inteligente</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -22,11 +22,41 @@
             --dark: #1F2937;
             --light: #F9FAFB;
             --gray: #6B7280;
+            --lectura: #8B5CF6;
+            --matematicas: #3B82F6;
+            --fisica: #F97316;
+            --logico: #6B7280;
         }
 
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating Background Elements */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+            color: white;
+            font-size: 3rem;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
         }
 
         /* Navigation */
@@ -42,7 +72,7 @@
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -56,6 +86,9 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .nav-links {
@@ -117,24 +150,62 @@
             color: white;
         }
 
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
         /* Hero Section */
         .hero {
-            padding: 8rem 2rem 4rem;
+            padding: 10rem 2rem 4rem;
             text-align: center;
             color: white;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
+        .hero-slogan {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+            font-style: italic;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 800px;
             margin: 0 auto 2rem;
             opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .hero-buttons {
@@ -144,10 +215,36 @@
             flex-wrap: wrap;
         }
 
+        .hero-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-icon {
+            font-size: 3rem;
+            animation: bounce 2s infinite;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .hero-icon:nth-child(2) { animation-delay: 0.2s; }
+        .hero-icon:nth-child(3) { animation-delay: 0.4s; }
+        .hero-icon:nth-child(4) { animation-delay: 0.6s; }
+        .hero-icon:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
         /* Features */
         .features {
             background: white;
             padding: 5rem 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .features-container {
@@ -207,9 +304,11 @@
         /* Dashboard */
         .dashboard {
             padding: 6rem 2rem 4rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: none;
+            position: relative;
+            z-index: 1;
         }
 
         .dashboard.active {
@@ -267,10 +366,242 @@
             opacity: 0.9;
         }
 
-        /* Quiz Section */
+        /* Components Grid */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .component-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid var(--primary);
+        }
+
+        .component-card.lectura {
+            border-color: var(--lectura);
+        }
+
+        .component-card.matematicas {
+            border-color: var(--matematicas);
+        }
+
+        .component-card.fisica {
+            border-color: var(--fisica);
+        }
+
+        .component-card.logico {
+            border-color: var(--logico);
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .component-card:hover:not(.logico) {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .component-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .component-card h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .component-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .component-progress {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 0.75rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+
+        .component-card.lectura .progress-fill {
+            background: var(--lectura);
+        }
+
+        .component-card.matematicas .progress-fill {
+            background: var(--matematicas);
+        }
+
+        .component-card.fisica .progress-fill {
+            background: var(--fisica);
+        }
+
+        /* Levels & Blocks */
+        .levels-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .levels-container.active {
+            display: block;
+        }
+
+        .level-section {
+            margin-bottom: 2rem;
+            border: 2px solid var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .level-section.locked {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .level-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .level-header.lectura {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.2));
+        }
+
+        .level-header.matematicas {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.2));
+        }
+
+        .level-header.fisica {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.2));
+        }
+
+        .level-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .level-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .level-badge.locked {
+            background: #e5e7eb;
+            color: #6B7280;
+        }
+
+        .level-badge.available {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .level-badge.completed {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .blocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--light);
+        }
+
+        .block-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .block-card:hover:not(.locked) {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .block-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f3f4f6;
+        }
+
+        .block-card.completed {
+            border-color: var(--secondary);
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        .block-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .block-card.completed .block-number {
+            color: var(--secondary);
+        }
+
+        .block-info {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .block-status {
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .block-status.locked {
+            color: #9CA3AF;
+        }
+
+        .block-status.available {
+            color: var(--secondary);
+        }
+
+        .block-status.completed {
+            color: var(--secondary);
+        }
+
+        /* Quiz Section with Timer */
         .quiz-section {
             background: white;
-            padding: 3rem 2rem;
+            padding: 2rem;
             border-radius: 15px;
             margin-top: 2rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -288,21 +619,44 @@
             margin-bottom: 2rem;
             padding-bottom: 1rem;
             border-bottom: 2px solid var(--light);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timer-display {
+            background: linear-gradient(135deg, var(--danger), #DC2626);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .timer-warning {
+            background: linear-gradient(135deg, var(--accent), #D97706);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
 
         .quiz-progress {
             flex: 1;
-            margin: 0 2rem;
+            min-width: 200px;
         }
 
-        .progress-bar {
-            height: 10px;
+        .progress-bar-large {
+            height: 12px;
             background: var(--light);
-            border-radius: 5px;
+            border-radius: 6px;
             overflow: hidden;
         }
 
-        .progress-fill {
+        .progress-fill-large {
             height: 100%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             transition: width 0.3s;
@@ -315,11 +669,23 @@
             margin-bottom: 2rem;
         }
 
+        .question-context {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+            font-style: italic;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
         .question-text {
             font-size: 1.2rem;
             color: var(--dark);
             margin-bottom: 1.5rem;
             line-height: 1.6;
+            font-weight: 500;
         }
 
         .options-grid {
@@ -328,7 +694,7 @@
         }
 
         .option-btn {
-            padding: 1rem 1.5rem;
+            padding: 1.25rem 1.5rem;
             background: white;
             border: 2px solid var(--light);
             border-radius: 10px;
@@ -338,7 +704,7 @@
             font-size: 1rem;
         }
 
-        .option-btn:hover {
+        .option-btn:hover:not(:disabled) {
             border-color: var(--primary);
             background: rgba(79, 70, 229, 0.05);
         }
@@ -358,48 +724,155 @@
             background: rgba(239, 68, 68, 0.1);
         }
 
+        .option-btn:disabled {
+            cursor: not-allowed;
+        }
+
         .quiz-actions {
             display: flex;
             justify-content: space-between;
             margin-top: 2rem;
+            gap: 1rem;
         }
 
-        /* Subject Selection */
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+        .skill-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+        }
+
+        /* Results */
+        .results-card {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
             margin-top: 2rem;
+            display: none;
         }
 
-        .subject-card {
+        .results-card.active {
+            display: block;
+        }
+
+        .results-score {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .results-message {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .results-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .result-stat {
+            text-align: center;
+        }
+
+        .result-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .result-stat-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h3 {
+            color: var(--dark);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: all 0.3s;
+            color: var(--gray);
+        }
+
+        /* Access Code Section */
+        .access-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 2rem auto;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
         }
 
-        .subject-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        .access-section.active {
+            display: block;
         }
 
-        .subject-icon {
-            font-size: 3rem;
+        .access-section h2 {
+            text-align: center;
+            color: var(--dark);
             margin-bottom: 1rem;
         }
 
-        .subject-card h3 {
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .subject-card p {
+        .access-section p {
+            text-align: center;
             color: var(--gray);
-            font-size: 0.9rem;
+            margin-bottom: 2rem;
         }
 
         /* Admin Panel */
@@ -455,108 +928,13 @@
             gap: 1rem;
         }
 
-        /* Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-header h3 {
-            color: var(--dark);
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray);
-        }
-
-        /* Results */
-        .results-card {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            padding: 3rem;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .results-score {
-            font-size: 4rem;
-            font-weight: 700;
-            margin: 1rem 0;
-        }
-
-        .results-message {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 2rem;
-        }
-
-        /* Access Code Section */
-        .access-section {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 15px;
-            max-width: 500px;
-            margin: 2rem auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: none;
-        }
-
-        .access-section.active {
-            display: block;
-        }
-
-        .access-section h2 {
-            text-align: center;
-            color: var(--dark);
-            margin-bottom: 1rem;
-        }
-
-        .access-section p {
-            text-align: center;
-            color: var(--gray);
-            margin-bottom: 2rem;
-        }
-
         /* Student List */
         .student-list {
             background: white;
             padding: 2rem;
             border-radius: 15px;
             margin-top: 2rem;
+            overflow-x: auto;
         }
 
         .student-table {
@@ -640,10 +1018,118 @@
             color: var(--gray);
         }
 
+        /* Info Box */
+        .info-box {
+            background: rgba(79, 70, 229, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box p {
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .warning-box p {
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            text-align: center;
+            color: white;
+            margin-top: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-slogan {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .footer-credits {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+        }
+
+        .footer-credits p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-credits .creator {
+            font-weight: 600;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
+            }
+
+            .hero-slogan {
+                font-size: 1.2rem;
             }
 
             .nav-links {
@@ -656,11 +1142,12 @@
 
             .quiz-header {
                 flex-direction: column;
-                gap: 1rem;
+                align-items: stretch;
             }
 
-            .quiz-progress {
-                margin: 1rem 0;
+            .timer-display {
+                font-size: 1.2rem;
+                padding: 0.75rem 1rem;
             }
 
             .student-table {
@@ -670,6 +1157,18 @@
             .student-table th,
             .student-table td {
                 padding: 0.5rem;
+            }
+
+            .blocks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-icons {
+                gap: 1rem;
+            }
+
+            .hero-icon {
+                font-size: 2rem;
             }
         }
 
@@ -690,48 +1189,39 @@
             margin-bottom: 1rem;
         }
 
-        .difficulty-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        .text-sm {
+            font-size: 0.875rem;
         }
 
-        .difficulty-facil {
-            background: #D1FAE5;
-            color: #065F46;
-        }
-
-        .difficulty-medio {
-            background: #FEF3C7;
-            color: #92400E;
-        }
-
-        .difficulty-dificil {
-            background: #FEE2E2;
-            color: #991B1B;
-        }
-
-        .info-box {
-            background: rgba(79, 70, 229, 0.1);
-            border-left: 4px solid var(--primary);
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-
-        .info-box p {
-            color: var(--dark);
-            font-size: 0.9rem;
+        .font-bold {
+            font-weight: 700;
         }
     </style>
 </head>
 <body>
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="floating-shape" style="top: 10%; left: 5%;">∫</div>
+        <div class="floating-shape" style="top: 20%; right: 10%;">∑</div>
+        <div class="floating-shape" style="top: 40%; left: 15%;">π</div>
+        <div class="floating-shape" style="top: 60%; right: 5%;">√</div>
+        <div class="floating-shape" style="top: 70%; left: 20%;">∞</div>
+        <div class="floating-shape" style="top: 30%; left: 80%;">±</div>
+        <div class="floating-shape" style="top: 80%; right: 15%;">÷</div>
+        <div class="floating-shape" style="top: 50%; left: 70%;">×</div>
+        <div class="floating-shape" style="top: 15%; left: 40%;">📐</div>
+        <div class="floating-shape" style="top: 85%; left: 60%;">📊</div>
+        <div class="floating-shape" style="top: 25%; right: 30%;">🎯</div>
+        <div class="floating-shape" style="top: 65%; left: 35%;">🏆</div>
+        <div class="floating-shape" style="top: 45%; right: 25%;">📚</div>
+        <div class="floating-shape" style="top: 75%; right: 40%;">✏️</div>
+        <div class="floating-shape" style="top: 55%; left: 85%;">🧮</div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">🎓 LECMAFI</div>
+            <div class="logo">🎓 LECMAFIS</div>
             <ul class="nav-links">
                 <li><a onclick="showPage('home')">Inicio</a></li>
                 <li><a onclick="showPage('dashboard')" id="nav-dashboard" style="display: none;">Mi Progreso</a></li>
@@ -750,48 +1240,65 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home-page">
-        <h1>LECMAFI</h1>
-        <p>Plataforma educativa inteligente que fortalece la comprensión lectora y el razonamiento matemático mediante evaluaciones adaptativas tipo ICFES</p>
+        <h1>🎓 LECMAFIS</h1>
+        <p class="hero-slogan">"Tu éxito en las pruebas ICFES comienza aquí"</p>
+        <p class="hero-description">Plataforma educativa inteligente que fortalece la comprensión lectora, razonamiento matemático y física mediante evaluaciones adaptativas tipo ICFES. Diseñada para potenciar tus habilidades de análisis, interpretación, argumentación y formulación de soluciones.</p>
+        
+        <div class="hero-badges">
+            <div class="hero-badge">⏱️ 2 min/pregunta</div>
+            <div class="hero-badge">📊 3 Componentes</div>
+            <div class="hero-badge">🎯 288 Preguntas</div>
+            <div class="hero-badge">📈 Progreso Personalizado</div>
+        </div>
+        
         <div class="hero-buttons">
             <button class="btn btn-primary" onclick="openModal('register')">Comenzar Ahora</button>
             <button class="btn btn-secondary" onclick="scrollToFeatures()">Saber Más</button>
+        </div>
+
+        <div class="hero-icons">
+            <div class="hero-icon">📖</div>
+            <div class="hero-icon">🔢</div>
+            <div class="hero-icon">⚛️</div>
+            <div class="hero-icon">🧠</div>
+            <div class="hero-icon">🏆</div>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="features-container">
-            <h2 class="section-title">¿Por qué elegir LECMAFI?</h2>
+            <h2 class="section-title">¿Por qué elegir LECMAFIS?</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🎯</div>
                     <h3>Evaluaciones Adaptativas</h3>
-                    <p>El sistema ajusta la dificultad de las preguntas según tu desempeño, asegurando un aprendizaje óptimo.</p>
+                    <p>El sistema ajusta la dificultad según tu desempeño, asegurando un aprendizaje óptimo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Simulacro ICFES Real</h3>
+                    <p>Cronómetro oficial tipo ICFES: 2 minutos por pregunta para preparar tu gestión del tiempo.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
-                    <h3>Seguimiento de Progreso</h3>
-                    <p>Visualiza tu avance con estadísticas detalladas y identifica tus fortalezas y áreas de mejora.</p>
+                    <h3>Seguimiento Detallado</h3>
+                    <p>Visualiza tu avance por componente, nivel y bloque con estadísticas completas.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>Contenido Tipo ICFES</h3>
-                    <p>Preguntas diseñadas bajo los estándares de las pruebas ICFES para una preparación real.</p>
+                    <div class="feature-icon">🔓</div>
+                    <h3>Progresión por Bloques</h3>
+                    <p>Desbloquea contenido gradualmente: 3 niveles × 4 bloques × 8 preguntas.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🧠</div>
-                    <h3>Comprensión Lectora</h3>
-                    <p>Mejora tu capacidad de análisis y comprensión de textos complejos.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔢</div>
-                    <h3>Razonamiento Matemático</h3>
-                    <p>Desarrolla habilidades matemáticas mediante problemas desafiantes y prácticos.</p>
+                    <h3>4 Habilidades Clave</h3>
+                    <p>Desarrolla análisis, interpretación, argumentación y formulación de soluciones.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔐</div>
                     <h3>Acceso Seguro</h3>
-                    <p>Sistema de códigos de acceso exclusivos para garantizar la seguridad de los estudiantes.</p>
+                    <p>Sistema de códigos de acceso exclusivos para garantizar la seguridad.</p>
                 </div>
             </div>
         </div>
@@ -804,7 +1311,7 @@
         
         <div class="form-group">
             <label>Código de Acceso</label>
-            <input type="text" id="access-code-input" placeholder="Ej: LECMAFI-2024-001" style="text-align: center; font-size: 1.2rem; letter-spacing: 2px;">
+            <input type="text" id="access-code-input" placeholder="Ej: LECMAFIS-2024-001" style="text-align: center; font-size: 1.2rem; letter-spacing: 2px;">
         </div>
         
         <button class="btn btn-primary" onclick="validateAccessCode()" style="width: 100%;">Validar Código</button>
@@ -818,81 +1325,218 @@
     <section class="dashboard" id="dashboard-page">
         <div class="dashboard-header">
             <h2 id="welcome-message">👋 ¡Bienvenido a tu espacio de aprendizaje!</h2>
-            <p>Selecciona una materia para comenzar o continuar tu evaluación adaptativa</p>
+            <p>Selecciona un componente para comenzar tu ruta de aprendizaje</p>
             
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number" id="total-quizzes">0</div>
-                    <div class="stat-label">Evaluaciones Completadas</div>
+                    <div class="stat-number" id="total-blocks">0</div>
+                    <div class="stat-label">Bloques Completados</div>
                 </div>
                 <div class="stat-card green">
                     <div class="stat-number" id="average-score">0%</div>
-                    <div class="stat-label">Promedio de Aciertos</div>
+                    <div class="stat-label">Promedio General</div>
                 </div>
                 <div class="stat-card orange">
-                    <div class="stat-number" id="current-level">Principiante</div>
-                    <div class="stat-label">Nivel Actual</div>
+                    <div class="stat-number" id="total-time">0h</div>
+                    <div class="stat-label">Tiempo de Estudio</div>
                 </div>
             </div>
         </div>
 
-        <!-- Continue Quiz Section -->
-        <div id="continue-quiz-section" class="hidden" style="background: rgba(16, 185, 129, 0.1); border: 2px solid var(--secondary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
-            <h3 style="color: var(--dark); margin-bottom: 0.5rem;">📝 Tienes una evaluación en progreso</h3>
-            <p style="color: var(--gray); margin-bottom: 1rem;">Materia: <strong id="continue-subject"></strong> | Pregunta <strong id="continue-question"></strong> de <strong id="continue-total"></strong></p>
-            <button class="btn btn-success" onclick="continueQuiz()">Continuar Evaluación</button>
-        </div>
-
-        <!-- Subject Selection -->
-        <div class="subject-grid">
-            <div class="subject-card" onclick="startQuiz('lectura')">
-                <div class="subject-icon">📖</div>
-                <h3>Comprensión Lectora</h3>
-                <p>Mejora tu capacidad de análisis de textos</p>
-                <span class="difficulty-badge difficulty-medio">Nivel: <span id="level-lectura">Principiante</span></span>
-            </div>
-            <div class="subject-card" onclick="startQuiz('matematicas')">
-                <div class="subject-icon">🔢</div>
-                <h3>Razonamiento Matemático</h3>
-                <p>Desarrolla habilidades matemáticas</p>
-                <span class="difficulty-badge difficulty-medio">Nivel: <span id="level-matematicas">Principiante</span></span>
-            </div>
-        </div>
-
-        <!-- Quiz Section -->
-        <div class="quiz-section" id="quiz-section">
-            <div class="quiz-header">
-                <h3 id="quiz-subject">Materia</h3>
-                <div class="quiz-progress">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+        <!-- Components Selection -->
+        <div class="components-grid" id="components-grid">
+            <div class="component-card lectura" onclick="selectComponent('lectura')">
+                <div class="component-icon">📖</div>
+                <h3>Lectura Crítica</h3>
+                <p>96 preguntas • 3 niveles • 12 bloques</p>
+                <div class="component-progress">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;">
+                        <span>Progreso</span>
+                        <span id="lectura-progress-text">0%</span>
                     </div>
-                    <p style="text-align: center; margin-top: 0.5rem; color: var(--gray);">
-                        Pregunta <span id="current-question">1</span> de <span id="total-questions">10</span>
-                    </p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="lectura-progress" style="width: 0%"></div>
+                    </div>
                 </div>
-                <span class="difficulty-badge" id="difficulty-badge">Fácil</span>
+            </div>
+
+            <div class="component-card matematicas" onclick="selectComponent('matematicas')">
+                <div class="component-icon">🔢</div>
+                <h3>Matemáticas</h3>
+                <p>96 preguntas • 3 niveles • 12 bloques</p>
+                <div class="component-progress">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;">
+                        <span>Progreso</span>
+                        <span id="matematicas-progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="matematicas-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-card fisica" onclick="selectComponent('fisica')">
+                <div class="component-icon">⚛️</div>
+                <h3>Física</h3>
+                <p>96 preguntas • 3 niveles • 12 bloques</p>
+                <div class="component-progress">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;">
+                        <span>Progreso</span>
+                        <span id="fisica-progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="fisica-progress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-card logico">
+                <div class="component-icon">🧩</div>
+                <h3>Razonamiento Lógico</h3>
+                <p>Próximamente disponible</p>
+                <div class="component-progress">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;">
+                        <span>Estado</span>
+                        <span>En desarrollo</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%; background: var(--logico);"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Levels & Blocks View -->
+        <div class="levels-container" id="levels-container">
+            <div class="back-btn" onclick="backToComponents()">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Volver a Componentes
+            </div>
+            
+            <h2 id="selected-component-title" style="color: var(--dark); margin-bottom: 0.5rem;">Componente</h2>
+            <p id="selected-component-desc" style="color: var(--gray); margin-bottom: 2rem;">Descripción del componente</p>
+
+            <!-- Level 1 -->
+            <div class="level-section" id="level-1-section">
+                <div class="level-header lectura" onclick="toggleLevel('level-1-blocks')">
+                    <div>
+                        <div class="level-title">🌱 Nivel 1: Fundamentos</div>
+                        <div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas = 32 preguntas • ~16 min por bloque</div>
+                    </div>
+                    <span class="level-badge" id="level-1-badge">Bloqueado</span>
+                </div>
+                <div class="blocks-grid" id="level-1-blocks" style="display: none;">
+                    <!-- Blocks will be generated here -->
+                </div>
+            </div>
+
+            <!-- Level 2 -->
+            <div class="level-section locked" id="level-2-section">
+                <div class="level-header matematicas" onclick="toggleLevel('level-2-blocks')">
+                    <div>
+                        <div class="level-title">⚡ Nivel 2: Desarrollo</div>
+                        <div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas = 32 preguntas • ~16 min por bloque</div>
+                    </div>
+                    <span class="level-badge locked" id="level-2-badge">Bloqueado</span>
+                </div>
+                <div class="blocks-grid" id="level-2-blocks" style="display: none;">
+                    <!-- Blocks will be generated here -->
+                </div>
+            </div>
+
+            <!-- Level 3 -->
+            <div class="level-section locked" id="level-3-section">
+                <div class="level-header fisica" onclick="toggleLevel('level-3-blocks')">
+                    <div>
+                        <div class="level-title">🏆 Nivel 3: Avanzado</div>
+                        <div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas = 32 preguntas • ~16 min por bloque</div>
+                    </div>
+                    <span class="level-badge locked" id="level-3-badge">Bloqueado</span>
+                </div>
+                <div class="blocks-grid" id="level-3-blocks" style="display: none;">
+                    <!-- Blocks will be generated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section with Timer -->
+        <div class="quiz-section" id="quiz-section">
+            <div class="back-btn" onclick="backToLevels()">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Volver a Bloques
+            </div>
+
+            <div class="quiz-header">
+                <div>
+                    <h3 id="quiz-block-title">Bloque</h3>
+                    <p id="quiz-component-name" style="color: var(--gray); font-size: 0.9rem;">Componente</p>
+                </div>
+                
+                <div class="timer-display" id="timer-display">16:00</div>
+                
+                <div class="quiz-progress">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+                        <span>Pregunta <span id="current-question">1</span> de <span id="total-questions">8</span></span>
+                        <span id="quiz-skill">Análisis</span>
+                    </div>
+                    <div class="progress-bar-large">
+                        <div class="progress-fill-large" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <p>⏱️ <strong>Tiempo límite:</strong> 16 minutos para completar este bloque (2 min/pregunta). La prueba se enviará automáticamente cuando el tiempo termine.</p>
             </div>
 
             <div class="question-card">
+                <div class="question-context" id="question-context" style="display: none;"></div>
                 <p class="question-text" id="question-text">Cargando pregunta...</p>
                 <div class="options-grid" id="options-container">
                     <!-- Options will be generated here -->
                 </div>
+                <div class="skill-tags" id="skill-tags"></div>
             </div>
 
             <div class="quiz-actions">
-                <button class="btn btn-secondary" onclick="saveAndExit()">Guardar y Salir</button>
+                <button class="btn btn-danger" onclick="confirmExit()">Salir del Bloque</button>
                 <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>Siguiente</button>
             </div>
         </div>
 
         <!-- Results Section -->
-        <div class="results-card hidden" id="results-section">
-            <h2>¡Evaluación Completada!</h2>
+        <div class="results-card" id="results-section">
+            <h2>🎉 ¡Bloque Completado!</h2>
             <div class="results-score" id="final-score">0%</div>
             <p class="results-message" id="results-message">Mensaje de resultado</p>
-            <button class="btn btn-secondary" onclick="showPage('dashboard')">Volver al Dashboard</button>
+            
+            <div class="results-details">
+                <div class="result-stat">
+                    <div class="result-stat-value" id="result-correct">0</div>
+                    <div class="result-stat-label">Correctas</div>
+                </div>
+                <div class="result-stat">
+                    <div class="result-stat-value" id="result-incorrect">0</div>
+                    <div class="result-stat-label">Incorrectas</div>
+                </div>
+                <div class="result-stat">
+                    <div class="result-stat-value" id="result-time">00:00</div>
+                    <div class="result-stat-label">Tiempo Usado</div>
+                </div>
+                <div class="result-stat">
+                    <div class="result-stat-value" id="result-next">🔒</div>
+                    <div class="result-stat-label">Siguiente Bloque</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-secondary" onclick="backToLevels()">Volver a Bloques</button>
+                <button class="btn btn-success" id="next-block-btn" onclick="nextBlock()" style="display: none;">Continuar al Siguiente Bloque</button>
+            </div>
         </div>
 
         <!-- Admin Panel -->
@@ -933,7 +1577,7 @@
                                 <th>Género</th>
                                 <th>Código Usado</th>
                                 <th>Fecha Registro</th>
-                                <th>Estado</th>
+                                <th>Progreso</th>
                             </tr>
                         </thead>
                         <tbody id="students-table-body">
@@ -949,62 +1593,88 @@
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Materia</label>
-                        <select id="admin-subject">
-                            <option value="lectura">Comprensión Lectora</option>
-                            <option value="matematicas">Razonamiento Matemático</option>
+                        <label>Componente</label>
+                        <select id="admin-component">
+                            <option value="lectura">Lectura Crítica</option>
+                            <option value="matematicas">Matemáticas</option>
+                            <option value="fisica">Física</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Nivel de Dificultad</label>
-                        <select id="admin-difficulty">
-                            <option value="facil">Fácil</option>
-                            <option value="medio">Medio</option>
-                            <option value="dificil">Difícil</option>
+                        <label>Nivel</label>
+                        <select id="admin-level">
+                            <option value="1">Nivel 1: Fundamentos</option>
+                            <option value="2">Nivel 2: Desarrollo</option>
+                            <option value="3">Nivel 3: Avanzado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Bloque</label>
+                        <select id="admin-block">
+                            <option value="1">Bloque 1</option>
+                            <option value="2">Bloque 2</option>
+                            <option value="3">Bloque 3</option>
+                            <option value="4">Bloque 4</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Texto/Contexto (opcional para lectura)</label>
-                    <textarea id="admin-context" placeholder="Texto base para la pregunta..."></textarea>
+                    <label>Habilidad Principal</label>
+                    <select id="admin-skill">
+                        <option value="analisis">Análisis</option>
+                        <option value="interpretacion">Interpretación</option>
+                        <option value="argumentacion">Argumentación</option>
+                        <option value="formulacion">Formulación</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label>Pregunta</label>
+                    <label>Texto/Contexto (opcional)</label>
+                    <textarea id="admin-context" placeholder="Texto base para la pregunta (lectura crítica, casos, etc.)..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Pregunta *</label>
                     <textarea id="admin-question" placeholder="Escribe la pregunta aquí..." required></textarea>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Opción A</label>
+                        <label>Opción A *</label>
                         <input type="text" id="admin-option-a" placeholder="Opción A" required>
                     </div>
                     <div class="form-group">
-                        <label>Opción B</label>
+                        <label>Opción B *</label>
                         <input type="text" id="admin-option-b" placeholder="Opción B" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Opción C</label>
+                        <label>Opción C *</label>
                         <input type="text" id="admin-option-c" placeholder="Opción C" required>
                     </div>
                     <div class="form-group">
-                        <label>Opción D</label>
+                        <label>Opción D *</label>
                         <input type="text" id="admin-option-d" placeholder="Opción D" required>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Respuesta Correcta</label>
-                    <select id="admin-correct">
-                        <option value="0">Opción A</option>
-                        <option value="1">Opción B</option>
-                        <option value="2">Opción C</option>
-                        <option value="3">Opción D</option>
-                    </select>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Respuesta Correcta *</label>
+                        <select id="admin-correct">
+                            <option value="0">Opción A</option>
+                            <option value="1">Opción B</option>
+                            <option value="2">Opción C</option>
+                            <option value="3">Opción D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tiempo Estimado (segundos)</label>
+                        <input type="number" id="admin-time" value="120" min="30" max="300">
+                    </div>
                 </div>
 
                 <button class="btn btn-primary" onclick="addQuestion()">Agregar Pregunta</button>
@@ -1015,10 +1685,39 @@
                     <button class="btn btn-secondary mt-4" onclick="exportQuestions()">Exportar Preguntas (JSON)</button>
                     <button class="btn btn-secondary mt-4" onclick="document.getElementById('import-file').click()">Importar Preguntas</button>
                     <input type="file" id="import-file" style="display: none;" accept=".json" onchange="handleImport(event)">
+                    
+                    <div class="info-box mt-4">
+                        <p>💡 <strong>Tip:</strong> Puedes cargar todas las preguntas de tus PDFs usando el formato JSON. Exporta primero para ver la estructura.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">🎓 LECMAFIS</div>
+            <p class="footer-slogan">"Tu éxito en las pruebas ICFES comienza aquí"</p>
+            
+            <div class="footer-icons">
+                <span>📖</span>
+                <span>🔢</span>
+                <span>⚛️</span>
+                <span>🧠</span>
+                <span>🏆</span>
+                <span>📊</span>
+                <span>🎯</span>
+                <span>✏️</span>
+            </div>
+            
+            <div class="footer-credits">
+                <p>&copy; 2024 Todos los derechos reservados</p>
+                <p class="creator">Creado por: Edu_Milton Aldana</p>
+                <p style="font-size: 0.8rem; opacity: 0.6; margin-top: 1rem;">Plataforma educativa para preparación ICFES</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Login Modal -->
     <div class="modal" id="login-modal">
@@ -1062,12 +1761,12 @@
             <form onsubmit="handleRegister(event)">
                 <div class="form-group">
                     <label>Código de Acceso *</label>
-                    <input type="text" id="register-access-code" required placeholder="Ej: LECMAFI-2024-001" style="text-align: center; letter-spacing: 2px;">
+                    <input type="text" id="register-access-code" required placeholder="Ej: LECMAFIS-2024-001" style="text-align: center; letter-spacing: 2px;">
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Números de Identificación *</label>
+                        <label>Número de Identificación *</label>
                         <input type="text" id="register-identification" required placeholder="Ej: 1234567890">
                     </div>
                     <div class="form-group">
@@ -1107,70 +1806,84 @@
     </div>
 
     <script>
-        // ==================== DATA MANAGEMENT ====================
+        // ==================== CONFIGURATION ====================
         
-        const defaultQuestions = {
-            lectura: [
-                {
-                    id: 1,
-                    context: "La lectura es el proceso de adquirir información de un soporte escrito.",
-                    question: "¿Cuál es el propósito principal de la lectura según el texto?",
-                    options: ["Adquirir información de un soporte escrito", "Mejorar la vista", "Aprender a escribir", "Memorizar textos"],
-                    correct: 0,
-                    difficulty: "facil"
-                },
-                {
-                    id: 2,
-                    context: "El razonamiento crítico es la capacidad de analizar y evaluar la consistencia de los razonamientos.",
-                    question: "¿Qué habilidad se desarrolla con el razonamiento crítico?",
-                    options: ["Memorizar información", "Analizar y evaluar razonamientos", "Escribir rápidamente", "Leer en voz alta"],
-                    correct: 1,
-                    difficulty: "medio"
-                },
-                {
-                    id: 3,
-                    context: "La comprensión lectora implica la capacidad de entender lo que se lee.",
-                    question: "Según el texto, la comprensión lectora requiere:",
-                    options: ["Solo entender palabras individuales", "Entender palabras y la comprensión global", "Memorizar el texto completo", "Leer rápidamente sin pausas"],
-                    correct: 1,
-                    difficulty: "medio"
-                }
-            ],
-            matematicas: [
-                {
-                    id: 1,
-                    context: null,
-                    question: "Si un tren viaja a 60 km/h, ¿cuántos kilómetros recorrerá en 2.5 horas?",
-                    options: ["120 km", "150 km", "180 km", "200 km"],
-                    correct: 1,
-                    difficulty: "facil"
-                },
-                {
-                    id: 2,
-                    context: "Un rectángulo tiene un área de 48 cm² y un lado de 8 cm.",
-                    question: "¿Cuánto mide el otro lado del rectángulo?",
-                    options: ["4 cm", "5 cm", "6 cm", "7 cm"],
-                    correct: 2,
-                    difficulty: "medio"
-                },
-                {
-                    id: 3,
-                    context: "En una clase hay 30 estudiantes. El 60% son mujeres.",
-                    question: "¿Cuántos hombres hay en la clase?",
-                    options: ["10", "12", "15", "18"],
-                    correct: 1,
-                    difficulty: "medio"
-                }
-            ]
+        const COMPONENTS = {
+            lectura: {
+                name: 'Lectura Crítica',
+                icon: '📖',
+                color: 'lectura',
+                totalBlocks: 12,
+                questionsPerBlock: 8,
+                timePerBlock: 16
+            },
+            matematicas: {
+                name: 'Matemáticas',
+                icon: '🔢',
+                color: 'matematicas',
+                totalBlocks: 12,
+                questionsPerBlock: 8,
+                timePerBlock: 16
+            },
+            fisica: {
+                name: 'Física',
+                icon: '⚛️',
+                color: 'fisica',
+                totalBlocks: 12,
+                questionsPerBlock: 8,
+                timePerBlock: 16
+            },
+            logico: {
+                name: 'Razonamiento Lógico',
+                icon: '🧩',
+                color: 'logico',
+                totalBlocks: 12,
+                questionsPerBlock: 8,
+                timePerBlock: 16,
+                locked: true
+            }
         };
 
-        // Load data from localStorage
+        const LEVELS = {
+            1: { name: 'Fundamentos', icon: '🌱', requiredScore: 70 },
+            2: { name: 'Desarrollo', icon: '⚡', requiredScore: 75 },
+            3: { name: 'Avanzado', icon: '🏆', requiredScore: 80 }
+        };
+
+        const SKILLS = {
+            analisis: 'Análisis',
+            interpretacion: 'Interpretación',
+            argumentacion: 'Argumentación',
+            formulacion: 'Formulación'
+        };
+
+        // Default questions structure
+        const defaultQuestions = {
+            lectura: {
+                1: { 1: [], 2: [], 3: [], 4: [] },
+                2: { 1: [], 2: [], 3: [], 4: [] },
+                3: { 1: [], 2: [], 3: [], 4: [] }
+            },
+            matematicas: {
+                1: { 1: [], 2: [], 3: [], 4: [] },
+                2: { 1: [], 2: [], 3: [], 4: [] },
+                3: { 1: [], 2: [], 3: [], 4: [] }
+            },
+            fisica: {
+                1: { 1: [], 2: [], 3: [], 4: [] },
+                2: { 1: [], 2: [], 3: [], 4: [] },
+                3: { 1: [], 2: [], 3: [], 4: [] }
+            }
+        };
+
+        // ==================== DATA MANAGEMENT ====================
+        
         function loadData(key, defaultValue) {
             const stored = localStorage.getItem(key);
             if (stored) {
                 return JSON.parse(stored);
             }
-            if (defaultValue) {
+            if (defaultValue !== undefined) {
                 localStorage.setItem(key, JSON.stringify(defaultValue));
                 return defaultValue;
             }
@@ -1182,14 +1895,16 @@
         }
 
         // Initialize data
-        let questions = loadData('lecmafi_questions', defaultQuestions);
-        let accessCodes = loadData('lecmafi_access_codes', []);
-        let students = loadData('lecmafi_students', []);
-        let currentUser = loadData('lecmafi_current_user', null);
-        let currentQuiz = loadData('lecmafi_current_quiz', null);
+        let questions = loadData('lecmafis_questions_v2', defaultQuestions);
+        let accessCodes = loadData('lecmafis_access_codes', []);
+        let students = loadData('lecmafis_students', []);
+        let currentUser = loadData('lecmafis_current_user', null);
+        let currentQuiz = loadData('lecmafis_current_quiz', null);
 
         // ==================== NAVIGATION ====================
         
+        let selectedComponent = null;
+
         function showPage(page) {
             document.getElementById('home-page').style.display = 'none';
             document.getElementById('dashboard-page').classList.remove('active');
@@ -1215,6 +1930,8 @@
                 document.getElementById('dashboard-page').classList.add('active');
                 document.getElementById('admin-panel').classList.add('active');
                 document.getElementById('quiz-section').classList.remove('active');
+                document.getElementById('results-section').classList.remove('active');
+                document.getElementById('levels-container').classList.remove('active');
                 updateAdminPanel();
             }
             
@@ -1233,7 +1950,406 @@
             closeModal('register');
         }
 
-        // ==================== MODAL ====================
+        // ==================== COMPONENT SELECTION ====================
+        
+        function selectComponent(component) {
+            if (COMPONENTS[component].locked) {
+                alert('Este componente estará disponible próximamente.');
+                return;
+            }
+
+            selectedComponent = component;
+            
+            document.getElementById('components-grid').style.display = 'none';
+            document.getElementById('levels-container').classList.add('active');
+            document.getElementById('selected-component-title').textContent = 
+                COMPONENTS[component].icon + ' ' + COMPONENTS[component].name;
+            document.getElementById('selected-component-desc').textContent = 
+                `${COMPONENTS[component].totalBlocks} bloques • ${COMPONENTS[component].questionsPerBlock} preguntas por bloque • ${COMPONENTS[component].timePerBlock} minutos por bloque`;
+            
+            renderLevels(component);
+            window.scrollTo(0, 0);
+        }
+
+        function backToComponents() {
+            selectedComponent = null;
+            document.getElementById('components-grid').style.display = 'grid';
+            document.getElementById('levels-container').classList.remove('active');
+            document.getElementById('quiz-section').classList.remove('active');
+            document.getElementById('results-section').classList.remove('active');
+        }
+
+        function backToLevels() {
+            document.getElementById('quiz-section').classList.remove('active');
+            document.getElementById('results-section').classList.remove('active');
+            document.getElementById('levels-container').classList.add('active');
+            stopTimer();
+        }
+
+        function toggleLevel(blocksId) {
+            const blocks = document.getElementById(blocksId);
+            blocks.style.display = blocks.style.display === 'none' ? 'grid' : 'none';
+        }
+
+        function renderLevels(component) {
+            if (!currentUser) return;
+
+            const progress = currentUser.progress || {};
+            const componentProgress = progress[component] || {
+                completedBlocks: [],
+                levelScores: { 1: 0, 2: 0, 3: 0 }
+            };
+
+            for (let level = 1; level <= 3; level++) {
+                const levelSection = document.getElementById(`level-${level}-section`);
+                const levelBadge = document.getElementById(`level-${level}-badge`);
+                const blocksGrid = document.getElementById(`level-${level}-blocks`);
+                
+                let isUnlocked = level === 1;
+                if (level > 1) {
+                    const prevLevelCompleted = componentProgress.levelScores[level - 1] >= LEVELS[level - 1].requiredScore;
+                    isUnlocked = prevLevelCompleted;
+                }
+
+                if (isUnlocked) {
+                    levelSection.classList.remove('locked');
+                    levelBadge.className = 'level-badge available';
+                    levelBadge.textContent = 'Disponible';
+                } else {
+                    levelSection.classList.add('locked');
+                    levelBadge.className = 'level-badge locked';
+                    levelBadge.textContent = 'Bloqueado';
+                }
+
+                blocksGrid.innerHTML = '';
+                for (let block = 1; block <= 4; block++) {
+                    const blockId = `${component}-l${level}-b${block}`;
+                    const isCompleted = componentProgress.completedBlocks.includes(blockId);
+                    const prevBlockId = block > 1 ? `${component}-l${level}-b${block - 1}` : null;
+                    const prevBlockCompleted = block === 1 || componentProgress.completedBlocks.includes(prevBlockId);
+                    const isAvailable = isUnlocked && prevBlockCompleted && !isCompleted;
+
+                    const blockCard = document.createElement('div');
+                    blockCard.className = `block-card ${isCompleted ? 'completed' : ''} ${!isAvailable && !isCompleted ? 'locked' : ''}`;
+                    blockCard.onclick = () => {
+                        if (isAvailable || isCompleted) {
+                            startBlock(component, level, block, isCompleted);
+                        }
+                    };
+
+                    blockCard.innerHTML = `
+                        <div class="block-number">${isCompleted ? '✅' : ''} Bloque ${block}</div>
+                        <div class="block-info">${COMPONENTS[component].questionsPerBlock} preguntas</div>
+                        <div class="block-info">${COMPONENTS[component].timePerBlock} min</div>
+                        <div class="block-status ${isCompleted ? 'completed' : isAvailable ? 'available' : 'locked'}">
+                            ${isCompleted ? 'Completado' : isAvailable ? 'Disponible' : 'Bloqueado'}
+                        </div>
+                    `;
+
+                    blocksGrid.appendChild(blockCard);
+                }
+
+                if (componentProgress.levelScores[level] > 0) {
+                    levelBadge.className = 'level-badge completed';
+                    levelBadge.textContent = `${componentProgress.levelScores[level]}%`;
+                }
+            }
+        }
+
+        // ==================== QUIZ SYSTEM WITH TIMER ====================
+        
+        let quizTimer = null;
+        let timeRemaining = 0;
+        let quizStartTime = null;
+
+        function startBlock(component, level, block, isReview = false) {
+            const blockId = `${component}-l${level}-b${block}`;
+            const blockQuestions = questions[component]?.[level]?.[block] || [];
+
+            if (blockQuestions.length === 0) {
+                alert('Este bloque aún no tiene preguntas. Contacta al administrador.');
+                return;
+            }
+
+            currentQuiz = {
+                userId: currentUser.identification,
+                component: component,
+                level: level,
+                block: block,
+                blockId: blockId,
+                questions: blockQuestions.sort(() => Math.random() - 0.5),
+                currentIndex: 0,
+                answers: [],
+                score: 0,
+                startedAt: new Date().toISOString(),
+                timeLimit: COMPONENTS[component].timePerBlock * 60
+            };
+
+            saveData('lecmafis_current_quiz', currentQuiz);
+
+            document.getElementById('levels-container').classList.remove('active');
+            document.getElementById('quiz-section').classList.add('active');
+            document.getElementById('results-section').classList.remove('active');
+            
+            document.getElementById('quiz-block-title').textContent = `Bloque ${block}`;
+            document.getElementById('quiz-component-name').textContent = COMPONENTS[component].name;
+            document.getElementById('total-questions').textContent = currentQuiz.questions.length;
+
+            timeRemaining = currentQuiz.timeLimit;
+            quizStartTime = Date.now();
+            startTimer();
+
+            showQuestion();
+        }
+
+        function startTimer() {
+            updateTimerDisplay();
+            
+            quizTimer = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+
+                if (timeRemaining <= 0) {
+                    stopTimer();
+                    alert('¡Tiempo terminado! Tu prueba se enviará automáticamente.');
+                    endQuiz(true);
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (quizTimer) {
+                clearInterval(quizTimer);
+                quizTimer = null;
+            }
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            
+            const timerDisplay = document.getElementById('timer-display');
+            timerDisplay.textContent = display;
+
+            if (timeRemaining < 180) {
+                timerDisplay.classList.add('timer-warning');
+            } else {
+                timerDisplay.classList.remove('timer-warning');
+            }
+        }
+
+        function showQuestion() {
+            const question = currentQuiz.questions[currentQuiz.currentIndex];
+            
+            document.getElementById('current-question').textContent = currentQuiz.currentIndex + 1;
+            document.getElementById('question-text').textContent = question.question;
+            
+            const contextEl = document.getElementById('question-context');
+            if (question.context) {
+                contextEl.style.display = 'block';
+                contextEl.textContent = question.context;
+            } else {
+                contextEl.style.display = 'none';
+            }
+
+            const skillTags = document.getElementById('skill-tags');
+            skillTags.innerHTML = question.skill ? 
+                `<span class="skill-tag">${SKILLS[question.skill] || question.skill}</span>` : '';
+
+            const progress = ((currentQuiz.currentIndex + 1) / currentQuiz.questions.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = question.options.map((option, index) => `
+                <button class="option-btn" onclick="selectOption(${index})" ${currentQuiz.answers[currentQuiz.currentIndex] !== undefined ? 'disabled' : ''}>
+                    ${String.fromCharCode(65 + index)}. ${option}
+                </button>
+            `).join('');
+            
+            if (currentQuiz.answers[currentQuiz.currentIndex] !== undefined) {
+                const selectedBtn = optionsContainer.children[currentQuiz.answers[currentQuiz.currentIndex]];
+                if (selectedBtn) {
+                    selectedBtn.classList.add('selected');
+                }
+            }
+
+            document.getElementById('next-btn').disabled = currentQuiz.answers[currentQuiz.currentIndex] === undefined;
+        }
+
+        function selectOption(index) {
+            if (currentQuiz.answers[currentQuiz.currentIndex] !== undefined) return;
+
+            currentQuiz.answers[currentQuiz.currentIndex] = index;
+            saveData('lecmafis_current_quiz', currentQuiz);
+            
+            document.querySelectorAll('.option-btn').forEach((btn, i) => {
+                btn.classList.remove('selected');
+                if (i === index) {
+                    btn.classList.add('selected');
+                }
+            });
+
+            document.getElementById('next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            const question = currentQuiz.questions[currentQuiz.currentIndex];
+            const userAnswer = currentQuiz.answers[currentQuiz.currentIndex];
+            
+            if (userAnswer === question.correct) {
+                currentQuiz.score++;
+            }
+
+            currentQuiz.currentIndex++;
+            saveData('lecmafis_current_quiz', currentQuiz);
+
+            if (currentQuiz.currentIndex >= currentQuiz.questions.length) {
+                endQuiz(false);
+            } else {
+                showQuestion();
+            }
+        }
+
+        function confirmExit() {
+            if (confirm('¿Estás seguro de salir? Tu progreso en este bloque se perderá.')) {
+                stopTimer();
+                currentQuiz = null;
+                saveData('lecmafis_current_quiz', null);
+                backToLevels();
+            }
+        }
+
+        function endQuiz(timeExpired = false) {
+            stopTimer();
+
+            const totalQuestions = currentQuiz.questions.length;
+            const percentage = Math.round((currentQuiz.score / totalQuestions) * 100);
+            const timeUsed = currentQuiz.timeLimit - timeRemaining;
+            const minutesUsed = Math.floor(timeUsed / 60);
+            const secondsUsed = timeUsed % 60;
+
+            if (!currentUser.progress) {
+                currentUser.progress = {};
+            }
+            if (!currentUser.progress[currentQuiz.component]) {
+                currentUser.progress[currentQuiz.component] = {
+                    completedBlocks: [],
+                    levelScores: { 1: 0, 2: 0, 3: 0 }
+                };
+            }
+
+            const componentProgress = currentUser.progress[currentQuiz.component];
+            
+            if (!componentProgress.completedBlocks.includes(currentQuiz.blockId)) {
+                componentProgress.completedBlocks.push(currentQuiz.blockId);
+            }
+
+            componentProgress.levelScores[currentQuiz.level] = percentage;
+
+            const studentIndex = students.findIndex(s => s.identification === currentUser.identification);
+            if (studentIndex !== -1) {
+                students[studentIndex] = currentUser;
+                saveData('lecmafis_students', students);
+            }
+            saveData('lecmafis_current_user', currentUser);
+
+            currentQuiz = null;
+            saveData('lecmafis_current_quiz', null);
+
+            document.getElementById('quiz-section').classList.remove('active');
+            document.getElementById('results-section').classList.add('active');
+            document.getElementById('final-score').textContent = percentage + '%';
+            document.getElementById('result-correct').textContent = currentQuiz.score;
+            document.getElementById('result-incorrect').textContent = totalQuestions - currentQuiz.score;
+            document.getElementById('result-time').textContent = `${minutesUsed}:${String(secondsUsed).padStart(2, '0')}`;
+
+            let message = '';
+            const requiredScore = LEVELS[currentQuiz.level].requiredScore;
+            
+            if (percentage >= 90) {
+                message = '¡Excelente! Dominio excepcional del tema.';
+            } else if (percentage >= requiredScore) {
+                message = '¡Muy bien! Has superado el bloque. Puedes continuar al siguiente.';
+            } else if (percentage >= 60) {
+                message = 'Buen esfuerzo. Te falta poco para desbloquear el siguiente bloque.';
+            } else {
+                message = 'Sigue practicando. Puedes intentar este bloque nuevamente.';
+            }
+
+            if (timeExpired) {
+                message = '⏱️ El tiempo terminó. ' + message;
+            }
+
+            document.getElementById('results-message').textContent = message;
+
+            const canContinue = percentage >= requiredScore && 
+                (currentQuiz.block < 4 || (currentQuiz.block === 4 && currentQuiz.level < 3));
+
+            document.getElementById('next-block-btn').style.display = canContinue ? 'inline-block' : 'none';
+
+            updateDashboard();
+        }
+
+        function nextBlock() {
+            if (!currentQuiz) return;
+
+            if (currentQuiz.block < 4) {
+                startBlock(currentQuiz.component, currentQuiz.level, currentQuiz.block + 1);
+            } else if (currentQuiz.level < 3) {
+                startBlock(currentQuiz.component, currentQuiz.level + 1, 1);
+            } else {
+                alert('¡Felicidades! Has completado todos los bloques de este componente.');
+                backToComponents();
+            }
+        }
+
+        // ==================== DASHBOARD ====================
+        
+        function updateDashboard() {
+            if (!currentUser) return;
+            
+            document.getElementById('welcome-message').textContent = '👋 ¡Bienvenido, ' + currentUser.names + '!';
+            
+            const progress = currentUser.progress || {};
+            let totalBlocks = 0;
+            let totalScore = 0;
+            let scoreCount = 0;
+
+            Object.keys(COMPONENTS).forEach(comp => {
+                if (progress[comp]) {
+                    totalBlocks += progress[comp].completedBlocks?.length || 0;
+                    Object.values(progress[comp].levelScores || {}).forEach(score => {
+                        if (score > 0) {
+                            totalScore += score;
+                            scoreCount++;
+                        }
+                    });
+                }
+            });
+
+            const averageScore = scoreCount > 0 ? Math.round(totalScore / scoreCount) : 0;
+
+            document.getElementById('total-blocks').textContent = totalBlocks;
+            document.getElementById('average-score').textContent = averageScore + '%';
+            document.getElementById('total-time').textContent = '0h';
+
+            Object.keys(COMPONENTS).forEach(comp => {
+                if (COMPONENTS[comp].locked) return;
+
+                const compProgress = progress[comp]?.completedBlocks?.length || 0;
+                const totalCompBlocks = COMPONENTS[comp].totalBlocks;
+                const percentage = Math.round((compProgress / totalCompBlocks) * 100);
+
+                document.getElementById(`${comp}-progress`).style.width = percentage + '%';
+                document.getElementById(`${comp}-progress-text`).textContent = percentage + '%';
+            });
+
+            document.getElementById('quiz-section').classList.remove('active');
+            document.getElementById('results-section').classList.remove('active');
+        }
+
+        // ==================== AUTHENTICATION ====================
         
         function openModal(type) {
             document.getElementById(type + '-modal').classList.add('active');
@@ -1243,8 +2359,6 @@
             document.getElementById(type + '-modal').classList.remove('active');
         }
 
-        // ==================== ACCESS CODE ====================
-        
         function validateAccessCode() {
             const code = document.getElementById('access-code-input').value.trim().toUpperCase();
             
@@ -1270,7 +2384,6 @@
                 return;
             }
             
-            // Code is valid, proceed to registration
             document.getElementById('register-access-code').value = code;
             openModal('register');
             document.getElementById('access-page').classList.remove('active');
@@ -1284,7 +2397,7 @@
             const today = new Date();
             
             for (let i = 0; i < quantity; i++) {
-                const code = 'LECMAFI-' + today.getFullYear() + '-' + String(accessCodes.length + i + 1).padStart(3, '0');
+                const code = 'LECMAFIS-' + today.getFullYear() + '-' + String(accessCodes.length + i + 1).padStart(3, '0');
                 
                 newCodes.push({
                     code: code,
@@ -1296,7 +2409,7 @@
             }
             
             accessCodes.push(...newCodes);
-            saveData('lecmafi_access_codes', accessCodes);
+            saveData('lecmafis_access_codes', accessCodes);
             
             displayGeneratedCodes(newCodes);
             alert('Se generaron ' + quantity + ' códigos de acceso exitosamente.');
@@ -1313,8 +2426,6 @@
             `).join('');
         }
 
-        // ==================== AUTHENTICATION ====================
-        
         function handleRegister(event) {
             event.preventDefault();
             
@@ -1325,7 +2436,6 @@
             const age = parseInt(document.getElementById('register-age').value);
             const gender = document.getElementById('register-gender').value;
             
-            // Validate access code
             const codeIndex = accessCodes.findIndex(c => c.code === accessCode);
             if (codeIndex === -1) {
                 alert('Código de acceso no válido.');
@@ -1337,14 +2447,12 @@
                 return;
             }
             
-            // Check if student already exists
             const existingStudent = students.find(s => s.identification === identification);
             if (existingStudent) {
                 alert('Ya existe un estudiante registrado con este número de identificación.');
                 return;
             }
             
-            // Create student
             const newStudent = {
                 identification: identification,
                 names: names,
@@ -1354,37 +2462,34 @@
                 accessCode: accessCode,
                 registeredAt: new Date().toISOString(),
                 isAdmin: false,
-                stats: {
-                    lectura: { completed: 0, score: 0, level: 1 },
-                    matematicas: { completed: 0, score: 0, level: 1 }
-                },
-                quizHistory: []
+                progress: {
+                    lectura: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 } },
+                    matematicas: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 } },
+                    fisica: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 } }
+                }
             };
             
             students.push(newStudent);
-            saveData('lecmafi_students', students);
+            saveData('lecmafis_students', students);
             
-            // Mark code as used
             accessCodes[codeIndex].used = true;
             accessCodes[codeIndex].usedBy = identification;
             accessCodes[codeIndex].usedAt = new Date().toISOString();
-            saveData('lecmafi_access_codes', accessCodes);
+            saveData('lecmafis_access_codes', accessCodes);
             
-            // Auto login
             currentUser = newStudent;
-            saveData('lecmafi_current_user', currentUser);
+            saveData('lecmafis_current_user', currentUser);
             
             closeModal('register');
             updateAuthUI();
             showPage('dashboard');
-            alert('¡Registro exitoso! Bienvenido a LECMAFI, ' + names + '!');
+            alert('¡Registro exitoso! Bienvenido a LECMAFIS, ' + names + '!');
         }
 
         function handleLogin(event) {
             event.preventDefault();
             
             const identification = document.getElementById('login-identification').value.trim();
-            
             const student = students.find(s => s.identification === identification);
             
             if (!student) {
@@ -1393,7 +2498,7 @@
             }
             
             currentUser = student;
-            saveData('lecmafi_current_user', currentUser);
+            saveData('lecmafis_current_user', currentUser);
             
             closeModal('login');
             updateAuthUI();
@@ -1403,7 +2508,7 @@
 
         function logout() {
             currentUser = null;
-            saveData('lecmafi_current_user', null);
+            saveData('lecmafis_current_user', null);
             updateAuthUI();
             showPage('home');
         }
@@ -1434,215 +2539,6 @@
             }
         }
 
-        // ==================== DASHBOARD ====================
-        
-        function updateDashboard() {
-            if (!currentUser) return;
-            
-            document.getElementById('welcome-message').textContent = '👋 ¡Bienvenido, ' + currentUser.names + '!';
-            
-            const stats = currentUser.stats;
-            const totalQuizzes = stats.lectura.completed + stats.matematicas.completed;
-            const totalScore = stats.lectura.score + stats.matematicas.score;
-            const averageScore = totalQuizzes > 0 ? Math.round(totalScore / totalQuizzes) : 0;
-            
-            document.getElementById('total-quizzes').textContent = totalQuizzes;
-            document.getElementById('average-score').textContent = averageScore + '%';
-            
-            updateLevelDisplay('lectura', stats.lectura.level);
-            updateLevelDisplay('matematicas', stats.matematicas.level);
-            
-            // Check for continued quiz
-            if (currentQuiz && currentQuiz.userId === currentUser.identification) {
-                document.getElementById('continue-quiz-section').classList.remove('hidden');
-                document.getElementById('continue-subject').textContent = 
-                    currentQuiz.subject === 'lectura' ? 'Comprensión Lectora' : 'Razonamiento Matemático';
-                document.getElementById('continue-question').textContent = currentQuiz.currentIndex + 1;
-                document.getElementById('continue-total').textContent = currentQuiz.questions.length;
-            } else {
-                document.getElementById('continue-quiz-section').classList.add('hidden');
-            }
-            
-            document.getElementById('quiz-section').classList.remove('active');
-            document.getElementById('results-section').classList.add('hidden');
-        }
-
-        function updateLevelDisplay(subject, level) {
-            const levelNames = ['Principiante', 'Intermedio', 'Avanzado', 'Experto'];
-            const levelName = levelNames[Math.min(level - 1, levelNames.length - 1)];
-            document.getElementById('level-' + subject).textContent = levelName;
-        }
-
-        // ==================== QUIZ SYSTEM ====================
-        
-        function startQuiz(subject) {
-            currentQuiz = {
-                userId: currentUser.identification,
-                subject: subject,
-                questions: getAdaptiveQuestions(subject, currentUser.stats[subject].level),
-                currentIndex: 0,
-                answers: [],
-                score: 0,
-                startedAt: new Date().toISOString()
-            };
-            
-            if (currentQuiz.questions.length === 0) {
-                alert('No hay preguntas disponibles para esta materia.');
-                return;
-            }
-            
-            saveData('lecmafi_current_quiz', currentQuiz);
-            
-            document.getElementById('quiz-subject').textContent = 
-                subject === 'lectura' ? 'Comprensión Lectora' : 'Razonamiento Matemático';
-            document.getElementById('total-questions').textContent = currentQuiz.questions.length;
-            
-            document.getElementById('quiz-section').classList.add('active');
-            document.getElementById('results-section').classList.add('hidden');
-            document.getElementById('continue-quiz-section').classList.add('hidden');
-            
-            showQuestion();
-        }
-
-        function continueQuiz() {
-            if (!currentQuiz) return;
-            
-            document.getElementById('quiz-subject').textContent = 
-                currentQuiz.subject === 'lectura' ? 'Comprensión Lectora' : 'Razonamiento Matemático';
-            document.getElementById('total-questions').textContent = currentQuiz.questions.length;
-            
-            document.getElementById('quiz-section').classList.add('active');
-            document.getElementById('results-section').classList.add('hidden');
-            document.getElementById('continue-quiz-section').classList.add('hidden');
-            
-            showQuestion();
-        }
-
-        function getAdaptiveQuestions(subject, level) {
-            const subjectQuestions = questions[subject] || [];
-            
-            let difficulty;
-            if (level === 1) difficulty = 'facil';
-            else if (level === 2) difficulty = 'medio';
-            else difficulty = 'dificil';
-            
-            let filtered = subjectQuestions.filter(q => q.difficulty === difficulty);
-            
-            if (filtered.length < 5) {
-                filtered = subjectQuestions.slice(0, 10);
-            }
-            
-            return filtered.sort(() => Math.random() - 0.5).slice(0, 10);
-        }
-
-        function showQuestion() {
-            const question = currentQuiz.questions[currentQuiz.currentIndex];
-            
-            document.getElementById('current-question').textContent = currentQuiz.currentIndex + 1;
-            document.getElementById('question-text').textContent = question.question;
-            
-            const progress = ((currentQuiz.currentIndex + 1) / currentQuiz.questions.length) * 100;
-            document.getElementById('progress-fill').style.width = progress + '%';
-            
-            const badge = document.getElementById('difficulty-badge');
-            badge.textContent = question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1);
-            badge.className = 'difficulty-badge difficulty-' + question.difficulty;
-            
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = question.options.map((option, index) => `
-                <button class="option-btn" onclick="selectOption(${index})">
-                    ${String.fromCharCode(65 + index)}. ${option}
-                </button>
-            `).join('');
-            
-            document.getElementById('next-btn').disabled = true;
-        }
-
-        function selectOption(index) {
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.classList.remove('selected');
-            });
-            
-            event.target.classList.add('selected');
-            currentQuiz.answers[currentQuiz.currentIndex] = index;
-            document.getElementById('next-btn').disabled = false;
-            
-            // Auto-save progress
-            saveData('lecmafi_current_quiz', currentQuiz);
-        }
-
-        function nextQuestion() {
-            const currentQuestion = currentQuiz.questions[currentQuiz.currentIndex];
-            const userAnswer = currentQuiz.answers[currentQuiz.currentIndex];
-            
-            if (userAnswer === currentQuestion.correct) {
-                currentQuiz.score++;
-            }
-            
-            currentQuiz.currentIndex++;
-            currentQuiz.lastSaved = new Date().toISOString();
-            saveData('lecmafi_current_quiz', currentQuiz);
-            
-            if (currentQuiz.currentIndex >= currentQuiz.questions.length) {
-                endQuiz();
-            } else {
-                showQuestion();
-            }
-        }
-
-        function saveAndExit() {
-            saveData('lecmafi_current_quiz', currentQuiz);
-            alert('Tu progreso ha sido guardado. Puedes continuar cuando quieras.');
-            showPage('dashboard');
-        }
-
-        function endQuiz() {
-            const percentage = Math.round((currentQuiz.score / currentQuiz.questions.length) * 100);
-            
-            const subject = currentQuiz.subject;
-            currentUser.stats[subject].completed++;
-            currentUser.stats[subject].score = Math.round((currentUser.stats[subject].score + percentage) / 2);
-            
-            if (percentage >= 80) {
-                currentUser.stats[subject].level = Math.min(currentUser.stats[subject].level + 1, 4);
-            } else if (percentage < 50) {
-                currentUser.stats[subject].level = Math.max(currentUser.stats[subject].level - 1, 1);
-            }
-            
-            currentUser.quizHistory.push({
-                subject: subject,
-                score: percentage,
-                completedAt: new Date().toISOString(),
-                questions: currentQuiz.questions.length
-            });
-            
-            // Save student data
-            const studentIndex = students.findIndex(s => s.identification === currentUser.identification);
-            if (studentIndex !== -1) {
-                students[studentIndex] = currentUser;
-                saveData('lecmafi_students', students);
-            }
-            saveData('lecmafi_current_user', currentUser);
-            
-            // Clear current quiz
-            currentQuiz = null;
-            saveData('lecmafi_current_quiz', null);
-            
-            document.getElementById('quiz-section').classList.remove('active');
-            document.getElementById('results-section').classList.remove('hidden');
-            document.getElementById('final-score').textContent = percentage + '%';
-            
-            let message = '';
-            if (percentage >= 90) message = '¡Excelente trabajo! Has demostrado un dominio excepcional.';
-            else if (percentage >= 70) message = '¡Muy bien! Continúa practicando para mejorar aún más.';
-            else if (percentage >= 50) message = 'Buen esfuerzo. Sigue practicando para mejorar tu puntuación.';
-            else message = 'No te desanimes. Repasa los conceptos y vuelve a intentarlo.';
-            
-            document.getElementById('results-message').textContent = message;
-            
-            updateDashboard();
-        }
-
         // ==================== ADMIN PANEL ====================
         
         function updateAdminPanel() {
@@ -1652,29 +2548,47 @@
         }
 
         function updateAdminStats() {
-            const totalQuestions = (questions.lectura?.length || 0) + (questions.matematicas?.length || 0);
+            let totalQuestions = 0;
+            Object.keys(questions).forEach(comp => {
+                Object.keys(questions[comp]).forEach(level => {
+                    Object.keys(questions[comp][level]).forEach(block => {
+                        totalQuestions += questions[comp][level][block].length;
+                    });
+                });
+            });
             document.getElementById('questions-count').textContent = 'Total de preguntas: ' + totalQuestions;
         }
 
         function updateStudentsTable() {
             const tbody = document.getElementById('students-table-body');
-            tbody.innerHTML = students.map(student => `
-                <tr>
-                    <td>${student.identification}</td>
-                    <td>${student.names}</td>
-                    <td>${student.surnames}</td>
-                    <td>${student.age}</td>
-                    <td>${student.gender}</td>
-                    <td>${student.accessCode}</td>
-                    <td>${new Date(student.registeredAt).toLocaleDateString()}</td>
-                    <td><span class="status-badge status-active">Activo</span></td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = students.filter(s => !s.isAdmin).map(student => {
+                const progress = student.progress || {};
+                let totalBlocks = 0;
+                Object.keys(progress).forEach(comp => {
+                    totalBlocks += progress[comp]?.completedBlocks?.length || 0;
+                });
+                const progressPercent = Math.round((totalBlocks / 36) * 100);
+
+                return `
+                    <tr>
+                        <td>${student.identification}</td>
+                        <td>${student.names}</td>
+                        <td>${student.surnames}</td>
+                        <td>${student.age}</td>
+                        <td>${student.gender}</td>
+                        <td>${student.accessCode}</td>
+                        <td>${new Date(student.registeredAt).toLocaleDateString()}</td>
+                        <td><span class="status-badge status-active">${progressPercent}%</span></td>
+                    </tr>
+                `;
+            }).join('');
         }
 
         function addQuestion() {
-            const subject = document.getElementById('admin-subject').value;
-            const difficulty = document.getElementById('admin-difficulty').value;
+            const component = document.getElementById('admin-component').value;
+            const level = parseInt(document.getElementById('admin-level').value);
+            const block = parseInt(document.getElementById('admin-block').value);
+            const skill = document.getElementById('admin-skill').value;
             const context = document.getElementById('admin-context').value.trim();
             const question = document.getElementById('admin-question').value.trim();
             const optionA = document.getElementById('admin-option-a').value.trim();
@@ -1694,15 +2608,22 @@
                 question: question,
                 options: [optionA, optionB, optionC, optionD],
                 correct: correct,
-                difficulty: difficulty
+                skill: skill,
+                timeEstimate: parseInt(document.getElementById('admin-time').value) || 120
             };
             
-            if (!questions[subject]) {
-                questions[subject] = [];
+            if (!questions[component]) {
+                questions[component] = { 1: {}, 2: {}, 3: {} };
+            }
+            if (!questions[component][level]) {
+                questions[component][level] = {};
+            }
+            if (!questions[component][level][block]) {
+                questions[component][level][block] = [];
             }
             
-            questions[subject].push(newQuestion);
-            saveData('lecmafi_questions', questions);
+            questions[component][level][block].push(newQuestion);
+            saveData('lecmafis_questions_v2', questions);
             
             document.getElementById('admin-question').value = '';
             document.getElementById('admin-option-a').value = '';
@@ -1718,7 +2639,7 @@
         function exportQuestions() {
             const dataStr = JSON.stringify(questions, null, 2);
             const dataUri = 'application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-            const exportFileDefaultName = 'lecmafi-preguntas.json';
+            const exportFileDefaultName = 'lecmafis-preguntas-v2.json';
             const linkElement = document.createElement('a');
             linkElement.setAttribute('href', dataUri);
             linkElement.setAttribute('download', exportFileDefaultName);
@@ -1734,7 +2655,7 @@
                 try {
                     const imported = JSON.parse(e.target.result);
                     questions = imported;
-                    saveData('lecmafi_questions', questions);
+                    saveData('lecmafis_questions_v2', questions);
                     updateAdminStats();
                     alert('¡Preguntas importadas exitosamente!');
                 } catch (error) {
@@ -1747,38 +2668,39 @@
         // ==================== INITIALIZATION ====================
         
         document.addEventListener('DOMContentLoaded', function() {
-            // Create default admin if not exists
             const adminExists = students.find(s => s.identification === 'admin');
             if (!adminExists) {
                 students.push({
                     identification: 'admin',
                     names: 'Administrador',
-                    surnames: 'LECMAFI',
+                    surnames: 'LECMAFIS',
                     age: 30,
                     gender: 'otro',
                     accessCode: 'ADMIN-MASTER',
                     registeredAt: new Date().toISOString(),
                     isAdmin: true,
-                    stats: {
-                        lectura: { completed: 0, score: 0, level: 1 },
-                        matematicas: { completed: 0, score: 0, level: 1 }
-                    },
-                    quizHistory: []
+                    progress: {}
                 });
-                saveData('lecmafi_students', students);
+                saveData('lecmafis_students', students);
             }
             
             updateAuthUI();
             showPage('home');
         });
 
-        // Close modal on outside click
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === this) {
                     this.classList.remove('active');
                 }
             });
+        });
+
+        window.addEventListener('beforeunload', function(e) {
+            if (currentQuiz) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
         });
     </script>
 </body>
