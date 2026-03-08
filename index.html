@@ -107,6 +107,16 @@
             color: white;
         }
 
+        .btn-success {
+            background: linear-gradient(135deg, var(--secondary), #059669);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #DC2626);
+            color: white;
+        }
+
         /* Hero Section */
         .hero {
             padding: 8rem 2rem 4rem;
@@ -439,6 +449,12 @@
             resize: vertical;
         }
 
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
         /* Modal */
         .modal {
             position: fixed;
@@ -461,7 +477,7 @@
             background: white;
             padding: 2rem;
             border-radius: 15px;
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
@@ -508,6 +524,122 @@
             margin-bottom: 2rem;
         }
 
+        /* Access Code Section */
+        .access-section {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            margin: 2rem auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .access-section.active {
+            display: block;
+        }
+
+        .access-section h2 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .access-section p {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        /* Student List */
+        .student-list {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .student-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .student-table th,
+        .student-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light);
+        }
+
+        .student-table th {
+            background: var(--light);
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .student-table tr:hover {
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .status-inactive {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+
+        /* Code Cards */
+        .code-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .code-card {
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .code-card.active {
+            border-color: var(--secondary);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        .code-card.used {
+            border-color: var(--gray);
+            opacity: 0.6;
+        }
+
+        .code-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 2px;
+            margin: 0.5rem 0;
+        }
+
+        .code-status {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -529,6 +661,15 @@
 
             .quiz-progress {
                 margin: 1rem 0;
+            }
+
+            .student-table {
+                font-size: 0.85rem;
+            }
+
+            .student-table th,
+            .student-table td {
+                padding: 0.5rem;
             }
         }
 
@@ -571,6 +712,19 @@
             background: #FEE2E2;
             color: #991B1B;
         }
+
+        .info-box {
+            background: rgba(79, 70, 229, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box p {
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -580,11 +734,11 @@
             <div class="logo">🎓 LECMAFI</div>
             <ul class="nav-links">
                 <li><a onclick="showPage('home')">Inicio</a></li>
-                <li><a onclick="showPage('dashboard')">Mi Progreso</a></li>
-                <li><a onclick="showPage('admin')">Admin</a></li>
+                <li><a onclick="showPage('dashboard')" id="nav-dashboard" style="display: none;">Mi Progreso</a></li>
+                <li><a onclick="showPage('admin')" id="nav-admin" style="display: none;">Admin</a></li>
             </ul>
             <div id="auth-buttons">
-                <button class="btn btn-secondary" onclick="openModal('login')">Iniciar Sesión</button>
+                <button class="btn btn-secondary" onclick="openModal('login')">Ingresar</button>
                 <button class="btn btn-primary" onclick="openModal('register')">Registrarse</button>
             </div>
             <div id="user-info" class="hidden">
@@ -599,7 +753,7 @@
         <h1>LECMAFI</h1>
         <p>Plataforma educativa inteligente que fortalece la comprensión lectora y el razonamiento matemático mediante evaluaciones adaptativas tipo ICFES</p>
         <div class="hero-buttons">
-            <button class="btn btn-primary" onclick="showPage('dashboard')">Comenzar Ahora</button>
+            <button class="btn btn-primary" onclick="openModal('register')">Comenzar Ahora</button>
             <button class="btn btn-secondary" onclick="scrollToFeatures()">Saber Más</button>
         </div>
     </section>
@@ -635,19 +789,36 @@
                     <p>Desarrolla habilidades matemáticas mediante problemas desafiantes y prácticos.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Acceso 24/7</h3>
-                    <p>Estudia desde cualquier dispositivo, en cualquier momento, sin límites de tiempo.</p>
+                    <div class="feature-icon">🔐</div>
+                    <h3>Acceso Seguro</h3>
+                    <p>Sistema de códigos de acceso exclusivos para garantizar la seguridad de los estudiantes.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Access Code Section -->
+    <section class="access-section" id="access-page">
+        <h2>🔐 Ingreso con Código de Acceso</h2>
+        <p>Ingresa tu código de acceso proporcionado por el administrador para comenzar</p>
+        
+        <div class="form-group">
+            <label>Código de Acceso</label>
+            <input type="text" id="access-code-input" placeholder="Ej: LECMAFI-2024-001" style="text-align: center; font-size: 1.2rem; letter-spacing: 2px;">
+        </div>
+        
+        <button class="btn btn-primary" onclick="validateAccessCode()" style="width: 100%;">Validar Código</button>
+        
+        <p class="text-center mt-4" style="color: var(--gray);">
+            ¿Ya tienes cuenta? <a onclick="openModal('login')" style="color: var(--primary); cursor: pointer; font-weight: 600;">Inicia sesión aquí</a>
+        </p>
+    </section>
+
     <!-- Dashboard -->
     <section class="dashboard" id="dashboard-page">
         <div class="dashboard-header">
-            <h2>👋 ¡Bienvenido a tu espacio de aprendizaje!</h2>
-            <p>Selecciona una materia para comenzar tu evaluación adaptativa</p>
+            <h2 id="welcome-message">👋 ¡Bienvenido a tu espacio de aprendizaje!</h2>
+            <p>Selecciona una materia para comenzar o continuar tu evaluación adaptativa</p>
             
             <div class="stats-grid">
                 <div class="stat-card">
@@ -663,6 +834,13 @@
                     <div class="stat-label">Nivel Actual</div>
                 </div>
             </div>
+        </div>
+
+        <!-- Continue Quiz Section -->
+        <div id="continue-quiz-section" class="hidden" style="background: rgba(16, 185, 129, 0.1); border: 2px solid var(--secondary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+            <h3 style="color: var(--dark); margin-bottom: 0.5rem;">📝 Tienes una evaluación en progreso</h3>
+            <p style="color: var(--gray); margin-bottom: 1rem;">Materia: <strong id="continue-subject"></strong> | Pregunta <strong id="continue-question"></strong> de <strong id="continue-total"></strong></p>
+            <button class="btn btn-success" onclick="continueQuiz()">Continuar Evaluación</button>
         </div>
 
         <!-- Subject Selection -->
@@ -704,7 +882,7 @@
             </div>
 
             <div class="quiz-actions">
-                <button class="btn btn-secondary" onclick="endQuiz()">Salir</button>
+                <button class="btn btn-secondary" onclick="saveAndExit()">Guardar y Salir</button>
                 <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>Siguiente</button>
             </div>
         </div>
@@ -719,104 +897,211 @@
 
         <!-- Admin Panel -->
         <div class="admin-panel" id="admin-panel">
-            <h2 style="color: var(--dark); margin-bottom: 1.5rem;">🔧 Panel de Administración - Agregar Preguntas</h2>
+            <h2 style="color: var(--dark); margin-bottom: 1.5rem;">🔧 Panel de Administración</h2>
             
-            <div class="form-group">
-                <label>Materia</label>
-                <select id="admin-subject">
-                    <option value="lectura">Comprensión Lectora</option>
-                    <option value="matematicas">Razonamiento Matemático</option>
-                </select>
+            <!-- Access Code Management -->
+            <div style="background: var(--light); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                <h3 style="color: var(--dark); margin-bottom: 1rem;">🔑 Generar Códigos de Acceso</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Cantidad de Códigos</label>
+                        <input type="number" id="code-quantity" value="5" min="1" max="50">
+                    </div>
+                    <div class="form-group">
+                        <label>Vigencia (días)</label>
+                        <input type="number" id="code-validity" value="30" min="1" max="365">
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" onclick="generateAccessCodes()">Generar Códigos</button>
+                
+                <div class="code-grid" id="codes-container"></div>
             </div>
 
-            <div class="form-group">
-                <label>Nivel de Dificultad</label>
-                <select id="admin-difficulty">
-                    <option value="facil">Fácil</option>
-                    <option value="medio">Medio</option>
-                    <option value="dificil">Difícil</option>
-                </select>
+            <!-- Student List -->
+            <div class="student-list">
+                <h3 style="color: var(--dark); margin-bottom: 1rem;">📚 Estudiantes Registrados</h3>
+                <div style="overflow-x: auto;">
+                    <table class="student-table">
+                        <thead>
+                            <tr>
+                                <th>Identificación</th>
+                                <th>Nombres</th>
+                                <th>Apellidos</th>
+                                <th>Edad</th>
+                                <th>Género</th>
+                                <th>Código Usado</th>
+                                <th>Fecha Registro</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="students-table-body">
+                            <!-- Students will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label>Texto/Contexto (opcional para lectura)</label>
-                <textarea id="admin-context" placeholder="Texto base para la pregunta..."></textarea>
-            </div>
+            <!-- Questions Management -->
+            <div style="background: var(--light); padding: 1.5rem; border-radius: 12px; margin-top: 2rem;">
+                <h3 style="color: var(--dark); margin-bottom: 1rem;">📝 Agregar Preguntas</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Materia</label>
+                        <select id="admin-subject">
+                            <option value="lectura">Comprensión Lectora</option>
+                            <option value="matematicas">Razonamiento Matemático</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nivel de Dificultad</label>
+                        <select id="admin-difficulty">
+                            <option value="facil">Fácil</option>
+                            <option value="medio">Medio</option>
+                            <option value="dificil">Difícil</option>
+                        </select>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label>Pregunta</label>
-                <textarea id="admin-question" placeholder="Escribe la pregunta aquí..." required></textarea>
-            </div>
+                <div class="form-group">
+                    <label>Texto/Contexto (opcional para lectura)</label>
+                    <textarea id="admin-context" placeholder="Texto base para la pregunta..."></textarea>
+                </div>
 
-            <div class="form-group">
-                <label>Opción A</label>
-                <input type="text" id="admin-option-a" placeholder="Opción A" required>
-            </div>
+                <div class="form-group">
+                    <label>Pregunta</label>
+                    <textarea id="admin-question" placeholder="Escribe la pregunta aquí..." required></textarea>
+                </div>
 
-            <div class="form-group">
-                <label>Opción B</label>
-                <input type="text" id="admin-option-b" placeholder="Opción B" required>
-            </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Opción A</label>
+                        <input type="text" id="admin-option-a" placeholder="Opción A" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Opción B</label>
+                        <input type="text" id="admin-option-b" placeholder="Opción B" required>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label>Opción C</label>
-                <input type="text" id="admin-option-c" placeholder="Opción C" required>
-            </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Opción C</label>
+                        <input type="text" id="admin-option-c" placeholder="Opción C" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Opción D</label>
+                        <input type="text" id="admin-option-d" placeholder="Opción D" required>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label>Opción D</label>
-                <input type="text" id="admin-option-d" placeholder="Opción D" required>
-            </div>
+                <div class="form-group">
+                    <label>Respuesta Correcta</label>
+                    <select id="admin-correct">
+                        <option value="0">Opción A</option>
+                        <option value="1">Opción B</option>
+                        <option value="2">Opción C</option>
+                        <option value="3">Opción D</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label>Respuesta Correcta</label>
-                <select id="admin-correct">
-                    <option value="0">Opción A</option>
-                    <option value="1">Opción B</option>
-                    <option value="2">Opción C</option>
-                    <option value="3">Opción D</option>
-                </select>
-            </div>
-
-            <button class="btn btn-primary" onclick="addQuestion()">Agregar Pregunta</button>
-            
-            <div style="margin-top: 2rem; padding: 1rem; background: var(--light); border-radius: 8px;">
-                <h4 style="color: var(--dark); margin-bottom: 1rem;">📊 Estadísticas de Preguntas</h4>
-                <p id="questions-count">Total de preguntas: 0</p>
-                <button class="btn btn-secondary mt-4" onclick="exportQuestions()">Exportar Preguntas (JSON)</button>
-                <button class="btn btn-secondary mt-4" onclick="importQuestions()">Importar Preguntas</button>
-                <input type="file" id="import-file" style="display: none;" accept=".json" onchange="handleImport(event)">
+                <button class="btn btn-primary" onclick="addQuestion()">Agregar Pregunta</button>
+                
+                <div style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 8px;">
+                    <h4 style="color: var(--dark); margin-bottom: 1rem;">📊 Estadísticas de Preguntas</h4>
+                    <p id="questions-count">Total de preguntas: 0</p>
+                    <button class="btn btn-secondary mt-4" onclick="exportQuestions()">Exportar Preguntas (JSON)</button>
+                    <button class="btn btn-secondary mt-4" onclick="document.getElementById('import-file').click()">Importar Preguntas</button>
+                    <input type="file" id="import-file" style="display: none;" accept=".json" onchange="handleImport(event)">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Login/Register Modal -->
-    <div class="modal" id="auth-modal">
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modal-title">Iniciar Sesión</h3>
-                <button class="close-modal" onclick="closeModal()">&times;</button>
+                <h3>🔐 Iniciar Sesión</h3>
+                <button class="close-modal" onclick="closeModal('login')">&times;</button>
             </div>
             
-            <form id="auth-form" onsubmit="handleAuth(event)">
+            <div class="info-box">
+                <p>ℹ️ Ingresa tu número de identificación para acceder a tu cuenta</p>
+            </div>
+            
+            <form onsubmit="handleLogin(event)">
                 <div class="form-group">
-                    <label>Nombre de Usuario</label>
-                    <input type="text" id="auth-username" required placeholder="Tu nombre">
+                    <label>Número de Identificación</label>
+                    <input type="text" id="login-identification" required placeholder="Ej: 1234567890">
                 </div>
                 
-                <div class="form-group" id="email-group" style="display: none;">
-                    <label>Correo Electrónico</label>
-                    <input type="email" id="auth-email" placeholder="tu@correo.com">
-                </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%;" id="auth-submit-btn">Iniciar Sesión</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Ingresar</button>
             </form>
             
             <p class="text-center mt-4" style="color: var(--gray);">
-                <span id="auth-switch-text">¿No tienes cuenta?</span>
-                <a onclick="switchAuthMode()" style="color: var(--primary); cursor: pointer; font-weight: 600;">
-                    <span id="auth-switch-link">Regístrate</span>
-                </a>
+                ¿No tienes cuenta? <a onclick="showAccessPage()" style="color: var(--primary); cursor: pointer; font-weight: 600;">Regístrate con código de acceso</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📝 Registro de Estudiante</h3>
+                <button class="close-modal" onclick="closeModal('register')">&times;</button>
+            </div>
+            
+            <div class="info-box">
+                <p>ℹ️ Completa tus datos para crear tu cuenta. Necesitas un código de acceso válido.</p>
+            </div>
+            
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Código de Acceso *</label>
+                    <input type="text" id="register-access-code" required placeholder="Ej: LECMAFI-2024-001" style="text-align: center; letter-spacing: 2px;">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Números de Identificación *</label>
+                        <input type="text" id="register-identification" required placeholder="Ej: 1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label>Edad *</label>
+                        <input type="number" id="register-age" required placeholder="Ej: 16" min="5" max="100">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombres *</label>
+                        <input type="text" id="register-names" required placeholder="Tus nombres">
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos *</label>
+                        <input type="text" id="register-surnames" required placeholder="Tus apellidos">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Género *</label>
+                    <select id="register-gender" required>
+                        <option value="">Selecciona...</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Registrarse</button>
+            </form>
+            
+            <p class="text-center mt-4" style="color: var(--gray);">
+                ¿Ya tienes cuenta? <a onclick="openModal('login')" style="color: var(--primary); cursor: pointer; font-weight: 600;">Inicia sesión aquí</a>
             </p>
         </div>
     </div>
@@ -824,19 +1109,13 @@
     <script>
         // ==================== DATA MANAGEMENT ====================
         
-        // Initial questions database (you can add more from your PDFs)
         const defaultQuestions = {
             lectura: [
                 {
                     id: 1,
-                    context: "La lectura es el proceso de adquirir información de un soporte escrito. La lectura se realiza con los ojos, aunque también es posible la lectura en Braille o de forma auditiva.",
+                    context: "La lectura es el proceso de adquirir información de un soporte escrito.",
                     question: "¿Cuál es el propósito principal de la lectura según el texto?",
-                    options: [
-                        "Adquirir información de un soporte escrito",
-                        "Mejorar la vista",
-                        "Aprender a escribir",
-                        "Memorizar textos"
-                    ],
+                    options: ["Adquirir información de un soporte escrito", "Mejorar la vista", "Aprender a escribir", "Memorizar textos"],
                     correct: 0,
                     difficulty: "facil"
                 },
@@ -844,25 +1123,15 @@
                     id: 2,
                     context: "El razonamiento crítico es la capacidad de analizar y evaluar la consistencia de los razonamientos.",
                     question: "¿Qué habilidad se desarrolla con el razonamiento crítico?",
-                    options: [
-                        "Memorizar información",
-                        "Analizar y evaluar razonamientos",
-                        "Escribir rápidamente",
-                        "Leer en voz alta"
-                    ],
+                    options: ["Memorizar información", "Analizar y evaluar razonamientos", "Escribir rápidamente", "Leer en voz alta"],
                     correct: 1,
                     difficulty: "medio"
                 },
                 {
                     id: 3,
-                    context: "La comprensión lectora implica la capacidad de entender lo que se lee, tanto en referencia al significado de las palabras que forman un texto, como con respecto a la comprensión global del texto mismo.",
+                    context: "La comprensión lectora implica la capacidad de entender lo que se lee.",
                     question: "Según el texto, la comprensión lectora requiere:",
-                    options: [
-                        "Solo entender palabras individuales",
-                        "Entender palabras y la comprensión global del texto",
-                        "Memorizar el texto completo",
-                        "Leer rápidamente sin pausas"
-                    ],
+                    options: ["Solo entender palabras individuales", "Entender palabras y la comprensión global", "Memorizar el texto completo", "Leer rápidamente sin pausas"],
                     correct: 1,
                     difficulty: "medio"
                 }
@@ -872,12 +1141,7 @@
                     id: 1,
                     context: null,
                     question: "Si un tren viaja a 60 km/h, ¿cuántos kilómetros recorrerá en 2.5 horas?",
-                    options: [
-                        "120 km",
-                        "150 km",
-                        "180 km",
-                        "200 km"
-                    ],
+                    options: ["120 km", "150 km", "180 km", "200 km"],
                     correct: 1,
                     difficulty: "facil"
                 },
@@ -885,12 +1149,7 @@
                     id: 2,
                     context: "Un rectángulo tiene un área de 48 cm² y un lado de 8 cm.",
                     question: "¿Cuánto mide el otro lado del rectángulo?",
-                    options: [
-                        "4 cm",
-                        "5 cm",
-                        "6 cm",
-                        "7 cm"
-                    ],
+                    options: ["4 cm", "5 cm", "6 cm", "7 cm"],
                     correct: 2,
                     difficulty: "medio"
                 },
@@ -898,94 +1157,65 @@
                     id: 3,
                     context: "En una clase hay 30 estudiantes. El 60% son mujeres.",
                     question: "¿Cuántos hombres hay en la clase?",
-                    options: [
-                        "10",
-                        "12",
-                        "15",
-                        "18"
-                    ],
+                    options: ["10", "12", "15", "18"],
                     correct: 1,
                     difficulty: "medio"
                 }
             ]
         };
 
-        // Load or initialize data from localStorage
-        function loadData() {
-            const stored = localStorage.getItem('lecmafi_questions');
+        // Load data from localStorage
+        function loadData(key, defaultValue) {
+            const stored = localStorage.getItem(key);
             if (stored) {
                 return JSON.parse(stored);
             }
-            localStorage.setItem('lecmafi_questions', JSON.stringify(defaultQuestions));
-            return defaultQuestions;
-        }
-
-        function saveData(data) {
-            localStorage.setItem('lecmafi_questions', JSON.stringify(data));
-        }
-
-        // User data management
-        function loadUserData() {
-            const stored = localStorage.getItem('lecmafi_user');
-            if (stored) {
-                return JSON.parse(stored);
+            if (defaultValue) {
+                localStorage.setItem(key, JSON.stringify(defaultValue));
+                return defaultValue;
             }
-            return {
-                username: null,
-                email: null,
-                stats: {
-                    lectura: { completed: 0, score: 0, level: 1 },
-                    matematicas: { completed: 0, score: 0, level: 1 }
-                },
-                quizHistory: []
-            };
+            return null;
         }
 
-        function saveUserData(user) {
-            localStorage.setItem('lecmafi_user', JSON.stringify(user));
+        function saveData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
         }
 
-        // ==================== STATE MANAGEMENT ====================
-        
-        let questions = loadData();
-        let currentUser = loadUserData();
-        let currentQuiz = {
-            subject: null,
-            questions: [],
-            currentIndex: 0,
-            answers: [],
-            score: 0
-        };
-        let isLoginMode = true;
+        // Initialize data
+        let questions = loadData('lecmafi_questions', defaultQuestions);
+        let accessCodes = loadData('lecmafi_access_codes', []);
+        let students = loadData('lecmafi_students', []);
+        let currentUser = loadData('lecmafi_current_user', null);
+        let currentQuiz = loadData('lecmafi_current_quiz', null);
 
         // ==================== NAVIGATION ====================
         
         function showPage(page) {
-            // Hide all pages
             document.getElementById('home-page').style.display = 'none';
             document.getElementById('dashboard-page').classList.remove('active');
             document.getElementById('features').style.display = 'none';
+            document.getElementById('access-page').classList.remove('active');
             
-            // Show selected page
             if (page === 'home') {
                 document.getElementById('home-page').style.display = 'block';
                 document.getElementById('features').style.display = 'block';
             } else if (page === 'dashboard') {
-                if (!currentUser.username) {
+                if (!currentUser) {
                     openModal('login');
                     return;
                 }
                 document.getElementById('dashboard-page').classList.add('active');
                 updateDashboard();
             } else if (page === 'admin') {
-                if (!currentUser.username) {
-                    openModal('login');
+                if (!currentUser || !currentUser.isAdmin) {
+                    alert('Acceso denegado. Solo administradores.');
+                    showPage('home');
                     return;
                 }
                 document.getElementById('dashboard-page').classList.add('active');
                 document.getElementById('admin-panel').classList.add('active');
                 document.getElementById('quiz-section').classList.remove('active');
-                updateAdminStats();
+                updateAdminPanel();
             }
             
             window.scrollTo(0, 0);
@@ -995,116 +1225,223 @@
             document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // ==================== AUTHENTICATION ====================
+        function showAccessPage() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('features').style.display = 'none';
+            document.getElementById('access-page').classList.add('active');
+            closeModal('login');
+            closeModal('register');
+        }
+
+        // ==================== MODAL ====================
         
         function openModal(type) {
-            const modal = document.getElementById('auth-modal');
-            const title = document.getElementById('modal-title');
-            const emailGroup = document.getElementById('email-group');
-            const submitBtn = document.getElementById('auth-submit-btn');
-            const switchText = document.getElementById('auth-switch-text');
-            const switchLink = document.getElementById('auth-switch-link');
+            document.getElementById(type + '-modal').classList.add('active');
+        }
+
+        function closeModal(type) {
+            document.getElementById(type + '-modal').classList.remove('active');
+        }
+
+        // ==================== ACCESS CODE ====================
+        
+        function validateAccessCode() {
+            const code = document.getElementById('access-code-input').value.trim().toUpperCase();
             
-            isLoginMode = type === 'login';
-            
-            if (isLoginMode) {
-                title.textContent = 'Iniciar Sesión';
-                emailGroup.style.display = 'none';
-                submitBtn.textContent = 'Iniciar Sesión';
-                switchText.textContent = '¿No tienes cuenta?';
-                switchLink.textContent = 'Regístrate';
-            } else {
-                title.textContent = 'Registrarse';
-                emailGroup.style.display = 'block';
-                submitBtn.textContent = 'Registrarse';
-                switchText.textContent = '¿Ya tienes cuenta?';
-                switchLink.textContent = 'Inicia Sesión';
+            if (!code) {
+                alert('Por favor ingresa un código de acceso');
+                return;
             }
             
-            modal.classList.add('active');
+            const codeData = accessCodes.find(c => c.code === code);
+            
+            if (!codeData) {
+                alert('Código de acceso no válido. Por favor verifica el código.');
+                return;
+            }
+            
+            if (codeData.used) {
+                alert('Este código de acceso ya ha sido utilizado.');
+                return;
+            }
+            
+            if (new Date(codeData.expiresAt) < new Date()) {
+                alert('Este código de acceso ha expirado.');
+                return;
+            }
+            
+            // Code is valid, proceed to registration
+            document.getElementById('register-access-code').value = code;
+            openModal('register');
+            document.getElementById('access-page').classList.remove('active');
         }
 
-        function closeModal() {
-            document.getElementById('auth-modal').classList.remove('active');
+        function generateAccessCodes() {
+            const quantity = parseInt(document.getElementById('code-quantity').value);
+            const validity = parseInt(document.getElementById('code-validity').value);
+            
+            const newCodes = [];
+            const today = new Date();
+            
+            for (let i = 0; i < quantity; i++) {
+                const code = 'LECMAFI-' + today.getFullYear() + '-' + String(accessCodes.length + i + 1).padStart(3, '0');
+                
+                newCodes.push({
+                    code: code,
+                    createdAt: today.toISOString(),
+                    expiresAt: new Date(today.getTime() + validity * 24 * 60 * 60 * 1000).toISOString(),
+                    used: false,
+                    usedBy: null
+                });
+            }
+            
+            accessCodes.push(...newCodes);
+            saveData('lecmafi_access_codes', accessCodes);
+            
+            displayGeneratedCodes(newCodes);
+            alert('Se generaron ' + quantity + ' códigos de acceso exitosamente.');
         }
 
-        function switchAuthMode() {
-            openModal(isLoginMode ? 'register' : 'login');
+        function displayGeneratedCodes(codes) {
+            const container = document.getElementById('codes-container');
+            container.innerHTML = codes.map(code => `
+                <div class="code-card ${code.used ? 'used' : 'active'}">
+                    <div class="code-value">${code.code}</div>
+                    <div class="code-status">${code.used ? '✅ Usado' : '⏳ Disponible'}</div>
+                    <div class="code-status">Vence: ${new Date(code.expiresAt).toLocaleDateString()}</div>
+                </div>
+            `).join('');
         }
 
-        function handleAuth(event) {
+        // ==================== AUTHENTICATION ====================
+        
+        function handleRegister(event) {
             event.preventDefault();
             
-            const username = document.getElementById('auth-username').value.trim();
-            const email = document.getElementById('auth-email').value.trim();
+            const accessCode = document.getElementById('register-access-code').value.trim().toUpperCase();
+            const identification = document.getElementById('register-identification').value.trim();
+            const names = document.getElementById('register-names').value.trim();
+            const surnames = document.getElementById('register-surnames').value.trim();
+            const age = parseInt(document.getElementById('register-age').value);
+            const gender = document.getElementById('register-gender').value;
             
-            if (isLoginMode) {
-                // Login
-                const storedUser = localStorage.getItem('lecmafi_user_' + username);
-                if (storedUser) {
-                    currentUser = JSON.parse(storedUser);
-                    localStorage.setItem('lecmafi_user', JSON.stringify(currentUser));
-                    updateAuthUI();
-                    closeModal();
-                    showPage('dashboard');
-                    alert('¡Bienvenido de nuevo, ' + username + '!');
-                } else {
-                    alert('Usuario no encontrado. Por favor regístrate primero.');
-                }
-            } else {
-                // Register
-                if (!username || !email) {
-                    alert('Por favor completa todos los campos');
-                    return;
-                }
-                
-                currentUser = {
-                    username: username,
-                    email: email,
-                    stats: {
-                        lectura: { completed: 0, score: 0, level: 1 },
-                        matematicas: { completed: 0, score: 0, level: 1 }
-                    },
-                    quizHistory: []
-                };
-                
-                localStorage.setItem('lecmafi_user_' + username, JSON.stringify(currentUser));
-                localStorage.setItem('lecmafi_user', JSON.stringify(currentUser));
-                updateAuthUI();
-                closeModal();
-                showPage('dashboard');
-                alert('¡Registro exitoso! Bienvenido a LECMAFI.');
+            // Validate access code
+            const codeIndex = accessCodes.findIndex(c => c.code === accessCode);
+            if (codeIndex === -1) {
+                alert('Código de acceso no válido.');
+                return;
             }
+            
+            if (accessCodes[codeIndex].used) {
+                alert('Este código de acceso ya ha sido utilizado.');
+                return;
+            }
+            
+            // Check if student already exists
+            const existingStudent = students.find(s => s.identification === identification);
+            if (existingStudent) {
+                alert('Ya existe un estudiante registrado con este número de identificación.');
+                return;
+            }
+            
+            // Create student
+            const newStudent = {
+                identification: identification,
+                names: names,
+                surnames: surnames,
+                age: age,
+                gender: gender,
+                accessCode: accessCode,
+                registeredAt: new Date().toISOString(),
+                isAdmin: false,
+                stats: {
+                    lectura: { completed: 0, score: 0, level: 1 },
+                    matematicas: { completed: 0, score: 0, level: 1 }
+                },
+                quizHistory: []
+            };
+            
+            students.push(newStudent);
+            saveData('lecmafi_students', students);
+            
+            // Mark code as used
+            accessCodes[codeIndex].used = true;
+            accessCodes[codeIndex].usedBy = identification;
+            accessCodes[codeIndex].usedAt = new Date().toISOString();
+            saveData('lecmafi_access_codes', accessCodes);
+            
+            // Auto login
+            currentUser = newStudent;
+            saveData('lecmafi_current_user', currentUser);
+            
+            closeModal('register');
+            updateAuthUI();
+            showPage('dashboard');
+            alert('¡Registro exitoso! Bienvenido a LECMAFI, ' + names + '!');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const identification = document.getElementById('login-identification').value.trim();
+            
+            const student = students.find(s => s.identification === identification);
+            
+            if (!student) {
+                alert('No se encontró un estudiante con este número de identificación. Por favor regístrate primero.');
+                return;
+            }
+            
+            currentUser = student;
+            saveData('lecmafi_current_user', currentUser);
+            
+            closeModal('login');
+            updateAuthUI();
+            showPage('dashboard');
+            alert('¡Bienvenido de nuevo, ' + student.names + '!');
+        }
+
+        function logout() {
+            currentUser = null;
+            saveData('lecmafi_current_user', null);
+            updateAuthUI();
+            showPage('home');
         }
 
         function updateAuthUI() {
             const authButtons = document.getElementById('auth-buttons');
             const userInfo = document.getElementById('user-info');
             const usernameDisplay = document.getElementById('username-display');
+            const navDashboard = document.getElementById('nav-dashboard');
+            const navAdmin = document.getElementById('nav-admin');
             
-            if (currentUser.username) {
+            if (currentUser) {
                 authButtons.classList.add('hidden');
                 userInfo.classList.remove('hidden');
-                usernameDisplay.textContent = '👤 ' + currentUser.username;
+                usernameDisplay.textContent = '👤 ' + currentUser.names + ' ' + currentUser.surnames;
+                navDashboard.style.display = 'block';
+                
+                if (currentUser.isAdmin) {
+                    navAdmin.style.display = 'block';
+                } else {
+                    navAdmin.style.display = 'none';
+                }
             } else {
                 authButtons.classList.remove('hidden');
                 userInfo.classList.add('hidden');
+                navDashboard.style.display = 'none';
+                navAdmin.style.display = 'none';
             }
-        }
-
-        function logout() {
-            currentUser = loadUserData();
-            localStorage.removeItem('lecmafi_user');
-            updateAuthUI();
-            showPage('home');
-            alert('Sesión cerrada correctamente');
         }
 
         // ==================== DASHBOARD ====================
         
         function updateDashboard() {
-            const stats = currentUser.stats;
+            if (!currentUser) return;
             
+            document.getElementById('welcome-message').textContent = '👋 ¡Bienvenido, ' + currentUser.names + '!';
+            
+            const stats = currentUser.stats;
             const totalQuizzes = stats.lectura.completed + stats.matematicas.completed;
             const totalScore = stats.lectura.score + stats.matematicas.score;
             const averageScore = totalQuizzes > 0 ? Math.round(totalScore / totalQuizzes) : 0;
@@ -1112,11 +1449,20 @@
             document.getElementById('total-quizzes').textContent = totalQuizzes;
             document.getElementById('average-score').textContent = averageScore + '%';
             
-            // Update levels
             updateLevelDisplay('lectura', stats.lectura.level);
             updateLevelDisplay('matematicas', stats.matematicas.level);
             
-            // Hide quiz and results
+            // Check for continued quiz
+            if (currentQuiz && currentQuiz.userId === currentUser.identification) {
+                document.getElementById('continue-quiz-section').classList.remove('hidden');
+                document.getElementById('continue-subject').textContent = 
+                    currentQuiz.subject === 'lectura' ? 'Comprensión Lectora' : 'Razonamiento Matemático';
+                document.getElementById('continue-question').textContent = currentQuiz.currentIndex + 1;
+                document.getElementById('continue-total').textContent = currentQuiz.questions.length;
+            } else {
+                document.getElementById('continue-quiz-section').classList.add('hidden');
+            }
+            
             document.getElementById('quiz-section').classList.remove('active');
             document.getElementById('results-section').classList.add('hidden');
         }
@@ -1130,25 +1476,44 @@
         // ==================== QUIZ SYSTEM ====================
         
         function startQuiz(subject) {
-            currentQuiz.subject = subject;
-            currentQuiz.currentIndex = 0;
-            currentQuiz.answers = [];
-            currentQuiz.score = 0;
-            
-            // Get adaptive questions based on user level
-            const userLevel = currentUser.stats[subject].level;
-            currentQuiz.questions = getAdaptiveQuestions(subject, userLevel);
+            currentQuiz = {
+                userId: currentUser.identification,
+                subject: subject,
+                questions: getAdaptiveQuestions(subject, currentUser.stats[subject].level),
+                currentIndex: 0,
+                answers: [],
+                score: 0,
+                startedAt: new Date().toISOString()
+            };
             
             if (currentQuiz.questions.length === 0) {
-                alert('No hay preguntas disponibles para esta materia. Por favor agrega preguntas desde el panel de administración.');
+                alert('No hay preguntas disponibles para esta materia.');
                 return;
             }
             
-            document.getElementById('quiz-subject').textContent = subject === 'lectura' ? 'Comprensión Lectora' : 'Razonamiento Matemático';
+            saveData('lecmafi_current_quiz', currentQuiz);
+            
+            document.getElementById('quiz-subject').textContent = 
+                subject === 'lectura' ? 'Comprensión Lectora' : 'Razonamiento Matemático';
             document.getElementById('total-questions').textContent = currentQuiz.questions.length;
             
             document.getElementById('quiz-section').classList.add('active');
             document.getElementById('results-section').classList.add('hidden');
+            document.getElementById('continue-quiz-section').classList.add('hidden');
+            
+            showQuestion();
+        }
+
+        function continueQuiz() {
+            if (!currentQuiz) return;
+            
+            document.getElementById('quiz-subject').textContent = 
+                currentQuiz.subject === 'lectura' ? 'Comprensión Lectora' : 'Razonamiento Matemático';
+            document.getElementById('total-questions').textContent = currentQuiz.questions.length;
+            
+            document.getElementById('quiz-section').classList.add('active');
+            document.getElementById('results-section').classList.add('hidden');
+            document.getElementById('continue-quiz-section').classList.add('hidden');
             
             showQuestion();
         }
@@ -1156,7 +1521,6 @@
         function getAdaptiveQuestions(subject, level) {
             const subjectQuestions = questions[subject] || [];
             
-            // Filter by difficulty based on level
             let difficulty;
             if (level === 1) difficulty = 'facil';
             else if (level === 2) difficulty = 'medio';
@@ -1164,12 +1528,10 @@
             
             let filtered = subjectQuestions.filter(q => q.difficulty === difficulty);
             
-            // If not enough questions, add from other difficulties
             if (filtered.length < 5) {
                 filtered = subjectQuestions.slice(0, 10);
             }
             
-            // Shuffle questions
             return filtered.sort(() => Math.random() - 0.5).slice(0, 10);
         }
 
@@ -1179,16 +1541,13 @@
             document.getElementById('current-question').textContent = currentQuiz.currentIndex + 1;
             document.getElementById('question-text').textContent = question.question;
             
-            // Update progress bar
             const progress = ((currentQuiz.currentIndex + 1) / currentQuiz.questions.length) * 100;
             document.getElementById('progress-fill').style.width = progress + '%';
             
-            // Update difficulty badge
             const badge = document.getElementById('difficulty-badge');
             badge.textContent = question.difficulty.charAt(0).toUpperCase() + question.difficulty.slice(1);
             badge.className = 'difficulty-badge difficulty-' + question.difficulty;
             
-            // Generate options
             const optionsContainer = document.getElementById('options-container');
             optionsContainer.innerHTML = question.options.map((option, index) => `
                 <button class="option-btn" onclick="selectOption(${index})">
@@ -1200,23 +1559,19 @@
         }
 
         function selectOption(index) {
-            // Remove previous selection
             document.querySelectorAll('.option-btn').forEach(btn => {
                 btn.classList.remove('selected');
             });
             
-            // Add selection to clicked button
             event.target.classList.add('selected');
-            
-            // Store answer
             currentQuiz.answers[currentQuiz.currentIndex] = index;
-            
-            // Enable next button
             document.getElementById('next-btn').disabled = false;
+            
+            // Auto-save progress
+            saveData('lecmafi_current_quiz', currentQuiz);
         }
 
         function nextQuestion() {
-            // Check if answer is correct
             const currentQuestion = currentQuiz.questions[currentQuiz.currentIndex];
             const userAnswer = currentQuiz.answers[currentQuiz.currentIndex];
             
@@ -1224,8 +1579,9 @@
                 currentQuiz.score++;
             }
             
-            // Move to next question or end quiz
             currentQuiz.currentIndex++;
+            currentQuiz.lastSaved = new Date().toISOString();
+            saveData('lecmafi_current_quiz', currentQuiz);
             
             if (currentQuiz.currentIndex >= currentQuiz.questions.length) {
                 endQuiz();
@@ -1234,43 +1590,53 @@
             }
         }
 
+        function saveAndExit() {
+            saveData('lecmafi_current_quiz', currentQuiz);
+            alert('Tu progreso ha sido guardado. Puedes continuar cuando quieras.');
+            showPage('dashboard');
+        }
+
         function endQuiz() {
-            // Calculate final score
             const percentage = Math.round((currentQuiz.score / currentQuiz.questions.length) * 100);
             
-            // Update user stats
             const subject = currentQuiz.subject;
             currentUser.stats[subject].completed++;
-            currentUser.stats[subject].score = 
-                Math.round((currentUser.stats[subject].score + percentage) / 2);
+            currentUser.stats[subject].score = Math.round((currentUser.stats[subject].score + percentage) / 2);
             
-            // Adaptive level adjustment
             if (percentage >= 80) {
                 currentUser.stats[subject].level = Math.min(currentUser.stats[subject].level + 1, 4);
             } else if (percentage < 50) {
                 currentUser.stats[subject].level = Math.max(currentUser.stats[subject].level - 1, 1);
             }
             
-            // Save user data
-            saveUserData(currentUser);
-            localStorage.setItem('lecmafi_user_' + currentUser.username, JSON.stringify(currentUser));
+            currentUser.quizHistory.push({
+                subject: subject,
+                score: percentage,
+                completedAt: new Date().toISOString(),
+                questions: currentQuiz.questions.length
+            });
             
-            // Show results
+            // Save student data
+            const studentIndex = students.findIndex(s => s.identification === currentUser.identification);
+            if (studentIndex !== -1) {
+                students[studentIndex] = currentUser;
+                saveData('lecmafi_students', students);
+            }
+            saveData('lecmafi_current_user', currentUser);
+            
+            // Clear current quiz
+            currentQuiz = null;
+            saveData('lecmafi_current_quiz', null);
+            
             document.getElementById('quiz-section').classList.remove('active');
             document.getElementById('results-section').classList.remove('hidden');
             document.getElementById('final-score').textContent = percentage + '%';
             
-            // Custom message based on score
             let message = '';
-            if (percentage >= 90) {
-                message = '¡Excelente trabajo! Has demostrado un dominio excepcional.';
-            } else if (percentage >= 70) {
-                message = '¡Muy bien! Continúa practicando para mejorar aún más.';
-            } else if (percentage >= 50) {
-                message = 'Buen esfuerzo. Sigue practicando para mejorar tu puntuación.';
-            } else {
-                message = 'No te desanimes. Repasa los conceptos y vuelve a intentarlo.';
-            }
+            if (percentage >= 90) message = '¡Excelente trabajo! Has demostrado un dominio excepcional.';
+            else if (percentage >= 70) message = '¡Muy bien! Continúa practicando para mejorar aún más.';
+            else if (percentage >= 50) message = 'Buen esfuerzo. Sigue practicando para mejorar tu puntuación.';
+            else message = 'No te desanimes. Repasa los conceptos y vuelve a intentarlo.';
             
             document.getElementById('results-message').textContent = message;
             
@@ -1279,9 +1645,31 @@
 
         // ==================== ADMIN PANEL ====================
         
+        function updateAdminPanel() {
+            updateAdminStats();
+            updateStudentsTable();
+            displayGeneratedCodes(accessCodes.slice(-10));
+        }
+
         function updateAdminStats() {
             const totalQuestions = (questions.lectura?.length || 0) + (questions.matematicas?.length || 0);
             document.getElementById('questions-count').textContent = 'Total de preguntas: ' + totalQuestions;
+        }
+
+        function updateStudentsTable() {
+            const tbody = document.getElementById('students-table-body');
+            tbody.innerHTML = students.map(student => `
+                <tr>
+                    <td>${student.identification}</td>
+                    <td>${student.names}</td>
+                    <td>${student.surnames}</td>
+                    <td>${student.age}</td>
+                    <td>${student.gender}</td>
+                    <td>${student.accessCode}</td>
+                    <td>${new Date(student.registeredAt).toLocaleDateString()}</td>
+                    <td><span class="status-badge status-active">Activo</span></td>
+                </tr>
+            `).join('');
         }
 
         function addQuestion() {
@@ -1314,9 +1702,8 @@
             }
             
             questions[subject].push(newQuestion);
-            saveData(questions);
+            saveData('lecmafi_questions', questions);
             
-            // Clear form
             document.getElementById('admin-question').value = '';
             document.getElementById('admin-option-a').value = '';
             document.getElementById('admin-option-b').value = '';
@@ -1330,18 +1717,12 @@
 
         function exportQuestions() {
             const dataStr = JSON.stringify(questions, null, 2);
-            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-            
+            const dataUri = 'application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
             const exportFileDefaultName = 'lecmafi-preguntas.json';
-            
             const linkElement = document.createElement('a');
             linkElement.setAttribute('href', dataUri);
             linkElement.setAttribute('download', exportFileDefaultName);
             linkElement.click();
-        }
-
-        function importQuestions() {
-            document.getElementById('import-file').click();
         }
 
         function handleImport(event) {
@@ -1353,7 +1734,7 @@
                 try {
                     const imported = JSON.parse(e.target.result);
                     questions = imported;
-                    saveData(questions);
+                    saveData('lecmafi_questions', questions);
                     updateAdminStats();
                     alert('¡Preguntas importadas exitosamente!');
                 } catch (error) {
@@ -1366,15 +1747,38 @@
         // ==================== INITIALIZATION ====================
         
         document.addEventListener('DOMContentLoaded', function() {
+            // Create default admin if not exists
+            const adminExists = students.find(s => s.identification === 'admin');
+            if (!adminExists) {
+                students.push({
+                    identification: 'admin',
+                    names: 'Administrador',
+                    surnames: 'LECMAFI',
+                    age: 30,
+                    gender: 'otro',
+                    accessCode: 'ADMIN-MASTER',
+                    registeredAt: new Date().toISOString(),
+                    isAdmin: true,
+                    stats: {
+                        lectura: { completed: 0, score: 0, level: 1 },
+                        matematicas: { completed: 0, score: 0, level: 1 }
+                    },
+                    quizHistory: []
+                });
+                saveData('lecmafi_students', students);
+            }
+            
             updateAuthUI();
             showPage('home');
         });
 
         // Close modal on outside click
-        document.getElementById('auth-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
         });
     </script>
 </body>
