@@ -751,7 +751,7 @@
             color: var(--primary);
         }
 
-        /* Results */
+        /* Results with Feedback */
         .results-card {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
@@ -776,6 +776,68 @@
             font-size: 1.2rem;
             opacity: 0.9;
             margin-bottom: 2rem;
+        }
+
+        .results-feedback {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .results-feedback h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feedback-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feedback-stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feedback-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .feedback-stat-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .feedback-recommendation {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .feedback-recommendation h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feedback-recommendation p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.95;
         }
 
         .results-details {
@@ -1170,6 +1232,14 @@
             .hero-icon {
                 font-size: 2rem;
             }
+
+            .results-feedback {
+                padding: 1.5rem;
+            }
+
+            .feedback-stats {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         /* Utility Classes */
@@ -1428,7 +1498,6 @@
                     <span class="level-badge" id="level-1-badge">Bloqueado</span>
                 </div>
                 <div class="blocks-grid" id="level-1-blocks" style="display: none;">
-                    <!-- Blocks will be generated here -->
                 </div>
             </div>
 
@@ -1442,7 +1511,6 @@
                     <span class="level-badge locked" id="level-2-badge">Bloqueado</span>
                 </div>
                 <div class="blocks-grid" id="level-2-blocks" style="display: none;">
-                    <!-- Blocks will be generated here -->
                 </div>
             </div>
 
@@ -1456,7 +1524,6 @@
                     <span class="level-badge locked" id="level-3-badge">Bloqueado</span>
                 </div>
                 <div class="blocks-grid" id="level-3-blocks" style="display: none;">
-                    <!-- Blocks will be generated here -->
                 </div>
             </div>
         </div>
@@ -1497,7 +1564,6 @@
                 <div class="question-context" id="question-context" style="display: none;"></div>
                 <p class="question-text" id="question-text">Cargando pregunta...</p>
                 <div class="options-grid" id="options-container">
-                    <!-- Options will be generated here -->
                 </div>
                 <div class="skill-tags" id="skill-tags"></div>
             </div>
@@ -1508,11 +1574,40 @@
             </div>
         </div>
 
-        <!-- Results Section -->
+        <!-- Results Section with Feedback -->
         <div class="results-card" id="results-section">
             <h2>🎉 ¡Bloque Completado!</h2>
             <div class="results-score" id="final-score">0%</div>
             <p class="results-message" id="results-message">Mensaje de resultado</p>
+            
+            <!-- Detailed Feedback -->
+            <div class="results-feedback">
+                <h3>📊 Retroalimentación del Bloque</h3>
+                
+                <div class="feedback-stats">
+                    <div class="feedback-stat">
+                        <div class="feedback-stat-value" id="feedback-correct" style="color: var(--secondary);">0</div>
+                        <div class="feedback-stat-label">Correctas</div>
+                    </div>
+                    <div class="feedback-stat">
+                        <div class="feedback-stat-value" id="feedback-incorrect" style="color: var(--danger);">0</div>
+                        <div class="feedback-stat-label">Incorrectas</div>
+                    </div>
+                    <div class="feedback-stat">
+                        <div class="feedback-stat-value" id="feedback-total">8</div>
+                        <div class="feedback-stat-label">Total</div>
+                    </div>
+                    <div class="feedback-stat">
+                        <div class="feedback-stat-value" id="feedback-time">00:00</div>
+                        <div class="feedback-stat-label">Tiempo</div>
+                    </div>
+                </div>
+
+                <div class="feedback-recommendation">
+                    <h4>💡 Recomendación Personalizada</h4>
+                    <p id="feedback-recommendation-text">Texto de recomendación...</p>
+                </div>
+            </div>
             
             <div class="results-details">
                 <div class="result-stat">
@@ -1581,7 +1676,6 @@
                             </tr>
                         </thead>
                         <tbody id="students-table-body">
-                            <!-- Students will be loaded here -->
                         </tbody>
                     </table>
                 </div>
@@ -1589,8 +1683,18 @@
 
             <!-- Questions Management -->
             <div style="background: var(--light); padding: 1.5rem; border-radius: 12px; margin-top: 2rem;">
-                <h3 style="color: var(--dark); margin-bottom: 1rem;">📝 Agregar Preguntas</h3>
+                <h3 style="color: var(--dark); margin-bottom: 1rem;">📝 Cargar Preguntas</h3>
                 
+                <div class="info-box">
+                    <p>💡 <strong>Método recomendado:</strong> Descarga la plantilla JSON, complétala con tus preguntas (todas las que quieras de una vez), y luego impórtala. ¡Mucho más rápido que una por una!</p>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                    <button class="btn btn-secondary" onclick="downloadTemplate()">📥 Descargar Plantilla JSON</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('import-file').click()">📤 Importar Preguntas (JSON)</button>
+                    <input type="file" id="import-file" style="display: none;" accept=".json" onchange="handleImport(event)">
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
                         <label>Componente</label>
@@ -1677,17 +1781,18 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary" onclick="addQuestion()">Agregar Pregunta</button>
+                <button class="btn btn-primary" onclick="addQuestion()">Agregar Pregunta (Manual)</button>
                 
                 <div style="margin-top: 1rem; padding: 1rem; background: white; border-radius: 8px;">
                     <h4 style="color: var(--dark); margin-bottom: 1rem;">📊 Estadísticas de Preguntas</h4>
                     <p id="questions-count">Total de preguntas: 0</p>
-                    <button class="btn btn-secondary mt-4" onclick="exportQuestions()">Exportar Preguntas (JSON)</button>
-                    <button class="btn btn-secondary mt-4" onclick="document.getElementById('import-file').click()">Importar Preguntas</button>
-                    <input type="file" id="import-file" style="display: none;" accept=".json" onchange="handleImport(event)">
                     
                     <div class="info-box mt-4">
-                        <p>💡 <strong>Tip:</strong> Puedes cargar todas las preguntas de tus PDFs usando el formato JSON. Exporta primero para ver la estructura.</p>
+                        <p>📝 <strong>Instrucciones para cargar masivo:</strong><br>
+                        1. Click en "Descargar Plantilla JSON"<br>
+                        2. Abre el archivo con un editor de texto<br>
+                        3. Copia y pega tus preguntas siguiendo el formato<br>
+                        4. Guarda y luego click en "Importar Preguntas"</p>
                     </div>
                 </div>
             </div>
@@ -1857,15 +1962,67 @@
             formulacion: 'Formulación'
         };
 
-        // Default questions structure
+        // Default questions structure with SAMPLE QUESTIONS
         const defaultQuestions = {
             lectura: {
-                1: { 1: [], 2: [], 3: [], 4: [] },
+                1: {
+                    1: [
+                        {
+                            id: 1,
+                            context: "La lectura es el proceso de adquirir información de un soporte escrito. La lectura se realiza con los ojos, aunque también es posible la lectura en Braille o de forma auditiva.",
+                            question: "¿Cuál es el propósito principal de la lectura según el texto?",
+                            options: [
+                                "Adquirir información de un soporte escrito",
+                                "Mejorar la vista",
+                                "Aprender a escribir",
+                                "Memorizar textos"
+                            ],
+                            correct: 0,
+                            difficulty: "facil",
+                            skill: "interpretacion",
+                            timeEstimate: 120
+                        },
+                        {
+                            id: 2,
+                            context: "El razonamiento crítico es la capacidad de analizar y evaluar la consistencia de los razonamientos.",
+                            question: "¿Qué habilidad se desarrolla con el razonamiento crítico?",
+                            options: [
+                                "Memorizar información",
+                                "Analizar y evaluar razonamientos",
+                                "Escribir rápidamente",
+                                "Leer en voz alta"
+                            ],
+                            correct: 1,
+                            difficulty: "facil",
+                            skill: "analisis",
+                            timeEstimate: 120
+                        }
+                    ],
+                    2: [],
+                    3: [],
+                    4: []
+                },
                 2: { 1: [], 2: [], 3: [], 4: [] },
                 3: { 1: [], 2: [], 3: [], 4: [] }
             },
             matematicas: {
-                1: { 1: [], 2: [], 3: [], 4: [] },
+                1: {
+                    1: [
+                        {
+                            id: 1,
+                            context: null,
+                            question: "Si un tren viaja a 60 km/h, ¿cuántos kilómetros recorrerá en 2.5 horas?",
+                            options: ["120 km", "150 km", "180 km", "200 km"],
+                            correct: 1,
+                            difficulty: "facil",
+                            skill: "formulacion",
+                            timeEstimate: 120
+                        }
+                    ],
+                    2: [],
+                    3: [],
+                    4: []
+                },
                 2: { 1: [], 2: [], 3: [], 4: [] },
                 3: { 1: [], 2: [], 3: [], 4: [] }
             },
@@ -1895,7 +2052,7 @@
         }
 
         // Initialize data
-        let questions = loadData('lecmafis_questions_v2', defaultQuestions);
+        let questions = loadData('lecmafis_questions_v3', defaultQuestions);
         let accessCodes = loadData('lecmafis_access_codes', []);
         let students = loadData('lecmafis_students', []);
         let currentUser = loadData('lecmafis_current_user', null);
@@ -2220,6 +2377,8 @@
             }
         }
 
+        // ==================== END QUIZ WITH FEEDBACK ====================
+        
         function endQuiz(timeExpired = false) {
             stopTimer();
 
@@ -2229,6 +2388,7 @@
             const minutesUsed = Math.floor(timeUsed / 60);
             const secondsUsed = timeUsed % 60;
 
+            // Update user progress
             if (!currentUser.progress) {
                 currentUser.progress = {};
             }
@@ -2257,13 +2417,22 @@
             currentQuiz = null;
             saveData('lecmafis_current_quiz', null);
 
+            // Show results
             document.getElementById('quiz-section').classList.remove('active');
             document.getElementById('results-section').classList.add('active');
             document.getElementById('final-score').textContent = percentage + '%';
-            document.getElementById('result-correct').textContent = currentQuiz.score;
-            document.getElementById('result-incorrect').textContent = totalQuestions - currentQuiz.score;
-            document.getElementById('result-time').textContent = `${minutesUsed}:${String(secondsUsed).padStart(2, '0')}`;
+            
+            // Update feedback section
+            document.getElementById('feedback-correct').textContent = currentQuiz.score;
+            document.getElementById('feedback-incorrect').textContent = totalQuestions - currentQuiz.score;
+            document.getElementById('feedback-total').textContent = totalQuestions;
+            document.getElementById('feedback-time').textContent = `${minutesUsed}:${String(secondsUsed).padStart(2, '0')}`;
+            
+            // Generate personalized recommendation
+            const recommendation = getRecommendation(percentage, currentQuiz.component);
+            document.getElementById('feedback-recommendation-text').textContent = recommendation;
 
+            // Update results message
             let message = '';
             const requiredScore = LEVELS[currentQuiz.level].requiredScore;
             
@@ -2282,6 +2451,9 @@
             }
 
             document.getElementById('results-message').textContent = message;
+            document.getElementById('result-correct').textContent = currentQuiz.score;
+            document.getElementById('result-incorrect').textContent = totalQuestions - currentQuiz.score;
+            document.getElementById('result-time').textContent = `${minutesUsed}:${String(secondsUsed).padStart(2, '0')}`;
 
             const canContinue = percentage >= requiredScore && 
                 (currentQuiz.block < 4 || (currentQuiz.block === 4 && currentQuiz.level < 3));
@@ -2289,6 +2461,26 @@
             document.getElementById('next-block-btn').style.display = canContinue ? 'inline-block' : 'none';
 
             updateDashboard();
+        }
+
+        // ==================== FEEDBACK RECOMMENDATIONS ====================
+        
+        function getRecommendation(score, component) {
+            const componentNames = {
+                lectura: 'Lectura Crítica',
+                matematicas: 'Matemáticas',
+                fisica: 'Física'
+            };
+
+            if (score >= 90) {
+                return `¡Felicitaciones! Has demostrado un dominio excelente en ${componentNames[component]}. Te recomendamos continuar con el siguiente bloque para mantener tu ritmo de aprendizaje. Considera ayudar a tus compañeros que puedan tener dificultades.`;
+            } else if (score >= 75) {
+                return `¡Buen trabajo! Tienes un buen entendimiento de ${componentNames[component]}. Para mejorar aún más, te sugerimos repasar los temas donde tuviste errores y practicar con ejercicios adicionales. ¡Estás muy cerca del nivel excelente!`;
+            } else if (score >= 60) {
+                return `Has completado el bloque, pero hay espacio para mejorar en ${componentNames[component]}. Te recomendamos: 1) Revisar los conceptos básicos, 2) Practicar más ejercicios del mismo tipo, 3) No avanzar al siguiente bloque hasta fortalecer estos temas.`;
+            } else {
+                return `Necesitas reforzar ${componentNames[component]}. Te sugerimos: 1) Repasar los fundamentos del tema, 2) Intentar este bloque nuevamente después de estudiar, 3) Consultar con tu profesor los temas que no entendiste. ¡No te desanimes, la práctica hace al maestro!`;
+            }
         }
 
         function nextBlock() {
@@ -2584,6 +2776,53 @@
             }).join('');
         }
 
+        // ==================== DOWNLOAD TEMPLATE ====================
+        
+        function downloadTemplate() {
+            const template = {
+                lectura: {
+                    1: {
+                        1: [
+                            {
+                                id: 1,
+                                context: "Texto base de la pregunta (opcional para lectura crítica)",
+                                question: "¿Cuál es la pregunta?",
+                                options: ["Opción A", "Opción B", "Opción C", "Opción D"],
+                                correct: 0,
+                                difficulty: "facil",
+                                skill: "interpretacion",
+                                timeEstimate: 120
+                            }
+                        ],
+                        2: [],
+                        3: [],
+                        4: []
+                    },
+                    2: { 1: [], 2: [], 3: [], 4: [] },
+                    3: { 1: [], 2: [], 3: [], 4: [] }
+                },
+                matematicas: {
+                    1: { 1: [], 2: [], 3: [], 4: [] },
+                    2: { 1: [], 2: [], 3: [], 4: [] },
+                    3: { 1: [], 2: [], 3: [], 4: [] }
+                },
+                fisica: {
+                    1: { 1: [], 2: [], 3: [], 4: [] },
+                    2: { 1: [], 2: [], 3: [], 4: [] },
+                    3: { 1: [], 2: [], 3: [], 4: [] }
+                }
+            };
+
+            const dataStr = JSON.stringify(template, null, 2);
+            const dataUri = 'application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            const exportFileDefaultName = 'lecmafis-plantilla-preguntas.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+
         function addQuestion() {
             const component = document.getElementById('admin-component').value;
             const level = parseInt(document.getElementById('admin-level').value);
@@ -2623,7 +2862,7 @@
             }
             
             questions[component][level][block].push(newQuestion);
-            saveData('lecmafis_questions_v2', questions);
+            saveData('lecmafis_questions_v3', questions);
             
             document.getElementById('admin-question').value = '';
             document.getElementById('admin-option-a').value = '';
@@ -2636,16 +2875,6 @@
             alert('¡Pregunta agregada exitosamente!');
         }
 
-        function exportQuestions() {
-            const dataStr = JSON.stringify(questions, null, 2);
-            const dataUri = 'application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-            const exportFileDefaultName = 'lecmafis-preguntas-v2.json';
-            const linkElement = document.createElement('a');
-            linkElement.setAttribute('href', dataUri);
-            linkElement.setAttribute('download', exportFileDefaultName);
-            linkElement.click();
-        }
-
         function handleImport(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -2655,7 +2884,7 @@
                 try {
                     const imported = JSON.parse(e.target.result);
                     questions = imported;
-                    saveData('lecmafis_questions_v2', questions);
+                    saveData('lecmafis_questions_v3', questions);
                     updateAdminStats();
                     alert('¡Preguntas importadas exitosamente!');
                 } catch (error) {
