@@ -195,7 +195,7 @@
     </style>
 </head>
 <body>
-    <!-- [MISMO HTML STRUCTURE - SIN CAMBIOS EN LA ESTRUCTURA VISUAL] -->
+    <!-- [MISMO HTML STRUCTURE - SIN CAMBIOS VISUALES] -->
     <!-- Floating Background Shapes -->
     <div class="floating-shapes">
         <div class="floating-shape" style="top: 10%; left: 5%;">∫</div><div class="floating-shape" style="top: 20%; right: 10%;">∑</div><div class="floating-shape" style="top: 40%; left: 15%;">π</div><div class="floating-shape" style="top: 60%; right: 5%;">√</div><div class="floating-shape" style="top: 70%; left: 20%;">∞</div><div class="floating-shape" style="top: 30%; left: 80%;">±</div><div class="floating-shape" style="top: 80%; right: 15%;">÷</div><div class="floating-shape" style="top: 50%; left: 70%;">×</div><div class="floating-shape" style="top: 15%; left: 40%;">📐</div><div class="floating-shape" style="top: 85%; left: 60%;">📊</div><div class="floating-shape" style="top: 25%; right: 30%;">🎯</div><div class="floating-shape" style="top: 65%; left: 35%;">🏆</div><div class="floating-shape" style="top: 45%; right: 25%;">📚</div><div class="floating-shape" style="top: 75%; right: 40%;">✏️</div><div class="floating-shape" style="top: 55%; left: 85%;">🧮</div>
@@ -224,10 +224,14 @@
             fisica: { name: 'Física', icon: '⚛️', color: 'fisica', totalBlocks: 12, questionsPerBlock: 8, timePerBlock: 16 },
             logico: { name: 'Razonamiento Lógico', icon: '🧩', color: 'logico', totalBlocks: 12, questionsPerBlock: 8, timePerBlock: 16, locked: true }
         };
-        const LEVELS = { 1: { name: 'Fundamentos', icon: '🌱', requiredScore: 70 }, 2: { name: 'Desarrollo', icon: '⚡', requiredScore: 75 }, 3: { name: 'Avanzado', icon: '🏆', requiredScore: 80 } };
+        const LEVELS = { 
+            1: { name: 'Fundamentos', icon: '🌱', requiredScore: 70 }, 
+            2: { name: 'Desarrollo', icon: '⚡', requiredScore: 75 }, 
+            3: { name: 'Avanzado', icon: '🏆', requiredScore: 80 } 
+        };
         const SKILLS = { analisis: 'Análisis', interpretacion: 'Interpretación', argumentacion: 'Argumentación', formulacion: 'Formulación' };
 
-        // ==================== PREGUNTAS CON JUSTIFICACIONES INTEGRADAS ====================
+        // ==================== PREGUNTAS CON JUSTIFICACIONES ====================
         const defaultQuestions = {
             lectura: {
                 1: {
@@ -239,7 +243,6 @@
                         { id: 5, context: "La invención de la imprenta por Gutenberg alrededor de 1440 revolucionó la cultura. El primer libro impreso a gran escala fue la Biblia, cuya producción se completó en el año 1455.", question: "¿En qué año se terminó de producir el primer libro impreso a gran escala?", options: ["1440.", "1455.", "1450.", "En el siglo XIX."], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la B. El texto asocia el año 1440 con la 'invención' y el año 1455 específicamente con la 'completitud de la producción' de la Biblia (el primer libro)." },
                         { id: 6, context: "Marta miró el viejo reloj de su abuelo. A su lado estaba su hermano menor, Tomás, dibujando en el suelo, completamente ajeno a la tristeza de la joven.", question: "Según la situación descrita, ¿quién se encuentra dibujando en el suelo?", options: ["Marta.", "El abuelo.", "El relojero.", "Tomás."], correct: 3, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la D. El texto vincula directamente el nombre 'Tomás' con la acción de 'dibujando en el suelo', mientras que Marta realiza la acción de mirar el reloj." },
                         { id: 7, context: "Devolver los libros directamente en la recepción", question: "Según el letrero, ¿dónde se deben entregar los libros usados?", options: ["En los estantes.", "En las mesas.", "En la recepción.", "En la entrada."], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C. Es una búsqueda de información puntual en un texto informativo-formativo; la instrucción indica un lugar específico para la devolución." },
-                        // ✅ NUEVA PREGUNTA 8 - REEMPLAZADA
                         { id: 8, context: "María guardó su libro favorito en la mochila, se puso el abrigo porque hacía frío y salió corriendo hacia la parada del autobús. Llevaba prisa porque no quería llegar tarde a su primera clase.", question: "Según el texto, ¿por qué María salió corriendo hacia la parada del autobús?", options: ["Porque había olvidado su libro.", "Porque hacía mucho calor.", "Porque no quería llegar tarde a clase.", "Porque el autobús ya se había ido."], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C porque el texto indica explícitamente que 'Llevaba prisa porque no quería llegar tarde a su primera clase'. Las otras opciones contradicen la información del texto o no se mencionan." }
                     ],
                     2: [
@@ -281,9 +284,18 @@
         };
 
         // ==================== DATA MANAGEMENT ====================
-        function loadData(key, defaultValue) { const stored = localStorage.getItem(key); if (stored) return JSON.parse(stored); if (defaultValue !== undefined) { localStorage.setItem(key, JSON.stringify(defaultValue)); return defaultValue; } return null; }
+        function loadData(key, defaultValue) { 
+            const stored = localStorage.getItem(key); 
+            if (stored) return JSON.parse(stored); 
+            if (defaultValue !== undefined) { 
+                localStorage.setItem(key, JSON.stringify(defaultValue)); 
+                return defaultValue; 
+            } 
+            return null; 
+        }
         function saveData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
-        let questions = loadData('lecmafis_questions_v6', defaultQuestions);
+        
+        let questions = loadData('lecmafis_questions_v7', defaultQuestions);
         let accessCodes = loadData('lecmafis_access_codes', []);
         let students = loadData('lecmafis_students', []);
         let currentUser = loadData('lecmafis_current_user', null);
@@ -291,42 +303,123 @@
         let selectedComponent = null;
 
         // ==================== NAVIGATION & CORE FUNCTIONS ====================
-        function showPage(page) { document.getElementById('home-page').style.display = 'none'; document.getElementById('dashboard-page').classList.remove('active'); document.getElementById('features').style.display = 'none'; document.getElementById('access-page').classList.remove('active'); if (page === 'home') { document.getElementById('home-page').style.display = 'block'; document.getElementById('features').style.display = 'block'; } else if (page === 'dashboard') { if (!currentUser) { openModal('login'); return; } document.getElementById('dashboard-page').classList.add('active'); updateDashboard(); } else if (page === 'admin') { if (!currentUser || !currentUser.isAdmin) { alert('Acceso denegado. Solo administradores.'); showPage('home'); return; } document.getElementById('dashboard-page').classList.add('active'); document.getElementById('admin-panel').classList.add('active'); document.getElementById('quiz-section').classList.remove('active'); document.getElementById('results-section').classList.remove('active'); document.getElementById('levels-container').classList.remove('active'); updateAdminPanel(); } window.scrollTo(0, 0); }
+        function showPage(page) { 
+            document.getElementById('home-page').style.display = 'none'; 
+            document.getElementById('dashboard-page').classList.remove('active'); 
+            document.getElementById('features').style.display = 'none'; 
+            document.getElementById('access-page').classList.remove('active'); 
+            if (page === 'home') { 
+                document.getElementById('home-page').style.display = 'block'; 
+                document.getElementById('features').style.display = 'block'; 
+            } else if (page === 'dashboard') { 
+                if (!currentUser) { openModal('login'); return; } 
+                document.getElementById('dashboard-page').classList.add('active'); 
+                updateDashboard(); 
+            } else if (page === 'admin') { 
+                if (!currentUser || !currentUser.isAdmin) { 
+                    alert('Acceso denegado. Solo administradores.'); 
+                    showPage('home'); 
+                    return; 
+                } 
+                document.getElementById('dashboard-page').classList.add('active'); 
+                document.getElementById('admin-panel').classList.add('active'); 
+                document.getElementById('quiz-section').classList.remove('active'); 
+                document.getElementById('results-section').classList.remove('active'); 
+                document.getElementById('levels-container').classList.remove('active'); 
+                updateAdminPanel(); 
+            } 
+            window.scrollTo(0, 0); 
+        }
         function scrollToFeatures() { document.getElementById('features').scrollIntoView({ behavior: 'smooth' }); }
-        function showAccessPage() { document.getElementById('home-page').style.display = 'none'; document.getElementById('features').style.display = 'none'; document.getElementById('access-page').classList.add('active'); closeModal('login'); closeModal('register'); }
-        function selectComponent(component) { if (COMPONENTS[component].locked) { alert('Este componente estará disponible próximamente.'); return; } selectedComponent = component; document.getElementById('components-grid').style.display = 'none'; document.getElementById('levels-container').classList.add('active'); document.getElementById('selected-component-title').textContent = COMPONENTS[component].icon + ' ' + COMPONENTS[component].name; document.getElementById('selected-component-desc').textContent = `${COMPONENTS[component].totalBlocks} bloques • ${COMPONENTS[component].questionsPerBlock} preguntas por bloque • ${COMPONENTS[component].timePerBlock} minutos por bloque`; renderLevels(component); window.scrollTo(0, 0); }
-        function backToComponents() { selectedComponent = null; document.getElementById('components-grid').style.display = 'grid'; document.getElementById('levels-container').classList.remove('active'); document.getElementById('quiz-section').classList.remove('active'); document.getElementById('results-section').classList.remove('active'); }
-        function backToLevels() { document.getElementById('quiz-section').classList.remove('active'); document.getElementById('results-section').classList.remove('active'); document.getElementById('levels-container').classList.add('active'); stopTimer(); }
-        function toggleLevel(blocksId) { const blocks = document.getElementById(blocksId); blocks.style.display = blocks.style.display === 'none' ? 'grid' : 'none'; }
+        function showAccessPage() { 
+            document.getElementById('home-page').style.display = 'none'; 
+            document.getElementById('features').style.display = 'none'; 
+            document.getElementById('access-page').classList.add('active'); 
+            closeModal('login'); 
+            closeModal('register'); 
+        }
+        function selectComponent(component) { 
+            if (COMPONENTS[component].locked) { alert('Este componente estará disponible próximamente.'); return; } 
+            selectedComponent = component; 
+            document.getElementById('components-grid').style.display = 'none'; 
+            document.getElementById('levels-container').classList.add('active'); 
+            document.getElementById('selected-component-title').textContent = COMPONENTS[component].icon + ' ' + COMPONENTS[component].name; 
+            document.getElementById('selected-component-desc').textContent = `${COMPONENTS[component].totalBlocks} bloques • ${COMPONENTS[component].questionsPerBlock} preguntas por bloque • ${COMPONENTS[component].timePerBlock} minutos por bloque`; 
+            renderLevels(component); 
+            window.scrollTo(0, 0); 
+        }
+        function backToComponents() { 
+            selectedComponent = null; 
+            document.getElementById('components-grid').style.display = 'grid'; 
+            document.getElementById('levels-container').classList.remove('active'); 
+            document.getElementById('quiz-section').classList.remove('active'); 
+            document.getElementById('results-section').classList.remove('active'); 
+        }
+        function backToLevels() { 
+            document.getElementById('quiz-section').classList.remove('active'); 
+            document.getElementById('results-section').classList.remove('active'); 
+            document.getElementById('levels-container').classList.add('active'); 
+            stopTimer(); 
+        }
+        function toggleLevel(blocksId) { 
+            const blocks = document.getElementById(blocksId); 
+            blocks.style.display = blocks.style.display === 'none' ? 'grid' : 'none'; 
+        }
+
+        // ✅ FUNCIÓN CORREGIDA: Calcular promedio real del nivel basado en bloques completados
+        function calculateLevelAverage(component, level) {
+            const progress = currentUser.progress?.[component];
+            if (!progress) return 0;
+            
+            const completedInLevel = progress.completedBlocks.filter(b => {
+                const parts = b.split('-');
+                return parts[1] === `l${level}`;
+            });
+            
+            if (completedInLevel.length === 0) return 0;
+            
+            // Calcular promedio de los puntajes guardados en blockScores
+            let total = 0;
+            completedInLevel.forEach(blockId => {
+                if (progress.blockScores?.[blockId]) {
+                    total += progress.blockScores[blockId];
+                }
+            });
+            
+            return Math.round(total / completedInLevel.length);
+        }
 
         function renderLevels(component) {
             if (!currentUser) return;
             const progress = currentUser.progress || {};
-            const componentProgress = progress[component] || { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 } };
+            const componentProgress = progress[component] || { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {} };
             
             for (let level = 1; level <= 3; level++) {
                 const levelSection = document.getElementById(`level-${level}-section`);
                 const levelBadge = document.getElementById(`level-${level}-badge`);
                 const blocksGrid = document.getElementById(`level-${level}-blocks`);
                 
-                // Check if level is unlocked
+                // ✅ Calcular promedio REAL del nivel basado en bloques completados
+                const levelAverage = calculateLevelAverage(component, level);
+                
+                // Verificar si el nivel está desbloqueado
                 let isUnlocked = level === 1;
                 if (level > 1) {
-                    const prevLevelCompleted = componentProgress.levelScores[level - 1] >= LEVELS[level - 1].requiredScore;
-                    isUnlocked = prevLevelCompleted;
+                    const prevLevelAvg = calculateLevelAverage(component, level - 1);
+                    isUnlocked = prevLevelAvg >= LEVELS[level - 1].requiredScore;
                 }
 
                 if (isUnlocked) {
                     levelSection.classList.remove('locked');
                     levelBadge.className = 'level-badge available';
-                    levelBadge.textContent = 'Disponible';
+                    levelBadge.textContent = levelAverage > 0 ? `${levelAverage}%` : 'Disponible';
                 } else {
                     levelSection.classList.add('locked');
                     levelBadge.className = 'level-badge locked';
                     levelBadge.textContent = 'Bloqueado';
                 }
 
-                // Render blocks
+                // Render bloques
                 blocksGrid.innerHTML = '';
                 for (let block = 1; block <= 4; block++) {
                     const blockId = `${component}-l${level}-b${block}`;
@@ -349,20 +442,20 @@
                             ${isCompleted ? 'Contestado' : isAvailable ? 'Disponible' : 'Bloqueado'}
                         </div>
                     `;
-
                     blocksGrid.appendChild(blockCard);
                 }
 
-                // Update level badge based on score
-                if (componentProgress.levelScores[level] > 0) {
+                // Actualizar badge del nivel con promedio real
+                if (levelAverage > 0) {
                     levelBadge.className = 'level-badge completed';
-                    levelBadge.textContent = `${componentProgress.levelScores[level]}%`;
+                    levelBadge.textContent = `${levelAverage}%`;
                 }
             }
         }
 
         // ==================== QUIZ SYSTEM ====================
         let quizTimer = null, timeRemaining = 0, quizStartTime = null;
+        
         function startBlock(component, level, block, isReview = false) {
             const blockId = `${component}-l${level}-b${block}`;
             const blockQuestions = questions[component]?.[level]?.[block] || [];
@@ -411,6 +504,7 @@
         }
 
         function stopTimer() { if (quizTimer) { clearInterval(quizTimer); quizTimer = null; } }
+        
         function updateTimerDisplay() {
             const minutes = Math.floor(timeRemaining / 60), seconds = timeRemaining % 60;
             const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
@@ -480,7 +574,7 @@
             }
         }
 
-        // ==================== END QUIZ WITH FEEDBACK & JUSTIFICATIONS ====================
+        // ✅ FUNCIÓN CORREGIDA: Retroalimentación personalizada + justificaciones + desbloqueo
         function endQuiz(timeExpired = false) {
             stopTimer();
             const totalQuestions = currentQuiz.questions.length;
@@ -488,19 +582,24 @@
             const timeUsed = currentQuiz.timeLimit - timeRemaining;
             const minutesUsed = Math.floor(timeUsed / 60), secondsUsed = timeUsed % 60;
 
-            // Update user progress - SOLO GUARDAR SI ES LA PRIMERA VEZ
+            // Inicializar progreso si no existe
             if (!currentUser.progress) currentUser.progress = {};
             if (!currentUser.progress[currentQuiz.component]) {
-                currentUser.progress[currentQuiz.component] = { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 } };
+                currentUser.progress[currentQuiz.component] = { 
+                    completedBlocks: [], 
+                    levelScores: { 1: 0, 2: 0, 3: 0 },
+                    blockScores: {} // ✅ NUEVO: guardar puntaje de CADA bloque
+                };
             }
             const componentProgress = currentUser.progress[currentQuiz.component];
             
-            // Solo guardar el primer puntaje obtenido (no sobrescribir)
+            // ✅ Guardar puntaje del bloque (solo la PRIMERA vez que se completa)
             if (!componentProgress.completedBlocks.includes(currentQuiz.blockId)) {
                 componentProgress.completedBlocks.push(currentQuiz.blockId);
-                componentProgress.levelScores[currentQuiz.level] = percentage;
+                componentProgress.blockScores[currentQuiz.blockId] = percentage; // ✅ Guardar puntaje específico del bloque
             }
 
+            // Guardar cambios del usuario
             const studentIndex = students.findIndex(s => s.identification === currentUser.identification);
             if (studentIndex !== -1) { students[studentIndex] = currentUser; saveData('lecmafis_students', students); }
             saveData('lecmafis_current_user', currentUser);
@@ -508,7 +607,7 @@
             currentQuiz = null;
             saveData('lecmafis_current_quiz', null);
 
-            // Show results
+            // Mostrar resultados
             document.getElementById('quiz-section').classList.remove('active');
             document.getElementById('results-section').classList.add('active');
             document.getElementById('final-score').textContent = percentage + '%';
@@ -516,9 +615,11 @@
             document.getElementById('feedback-incorrect').textContent = totalQuestions - currentQuiz.score;
             document.getElementById('feedback-total').textContent = totalQuestions;
             document.getElementById('feedback-time').textContent = `${minutesUsed}:${String(secondsUsed).padStart(2, '0')}`;
+            
+            // ✅ Retroalimentación personalizada según puntaje REAL obtenido
             document.getElementById('feedback-recommendation-text').textContent = getRecommendation(percentage, currentQuiz.component);
 
-            // ✅ MOSTRAR JUSTIFICACIONES DE CADA PREGUNTA
+            // ✅ Mostrar justificaciones de CADA pregunta
             const justificationsContainer = document.getElementById('justifications-container');
             justificationsContainer.innerHTML = currentQuiz.questions.map((q, index) => {
                 const userAnswer = currentQuiz.answers[index];
@@ -538,7 +639,7 @@
                 `;
             }).join('');
 
-            // Message based on score
+            // ✅ Mensaje personalizado según puntaje
             let message = '';
             const requiredScore = LEVELS[currentQuiz.level].requiredScore;
             if (percentage >= 90) message = '¡Excelente! Dominio excepcional del tema.';
@@ -552,11 +653,12 @@
             document.getElementById('result-incorrect').textContent = totalQuestions - currentQuiz.score;
             document.getElementById('result-time').textContent = `${minutesUsed}:${String(secondsUsed).padStart(2, '0')}`;
 
-            // ✅ AUTO-UNLOCK NEXT BLOCK
+            // ✅ Desbloqueo automático del siguiente bloque/nivel
             const canContinue = percentage >= requiredScore && 
                 (currentQuiz.block < 4 || (currentQuiz.block === 4 && currentQuiz.level < 3));
             document.getElementById('next-block-btn').style.display = canContinue ? 'inline-block' : 'none';
 
+            // ✅ Actualizar dashboard para reflejar cambios inmediatos
             updateDashboard();
         }
 
@@ -584,7 +686,13 @@
             Object.keys(COMPONENTS).forEach(comp => {
                 if (progress[comp]) {
                     totalBlocks += progress[comp].completedBlocks?.length || 0;
-                    Object.values(progress[comp].levelScores || {}).forEach(score => { if (score > 0) { totalScore += score; scoreCount++; } });
+                    // Calcular promedio usando blockScores
+                    if (progress[comp].blockScores) {
+                        Object.values(progress[comp].blockScores).forEach(score => {
+                            totalScore += score;
+                            scoreCount++;
+                        });
+                    }
                 }
             });
             const averageScore = scoreCount > 0 ? Math.round(totalScore / scoreCount) : 0;
@@ -607,7 +715,7 @@
         function validateAccessCode() { const code = document.getElementById('access-code-input').value.trim().toUpperCase(); if (!code) { alert('Por favor ingresa un código de acceso'); return; } const codeData = accessCodes.find(c => c.code === code); if (!codeData) { alert('Código de acceso no válido. Por favor verifica el código.'); return; } if (codeData.used) { alert('Este código de acceso ya ha sido utilizado.'); return; } if (new Date(codeData.expiresAt) < new Date()) { alert('Este código de acceso ha expirado.'); return; } document.getElementById('register-access-code').value = code; openModal('register'); document.getElementById('access-page').classList.remove('active'); }
         function generateAccessCodes() { const quantity = parseInt(document.getElementById('code-quantity').value), validity = parseInt(document.getElementById('code-validity').value); const newCodes = [], today = new Date(); for (let i = 0; i < quantity; i++) { const code = 'LECMAFIS-' + today.getFullYear() + '-' + String(accessCodes.length + i + 1).padStart(3, '0'); newCodes.push({ code, createdAt: today.toISOString(), expiresAt: new Date(today.getTime() + validity * 24 * 60 * 60 * 1000).toISOString(), used: false, usedBy: null }); } accessCodes.push(...newCodes); saveData('lecmafis_access_codes', accessCodes); displayGeneratedCodes(newCodes); alert('Se generaron ' + quantity + ' códigos de acceso exitosamente.'); }
         function displayGeneratedCodes(codes) { document.getElementById('codes-container').innerHTML = codes.map(code => `<div class="code-card ${code.used ? 'used' : 'active'}"><div class="code-value">${code.code}</div><div class="code-status">${code.used ? '✅ Usado' : '⏳ Disponible'}</div><div class="code-status">Vence: ${new Date(code.expiresAt).toLocaleDateString()}</div></div>`).join(''); }
-        function handleRegister(event) { event.preventDefault(); const accessCode = document.getElementById('register-access-code').value.trim().toUpperCase(), identification = document.getElementById('register-identification').value.trim(), names = document.getElementById('register-names').value.trim(), surnames = document.getElementById('register-surnames').value.trim(), age = parseInt(document.getElementById('register-age').value), gender = document.getElementById('register-gender').value; const codeIndex = accessCodes.findIndex(c => c.code === accessCode); if (codeIndex === -1) { alert('Código de acceso no válido.'); return; } if (accessCodes[codeIndex].used) { alert('Este código de acceso ya ha sido utilizado.'); return; } const existingStudent = students.find(s => s.identification === identification); if (existingStudent) { alert('Ya existe un estudiante registrado con este número de identificación.'); return; } const newStudent = { identification, names, surnames, age, gender, accessCode, registeredAt: new Date().toISOString(), isAdmin: false, progress: { lectura: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 } }, matematicas: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 } }, fisica: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 } } } }; students.push(newStudent); saveData('lecmafis_students', students); accessCodes[codeIndex].used = true; accessCodes[codeIndex].usedBy = identification; accessCodes[codeIndex].usedAt = new Date().toISOString(); saveData('lecmafis_access_codes', accessCodes); currentUser = newStudent; saveData('lecmafis_current_user', currentUser); closeModal('register'); updateAuthUI(); showPage('dashboard'); alert('¡Registro exitoso! Bienvenido a LECMAFIS, ' + names + '!'); }
+        function handleRegister(event) { event.preventDefault(); const accessCode = document.getElementById('register-access-code').value.trim().toUpperCase(), identification = document.getElementById('register-identification').value.trim(), names = document.getElementById('register-names').value.trim(), surnames = document.getElementById('register-surnames').value.trim(), age = parseInt(document.getElementById('register-age').value), gender = document.getElementById('register-gender').value; const codeIndex = accessCodes.findIndex(c => c.code === accessCode); if (codeIndex === -1) { alert('Código de acceso no válido.'); return; } if (accessCodes[codeIndex].used) { alert('Este código de acceso ya ha sido utilizado.'); return; } const existingStudent = students.find(s => s.identification === identification); if (existingStudent) { alert('Ya existe un estudiante registrado con este número de identificación.'); return; } const newStudent = { identification, names, surnames, age, gender, accessCode, registeredAt: new Date().toISOString(), isAdmin: false, progress: { lectura: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {} }, matematicas: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {} }, fisica: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {} } } }; students.push(newStudent); saveData('lecmafis_students', students); accessCodes[codeIndex].used = true; accessCodes[codeIndex].usedBy = identification; accessCodes[codeIndex].usedAt = new Date().toISOString(); saveData('lecmafis_access_codes', accessCodes); currentUser = newStudent; saveData('lecmafis_current_user', currentUser); closeModal('register'); updateAuthUI(); showPage('dashboard'); alert('¡Registro exitoso! Bienvenido a LECMAFIS, ' + names + '!'); }
         function handleLogin(event) { event.preventDefault(); const identification = document.getElementById('login-identification').value.trim(); const student = students.find(s => s.identification === identification); if (!student) { alert('No se encontró un estudiante con este número de identificación. Por favor regístrate primero.'); return; } currentUser = student; saveData('lecmafis_current_user', currentUser); closeModal('login'); updateAuthUI(); showPage('dashboard'); alert('¡Bienvenido de nuevo, ' + student.names + '!'); }
         function logout() { currentUser = null; saveData('lecmafis_current_user', null); updateAuthUI(); showPage('home'); }
         function updateAuthUI() { const authButtons = document.getElementById('auth-buttons'), userInfo = document.getElementById('user-info'), usernameDisplay = document.getElementById('username-display'), navDashboard = document.getElementById('nav-dashboard'), navAdmin = document.getElementById('nav-admin'); if (currentUser) { authButtons.classList.add('hidden'); userInfo.classList.remove('hidden'); usernameDisplay.textContent = '👤 ' + currentUser.names + ' ' + currentUser.surnames; navDashboard.style.display = 'block'; if (currentUser.isAdmin) navAdmin.style.display = 'block'; else navAdmin.style.display = 'none'; } else { authButtons.classList.remove('hidden'); userInfo.classList.add('hidden'); navDashboard.style.display = 'none'; navAdmin.style.display = 'none'; } }
@@ -617,13 +725,40 @@
         function updateAdminStats() { let totalQuestions = 0; Object.keys(questions).forEach(comp => { Object.keys(questions[comp]).forEach(level => { Object.keys(questions[comp][level]).forEach(block => { totalQuestions += questions[comp][level][block].length; }); }); }); document.getElementById('questions-count').textContent = 'Total de preguntas: ' + totalQuestions; }
         function updateStudentsTable() { const tbody = document.getElementById('students-table-body'); tbody.innerHTML = students.filter(s => !s.isAdmin).map(student => { const progress = student.progress || {}; let totalBlocks = 0; Object.keys(progress).forEach(comp => { totalBlocks += progress[comp]?.completedBlocks?.length || 0; }); const progressPercent = Math.round((totalBlocks / 36) * 100); return `<tr><td>${student.identification}</td><td>${student.names}</td><td>${student.surnames}</td><td>${student.age}</td><td>${student.gender}</td><td>${student.accessCode}</td><td>${new Date(student.registeredAt).toLocaleDateString()}</td><td><span class="status-badge status-active">${progressPercent}%</span></td></tr>`; }).join(''); }
         function downloadTemplate() { const template = { lectura: { 1: { 1: [{ id: 1, context: "Texto base", question: "¿Pregunta?", options: ["A", "B", "C", "D"], correct: 0, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Justificación de ejemplo" }], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } }, matematicas: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } }, fisica: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } } }; const dataStr = JSON.stringify(template, null, 2); const blob = new Blob([dataStr], { type: 'application/json' }); const url = URL.createObjectURL(blob); const linkElement = document.createElement('a'); linkElement.href = url; linkElement.download = 'lecmafis-plantilla-preguntas.json'; document.body.appendChild(linkElement); linkElement.click(); document.body.removeChild(linkElement); URL.revokeObjectURL(url); }
-        function addQuestion() { const component = document.getElementById('admin-component').value, level = parseInt(document.getElementById('admin-level').value), block = parseInt(document.getElementById('admin-block').value), skill = document.getElementById('admin-skill').value, context = document.getElementById('admin-context').value.trim(), question = document.getElementById('admin-question').value.trim(), optionA = document.getElementById('admin-option-a').value.trim(), optionB = document.getElementById('admin-option-b').value.trim(), optionC = document.getElementById('admin-option-c').value.trim(), optionD = document.getElementById('admin-option-d').value.trim(), correct = parseInt(document.getElementById('admin-correct').value); if (!question || !optionA || !optionB || !optionC || !optionD) { alert('Por favor completa todos los campos requeridos'); return; } const newQuestion = { id: Date.now(), context: context || null, question, options: [optionA, optionB, optionC, optionD], correct, skill, timeEstimate: parseInt(document.getElementById('admin-time').value) || 120, justification: "" }; if (!questions[component]) questions[component] = { 1: {}, 2: {}, 3: {} }; if (!questions[component][level]) questions[component][level] = {}; if (!questions[component][level][block]) questions[component][level][block] = []; questions[component][level][block].push(newQuestion); saveData('lecmafis_questions_v6', questions); document.getElementById('admin-question').value = ''; document.getElementById('admin-option-a').value = ''; document.getElementById('admin-option-b').value = ''; document.getElementById('admin-option-c').value = ''; document.getElementById('admin-option-d').value = ''; document.getElementById('admin-context').value = ''; updateAdminStats(); alert('¡Pregunta agregada exitosamente!'); }
-        function handleImport(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function(e) { try { const imported = JSON.parse(e.target.result); questions = imported; saveData('lecmafis_questions_v6', questions); updateAdminStats(); alert('¡Preguntas importadas exitosamente!'); } catch (error) { alert('Error al importar el archivo. Asegúrate de que sea un JSON válido.'); } }; reader.readAsText(file); }
+        function addQuestion() { const component = document.getElementById('admin-component').value, level = parseInt(document.getElementById('admin-level').value), block = parseInt(document.getElementById('admin-block').value), skill = document.getElementById('admin-skill').value, context = document.getElementById('admin-context').value.trim(), question = document.getElementById('admin-question').value.trim(), optionA = document.getElementById('admin-option-a').value.trim(), optionB = document.getElementById('admin-option-b').value.trim(), optionC = document.getElementById('admin-option-c').value.trim(), optionD = document.getElementById('admin-option-d').value.trim(), correct = parseInt(document.getElementById('admin-correct').value); if (!question || !optionA || !optionB || !optionC || !optionD) { alert('Por favor completa todos los campos requeridos'); return; } const newQuestion = { id: Date.now(), context: context || null, question, options: [optionA, optionB, optionC, optionD], correct, skill, timeEstimate: parseInt(document.getElementById('admin-time').value) || 120, justification: "" }; if (!questions[component]) questions[component] = { 1: {}, 2: {}, 3: {} }; if (!questions[component][level]) questions[component][level] = {}; if (!questions[component][level][block]) questions[component][level][block] = []; questions[component][level][block].push(newQuestion); saveData('lecmafis_questions_v7', questions); document.getElementById('admin-question').value = ''; document.getElementById('admin-option-a').value = ''; document.getElementById('admin-option-b').value = ''; document.getElementById('admin-option-c').value = ''; document.getElementById('admin-option-d').value = ''; document.getElementById('admin-context').value = ''; updateAdminStats(); alert('¡Pregunta agregada exitosamente!'); }
+        function handleImport(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = function(e) { try { const imported = JSON.parse(e.target.result); questions = imported; saveData('lecmafis_questions_v7', questions); updateAdminStats(); alert('¡Preguntas importadas exitosamente!'); } catch (error) { alert('Error al importar el archivo. Asegúrate de que sea un JSON válido.'); } }; reader.readAsText(file); }
 
         // ==================== INITIALIZATION ====================
-        document.addEventListener('DOMContentLoaded', function() { const adminExists = students.find(s => s.identification === 'admin'); if (!adminExists) { students.push({ identification: 'admin', names: 'Administrador', surnames: 'LECMAFIS', age: 30, gender: 'otro', accessCode: 'ADMIN-MASTER', registeredAt: new Date().toISOString(), isAdmin: true, progress: {} }); saveData('lecmafis_students', students); } updateAuthUI(); showPage('home'); });
-        document.querySelectorAll('.modal').forEach(modal => { modal.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('active'); }); });
-        window.addEventListener('beforeunload', function(e) { if (currentQuiz) { e.preventDefault(); e.returnValue = ''; } });
+        document.addEventListener('DOMContentLoaded', function() { 
+            const adminExists = students.find(s => s.identification === 'admin'); 
+            if (!adminExists) { 
+                students.push({ 
+                    identification: 'admin', 
+                    names: 'Administrador', 
+                    surnames: 'LECMAFIS', 
+                    age: 30, 
+                    gender: 'otro', 
+                    accessCode: 'ADMIN-MASTER', 
+                    registeredAt: new Date().toISOString(), 
+                    isAdmin: true, 
+                    progress: {} 
+                }); 
+                saveData('lecmafis_students', students); 
+            } 
+            updateAuthUI(); 
+            showPage('home'); 
+        });
+        document.querySelectorAll('.modal').forEach(modal => { 
+            modal.addEventListener('click', function(e) { 
+                if (e.target === this) this.classList.remove('active'); 
+            }); 
+        });
+        window.addEventListener('beforeunload', function(e) { 
+            if (currentQuiz) { 
+                e.preventDefault(); 
+                e.returnValue = ''; 
+            } 
+        });
     </script>
 </body>
 </html>
