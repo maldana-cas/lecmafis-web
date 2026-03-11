@@ -256,56 +256,94 @@
         };
         const SKILLS = { analisis: 'Análisis', interpretacion: 'Interpretación', argumentacion: 'Argumentación', formulacion: 'Formulación' };
 
-        // ==================== PREGUNTAS COMPLETAS - NIVEL 2 LECTURA ====================
+        // ==================== PREGUNTAS COMPLETAS - NIVELES 1 Y 2 LECTURA ====================
         const defaultQuestions = {
             lectura: {
-                1: { 1: [], 2: [], 3: [], 4: [] },
-                
-                // ✅ NIVEL 2 COMPLETO - 4 BLOQUES × 8 PREGUNTAS = 32 PREGUNTAS
-                2: {
-                    // BLOQUE 1: Conexión y Sentido Global
+                // ✅ NIVEL 1 COMPLETO - 4 BLOQUES × 8 PREGUNTAS = 32 PREGUNTAS
+                1: {
                     1: [
-                        { id: 101, context: "La educación no debe limitarse a la transmisión de conocimientos técnicos que pronto quedarán obsoletos. Su verdadero fin es cultivar el pensamiento crítico, permitiendo que el individuo cuestione su realidad y proponga soluciones creativas a problemas que aún no existen.", question: "¿Cuál de las siguientes frases resume la idea principal del texto?", options: ["Los conocimientos técnicos son inútiles hoy en día.", "El fin de la educación es preparar para empleos actuales.", "El objetivo esencial de la educación es el desarrollo del pensamiento crítico.", "La realidad es un problema que no tiene solución."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C porque el texto presenta el pensamiento crítico como el 'verdadero fin' de la educación, contrastándolo con la mera transmisión de datos." },
-                        { id: 102, context: "(Párrafo 1): El cambio climático ha provocado un aumento en la temperatura de los océanos. (Párrafo 2): Como consecuencia, los arrecifes de coral están sufriendo un proceso de blanqueamiento masivo que amenaza la biodiversidad marina.", question: "¿Qué relación existe entre el primer y el segundo párrafo?", options: ["El segundo párrafo contradice lo dicho en el primero.", "El segundo párrafo presenta un efecto directo de la situación descrita en el primero.", "El primer párrafo es una conclusión de lo que se dice en el segundo.", "Ambos párrafos hablan de temas totalmente diferentes."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La respuesta es la B. El conector 'Como consecuencia' establece que el blanqueamiento (P2) es el resultado del aumento de temperatura (P1)." },
-                        { id: 103, context: "Ciclo de reciclaje: Consumidor → Contenedor → Fábrica → Producto → Consumidor", question: "De acuerdo con el ciclo de reciclaje, ¿qué sucede inmediatamente después de que el consumidor deposita el papel en el contenedor de reciclaje?", options: ["El papel se convierte en un árbol nuevo.", "El material es transportado nuevamente a la fábrica para su procesamiento.", "El papel es desechado definitivamente en un vertedero.", "El consumidor compra un producto nuevo de papel."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la B. Al observar la flecha que sale del 'contenedor', esta se dirige de vuelta al icono de la 'fábrica', cerrando el ciclo." },
-                        { id: 104, context: "El caballero se preparó para la batalla final. Ajustó su armadura, pero su mano temblaba. No era el miedo a la muerte lo que lo paralizaba, sino la sospecha de que estaba luchando por una causa que ya no creía justa.", question: "El conflicto central que enfrenta el personaje es:", options: ["Una lucha física contra un enemigo poderoso.", "El miedo a morir en el campo de batalla.", "Un dilema ético sobre la validez de su misión.", "La dificultad para ajustar correctamente su armadura."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C. El texto aclara explícitamente que el problema no es el miedo o la fuerza, sino su falta de fe en la 'justicia' de su causa." },
-                        { id: 105, context: "Muchos científicos afirman que estamos solos en el universo. Sin embargo, como dijo Carl Sagan: 'Si estuviéramos solos, sería un gran desperdicio de espacio'. Esta frase nos invita a reconsiderar nuestra posición ante lo desconocido.", question: "¿Para qué utiliza el autor la cita de Carl Sagan?", options: ["Para demostrar que Carl Sagan estaba equivocado.", "Para finalizar el texto de manera aburrida.", "Para apoyar una perspectiva diferente a la de otros científicos.", "Para dar una cifra exacta sobre el tamaño del universo."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La respuesta es la C. La cita se usa para contrastar la idea de 'soledad en el universo' con una visión más abierta y curiosa." },
-                        { id: 106, context: "El uso de redes sociales ha facilitado la comunicación instantánea a nivel global. No obstante, diversos estudios señalan que también ha incrementado la sensación de aislamiento y soledad en los jóvenes.", question: "¿Qué intención tiene el autor al usar la expresión 'No obstante'?", options: ["Enumerar los beneficios de las redes sociales.", "Explicar cómo funcionan las comunicaciones globales.", "Presentar un aspecto negativo que matiza el beneficio mencionado al inicio.", "Confirmar que la comunicación instantánea elimina la soledad."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La respuesta es la C. El conector introduce una cara negativa (aislamiento) que se opone a la positiva (comunicación fácil)." },
-                        { id: 107, context: "Gráfica de consumo energético 2020-2023: 60, 70, 80, 85 unidades (tendencia ascendente)", question: "Si la tendencia que se observa en la gráfica de consumo energético continúa, ¿qué se puede esperar para el año siguiente?", options: ["Que el consumo de energía baje a 50 unidades.", "Que el consumo se mantenga igual que en 2022.", "Que el consumo de energía supere las 90 unidades.", "Que la energía deje de utilizarse totalmente."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La respuesta es la C. La gráfica muestra un crecimiento constante (ascendente), por lo que la proyección lógica es que el siguiente dato sea mayor." },
-                        { id: 108, context: "Es necesario implementar jornadas laborales de cuatro días. Está demostrado que el descanso adicional reduce el estrés de los empleados, lo que a su vez se traduce en un aumento significativo de la productividad durante las horas de trabajo.", question: "¿Cuál es el argumento principal que sostiene la propuesta del autor?", options: ["Que trabajar cinco días es ilegal.", "Que el bienestar del empleado mejora la eficiencia de la empresa.", "Que los empleados no quieren trabajar más.", "Que las empresas deben cerrar los días viernes."], correct: 1, difficulty: "medio", skill: "argumentacion", timeEstimate: 120, justification: "La respuesta es la B. El autor vincula el 'menor estrés' (bienestar) con el 'aumento de productividad' (eficiencia) para justificar su idea." }
+                        { id: 1, context: "El reloj de la plaza marcó las doce. Pedro, que llevaba esperando más de dos horas bajo la lluvia, decidió finalmente abrir su paraguas rojo y caminar hacia la estación de tren, dejando atrás el café donde había acordado encontrarse con Lucía.", question: "Según el fragmento, ¿hacia dónde se dirigió Pedro después de esperar bajo la lluvia?", options: ["Al café.", "A la casa de Lucía.", "A la estación de tren.", "A comprar un paraguas rojo."], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C porque el texto indica explícitamente la acción final del sujeto: 'caminar hacia la estación de tren'." },
+                        { id: 2, context: "El oso de anteojos es la única especie de oso que habita en Suramérica. Se distribuye a lo largo de la cordillera de los Andes, desde Venezuela hasta Bolivia. Su dieta es principalmente herbívora, destacándose el consumo de bromelias y frutos silvestres.", question: "Según el texto, ¿cuál es el alimento principal en la dieta del oso de anteojos?", options: ["Pequeños mamíferos.", "Insectos andinos.", "Miel y peces.", "Bromelias y frutos silvestres."], correct: 3, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la D debido a que el texto afirma textualmente que su dieta se destaca por el 'consumo de bromelias y frutos silvestres'." },
+                        { id: 3, context: "1. Pon un balde en la ducha. 2. Usa el agua para trapear. 3. No la uses para cocinar", question: "Según las instrucciones de la infografía, ¿para qué actividad está prohibido usar el agua recolectada?", options: ["Regar las plantas.", "Cocinar alimentos.", "Trapear el piso.", "Llenar un balde."], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la B porque el paso número 3 de la instrucción prohíbe explícitamente el uso para 'cocinar'." },
+                        { id: 4, context: "La expedición avanzaba con lentitud. El terreno era escarpado y el clima inclemente. A pesar de la fatiga extrema, el capitán ordenó a sus hombres no claudicar, pues la cima estaba cerca.", question: "En el texto, la palabra \"claudicar\" puede reemplazarse, sin alterar el sentido, por:", options: ["Avanzar.", "Rendirse.", "Observar.", "Escalar."], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la B. Por el contexto, la orden del capitán de 'no claudicar' se refiere a no rendirse ante las dificultades." },
+                        { id: 5, context: "La invención de la imprenta por Gutenberg alrededor de 1440 revolucionó la cultura. El primer libro impreso a gran escala fue la Biblia, cuya producción se completó en el año 1455.", question: "¿En qué año se terminó de producir el primer libro impreso a gran escala?", options: ["1440.", "1455.", "1450.", "En el siglo XIX."], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la B. El texto asocia el año 1455 con la 'completitud de la producción' de la Biblia." },
+                        { id: 6, context: "Marta miró el viejo reloj de su abuelo. A su lado estaba su hermano menor, Tomás, dibujando en el suelo, completamente ajeno a la tristeza de la joven.", question: "Según la situación descrita, ¿quién se encuentra dibujando en el suelo?", options: ["Marta.", "El abuelo.", "El relojero.", "Tomás."], correct: 3, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la D. El texto vincula directamente el nombre 'Tomás' con la acción de 'dibujando en el suelo'." },
+                        { id: 7, context: "Devolver los libros directamente en la recepción", question: "Según el letrero, ¿dónde se deben entregar los libros usados?", options: ["En los estantes.", "En las mesas.", "En la recepción.", "En la entrada."], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C. La instrucción indica un lugar específico para la devolución." },
+                        { id: 8, context: "María guardó su libro favorito en la mochila, se puso el abrigo porque hacía frío y salió corriendo hacia la parada del autobús. Llevaba prisa porque no quería llegar tarde a su primera clase.", question: "Según el texto, ¿por qué María salió corriendo hacia la parada del autobús?", options: ["Porque había olvidado su libro.", "Porque hacía mucho calor.", "Porque no quería llegar tarde a clase.", "Porque el autobús ya se había ido."], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C porque el texto indica explícitamente que 'Llevaba prisa porque no quería llegar tarde a su primera clase'." }
                     ],
-                    // BLOQUE 2: Estructura y Relación de Ideas
                     2: [
-                        { id: 201, context: "La mayoría de las personas asumen que el éxito es una línea recta ascendente. Lo que no ven son las caídas, los desvíos y los momentos de estancamiento que, aunque parecen fracasos, son en realidad los cimientos de la maestría.", question: "Del texto se puede inferir que para el autor:", options: ["El éxito es un objetivo imposible de alcanzar.", "El fracaso es lo opuesto al éxito.", "Los errores son etapas necesarias del proceso de aprendizaje.", "La maestría se logra evitando los desvíos."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El autor describe los fallos no como lo opuesto al éxito, sino como 'cimientos', lo que implica que son necesarios para construir el resultado final." },
-                        { id: 202, context: "Los vehículos eléctricos reducen drásticamente la emisión de gases contaminantes en las ciudades. Si bien su autonomía aún es limitada en viajes largos, representan la mejor alternativa para el transporte urbano actual.", question: "¿Qué función cumple la frase 'Si bien su autonomía aún es limitada en viajes largos' en el texto?", options: ["Refutar la idea de que los vehículos eléctricos son útiles.", "Presentar una limitación que matiza la defensa del producto.", "Demostrar que los viajes largos son imposibles hoy en día.", "Introducir la conclusión principal del autor."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La frase reconoce un punto débil (la autonomía) para dar equilibrio al argumento, sin llegar a invalidar el beneficio principal." },
-                        { id: 203, context: "Diagrama de cadena alimenticia: Planta → Herbívoro → Carnívoro → Descomponedor", question: "En este diagrama de la cadena alimenticia, ¿cuál es la función de las flechas entre los organismos?", options: ["Mostrar el camino que recorren los animales en el ecosistema.", "Indicar quién es el animal más fuerte del grupo.", "Representar el flujo de energía de un ser vivo a otro al alimentarse.", "Señalar el orden alfabético de las especies."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "En ecología, las flechas representan la transferencia de energía (quién sirve de alimento a quién), lo cual requiere interpretar el símbolo dentro del contexto biológico." },
-                        { id: 204, context: "El científico trabajó durante décadas en su teoría, pero sentía que solo estaba rascando la superficie de un océano de conocimientos todavía por descubrir.", question: "La expresión 'rascando la superficie' sugiere que el científico:", options: ["Ha terminado su investigación por completo.", "Considera que sus descubrimientos son insignificantes.", "Reconoce que lo aprendido es mínimo comparado con lo que falta.", "Está cansado de trabajar en el mismo tema."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La metáfora del 'océano' frente a 'rascar la superficie' establece una relación de magnitud donde lo desconocido es vasto y lo conocido es superficial." },
-                        { id: 205, context: "El arte urbano ha pasado de ser visto como vandalismo a ser reconocido como una herramienta de transformación social. En muchas ciudades, los murales han servido para recuperar espacios degradados y fortalecer el sentido de pertenencia de los vecinos.", question: "¿Cuál de los siguientes hechos fortalecería el argumento del texto?", options: ["El aumento de multas por realizar grafitis en zonas prohibidas.", "Una encuesta donde los vecinos reportan sentirse más seguros tras la creación de murales.", "La venta de pinturas en aerosol a precios más bajos.", "Un estudio sobre la historia de la pintura clásica en los museos."], correct: 1, difficulty: "medio", skill: "argumentacion", timeEstimate: 120, justification: "Si el texto afirma que el arte fortalece el sentido de pertenencia, un dato real de los vecinos confirmando esa mejora actúa como evidencia de apoyo." },
-                        { id: 206, context: "Pirámide de Maslow: 1. Fisiológicas, 2. Seguridad, 3. Afiliación, 4. Reconocimiento, 5. Autorrealización", question: "Si una persona no ha satisfecho las necesidades de la base de la pirámide, según la lógica del gráfico, esta persona:", options: ["Puede alcanzar directamente la cima de la pirámide.", "Tendrá dificultades para enfocarse en las necesidades de los niveles superiores.", "No necesita preocuparse por los niveles intermedios.", "Debe empezar a construir la pirámide desde arriba hacia abajo."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La estructura piramidal implica jerarquía; los niveles superiores se sostienen sobre los inferiores, por lo que la base es un requisito previo." },
-                        { id: 207, context: "¿Es realmente necesario que cada actualización de software obligue al usuario a comprar un dispositivo nuevo? Esta obsolescencia programada parece dictada más por los libros contables que por la innovación tecnológica.", question: "A partir del tono del texto, se puede concluir que el autor es:", options: ["Un defensor de las últimas tendencias tecnológicas.", "Un vendedor de software interesado en nuevas actualizaciones.", "Un crítico de las prácticas comerciales de la industria tecnológica.", "Un programador que explica cómo funciona un código."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El uso de términos como 'obsolescencia programada' y la crítica a los 'libros contables' revela una postura de cuestionamiento hacia las empresas." },
-                        { id: 208, context: "La fotosíntesis es el proceso mediante el cual las plantas convierten la luz solar en energía química. Sin este proceso, los niveles de oxígeno en la atmósfera caerían drásticamente, haciendo imposible la vida tal como la conocemos hoy.", question: "¿Cuál es la conclusión lógica que se deriva del texto?", options: ["Las plantas son los únicos seres vivos que necesitan luz.", "La luz solar es la única fuente de energía para todos los animales.", "La fotosíntesis es un proceso vital para el equilibrio de la vida en la Tierra.", "El oxígeno es un gas que se produce de forma artificial en la atmósfera."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El texto conecta la fotosíntesis con la existencia de oxígeno y, por ende, con la posibilidad de la vida, resumiendo su importancia global." }
+                        { id: 9, context: "El agua es esencial para la vida. Sin ella, las plantas no pueden crecer, los animales no pueden sobrevivir y los seres humanos no pueden mantener sus funciones vitales.", question: "La idea principal del texto es que:", options: ["El agua es un recurso limitado.", "El agua es fundamental para todos los seres vivos.", "Las plantas necesitan más agua que los animales.", "Los seres humanos desperdician mucha agua."], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto enfatiza la importancia del agua para plantas, animales y humanos, resumiendo que es esencial para la vida." },
+                        { id: 10, context: "Los semáforos tienen tres colores: rojo, amarillo y verde. El rojo indica detenerse, el amarillo precaución y el verde avanzar.", question: "¿Qué debe hacer un conductor cuando el semáforo está en amarillo?", options: ["Acelerar para cruzar rápido.", "Detenerse inmediatamente.", "Tener precaución antes de avanzar.", "Ignorar la señal."], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto indica explícitamente que el amarillo significa 'precaución'." },
+                        { id: 11, context: "El día tiene 24 horas. Dormimos 8 horas, trabajamos 8 horas y las 8 horas restantes las dedicamos a actividades personales.", question: "¿Cuántas horas del día se dedican a actividades personales según el texto?", options: ["6 horas", "8 horas", "10 horas", "12 horas"], correct: 1, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "El texto divide las 24 horas en tres partes iguales de 8 horas cada una." },
+                        { id: 12, context: "Para hacer una torta necesitas: harina, huevos, azúcar, mantequilla y leche. Primero mezclas los ingredientes secos, luego agregas los húmedos y finalmente horneas.", question: "¿Cuál es el primer paso para hacer la torta según el texto?", options: ["Hornear la mezcla.", "Agregar los ingredientes húmedos.", "Mezclar los ingredientes secos.", "Comprar los ingredientes."], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto indica claramente que 'Primero mezclas los ingredientes secos'." },
+                        { id: 13, context: "Los meses del año son: enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre y diciembre.", question: "¿Qué mes viene después de junio?", options: ["Mayo", "Julio", "Agosto", "Septiembre"], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Según el orden presentado en el texto, julio sigue después de junio." },
+                        { id: 14, context: "El médico recomienda: lavar las manos frecuentemente, usar mascarilla en lugares cerrados y mantener distancia de las personas enfermas.", question: "¿Cuál de las siguientes NO es una recomendación del médico?", options: ["Lavar las manos frecuentemente.", "Usar mascarilla en lugares cerrados.", "Mantener distancia de personas enfermas.", "Tomar vitaminas todos los días."], correct: 3, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "El texto no menciona nada sobre tomar vitaminas, solo las tres primeras opciones." },
+                        { id: 15, context: "El autobús sale a las 7:00 AM, 9:00 AM, 11:00 AM y 1:00 PM.", question: "Si llegas a las 10:00 AM, ¿a qué hora sale el próximo autobús?", options: ["9:00 AM", "11:00 AM", "1:00 PM", "7:00 AM"], correct: 1, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "Si llegas a las 10:00 AM, el próximo autobús sale a las 11:00 AM según el horario." },
+                        { id: 16, context: "Los animales herbívoros comen plantas, los carnívoros comen carne y los omnívoros comen ambos.", question: "¿Qué tipo de animal come tanto plantas como carne?", options: ["Herbívoro", "Carnívoro", "Omnívoro", "Ninguno"], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto define que los omnívoros comen ambos tipos de alimento." }
                     ],
-                    // BLOQUE 3: Perspectivas y Voces ✅ NUEVO
                     3: [
-                        { id: 301, context: "Es curioso que llamemos 'progreso' a llenar nuestros océanos de plástico y nuestras ciudades de humo. Si este es el camino hacia el futuro, quizás deberíamos empezar a caminar hacia atrás.", question: "El tono que predomina en el texto anterior es:", options: ["Optimista y alentador.", "Irónico y crítico.", "Científico y objetivo.", "Indiferente y neutral."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El autor utiliza la ironía al cuestionar la palabra 'progreso' para describir la contaminación, sugiriendo que lo que llamamos avance es en realidad un retroceso." },
-                        { id: 302, context: "Autor A: La educación virtual es la solución definitiva a la falta de cobertura académica en zonas rurales. Autor B: La educación virtual, aunque útil, es insuficiente si no se garantiza primero el acceso a servicios básicos y conectividad estable en el campo.", question: "Una diferencia fundamental entre la postura del Autor A y el Autor B es que:", options: ["El Autor A rechaza la tecnología mientras que el Autor B la defiende.", "El Autor B condiciona el éxito de la educación virtual a factores externos.", "Ambos autores consideran que la educación virtual es imposible de implementar.", "El Autor A se enfoca en los costos y el Autor B en la calidad pedagógica."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "Mientras que el Autor A la ve como una solución directa, el Autor B señala que se necesitan requisitos previos (conectividad y servicios) para que funcione." },
-                        { id: 303, context: "Gráfica: Porcentaje de lectura por edad (Niños 80%, Jóvenes 60%, Adultos 40%, Adultos Mayores 20%)", question: "A partir de los datos de la gráfica, se puede concluir válidamente que:", options: ["Los adultos mayores son los que más libros compran en el país.", "El interés por la lectura parece disminuir a medida que aumenta la edad de la población.", "Los jóvenes leen más que los niños debido a la universidad.", "Los adultos leen el doble que los adultos mayores."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La tendencia descendente de las barras muestra una correlación negativa entre la edad y el porcentaje de lectura según la muestra." },
-                        { id: 304, context: "Para que la democracia sea real, no basta con ir a las urnas cada cuatro años; se requiere una ciudadanía informada y capaz de cuestionar el poder de manera constante.", question: "Un supuesto implícito (algo que el autor da por hecho) en el texto es que:", options: ["Ir a las urnas es la única forma de participar.", "Actualmente la ciudadanía no cuestiona al poder.", "El voto por sí solo no garantiza una democracia plena.", "La información es un recurso que todos los ciudadanos poseen."], correct: 2, difficulty: "medio", skill: "argumentacion", timeEstimate: 120, justification: "El autor utiliza la expresión 'no basta', lo que implica que el voto es necesario pero insuficiente por sí mismo." },
-                        { id: 305, context: "El ministro afirmó que la economía está creciendo. Sin embargo, los pequeños comerciantes aseguran que las ventas han caído un 15% en el último trimestre. Parece que las cifras oficiales no coinciden con la realidad del mostrador.", question: "¿Qué voces se contrastan en el texto anterior?", options: ["La del ministro y la de los grandes empresarios internacionales.", "La de los expertos económicos y la de los compradores.", "La versión oficial del gobierno y la experiencia de los comerciantes locales.", "La del autor del texto y la de la fiscalía."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "El texto opone directamente lo que dice el 'ministro' (oficial) frente a lo que dicen los 'comerciantes' (realidad local)." },
-                        { id: 306, context: "La memoria es un edificio en construcción constante. Cada nueva experiencia añade un ladrillo, pero el tiempo, como un viento persistente, se encarga de desgastar las paredes de los recuerdos más antiguos.", question: "En la metáfora del texto, el 'viento persistente' representa:", options: ["La llegada de nuevas y mejores experiencias.", "El proceso natural del olvido a través de los años.", "El esfuerzo por construir un futuro mejor.", "La solidez de los recuerdos de la infancia."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El autor asocia el viento con el 'desgaste' de las paredes (recuerdos), lo cual simboliza cómo el tiempo borra la memoria." },
-                        { id: 307, context: "Imagen: Bosque quemado con eslogan 'Tu indiferencia los mata'", question: "El propósito comunicativo del eslogan en combinación con la imagen es:", options: ["Informar sobre el costo de la madera en el mercado.", "Persuadir al ciudadano para que cuide los recursos forestales.", "Explicar cómo se producen los incendios naturales.", "Promocionar un seguro contra incendios para el hogar."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La combinación del impacto visual (bosque quemado) y el mensaje de advertencia busca generar conciencia y un cambio de conducta." },
-                        { id: 308, context: "Unos defienden el uso de la energía nuclear por su baja emisión de carbono; otros la rechazan por el riesgo de accidentes y el manejo de residuos. En medio de este debate, la sociedad busca un equilibrio entre necesidad energética y seguridad ambiental.", question: "La idea que sintetiza el conflicto presentado es:", options: ["La energía nuclear es la más segura del mundo.", "Los accidentes nucleares son inevitables.", "Existe una tensión entre los beneficios ambientales y los riesgos operativos de la energía nuclear.", "El manejo de residuos es el único problema de la energía moderna."], correct: 2, difficulty: "medio", skill: "sintesis", timeEstimate: 120, justification: "La respuesta engloba ambas partes del argumento presentadas en el texto (baja emisión vs. riesgo)." }
+                        { id: 17, context: "La biblioteca abre de lunes a viernes de 8:00 AM a 6:00 PM. Los sábados de 9:00 AM a 1:00 PM. Los domingos está cerrada.", question: "¿Puedes visitar la biblioteca el domingo a las 10:00 AM?", options: ["Sí, está abierta.", "No, está cerrada.", "Solo con reserva previa.", "Solo los domingos de verano."], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto indica claramente que 'Los domingos está cerrada'." },
+                        { id: 18, context: "Para viajar al extranjero necesitas: pasaporte vigente, visa del país de destino y tiquete de avión de ida y vuelta.", question: "¿Cuál de estos documentos es obligatorio según el texto?", options: ["Solo el pasaporte.", "Solo la visa.", "Solo el tiquete.", "Los tres documentos."], correct: 3, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "El texto lista los tres como requisitos necesarios para viajar al extranjero." },
+                        { id: 19, context: "El termómetro marca 38°C. La temperatura normal del cuerpo humano es 37°C.", question: "¿Qué indica esto sobre la persona?", options: ["Tiene la temperatura normal.", "Tiene fiebre.", "Tiene hipotermia.", "No se puede determinar."], correct: 1, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "38°C es superior a la temperatura normal de 37°C, lo que indica fiebre." },
+                        { id: 20, context: "Las estaciones del año son: primavera, verano, otoño e invierno. La primavera sigue después del invierno.", question: "¿Qué estación viene después del invierno?", options: ["Verano", "Otoño", "Primavera", "Ninguna"], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto indica explícitamente que 'La primavera sigue después del invierno'." },
+                        { id: 21, context: "El precio del producto es $50.000. Si pagas en efectivo tienes un 10% de descuento.", question: "¿Cuánto pagarías en efectivo?", options: ["$50.000", "$45.000", "$40.000", "$35.000"], correct: 1, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "10% de $50.000 = $5.000 de descuento. $50.000 - $5.000 = $45.000." },
+                        { id: 22, context: "Los colores primarios son: rojo, azul y amarillo. Mezclando rojo y azul obtienes morado.", question: "¿Qué color obtienes mezclando rojo y azul?", options: ["Verde", "Naranja", "Morado", "Negro"], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto indica explícitamente que 'Mezclando rojo y azul obtienes morado'." },
+                        { id: 23, context: "El examen tiene 40 preguntas. Necesitas 30 correctas para aprobar.", question: "¿Qué porcentaje necesitas para aprobar?", options: ["60%", "70%", "75%", "80%"], correct: 2, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "30/40 = 0.75 = 75%" },
+                        { id: 24, context: "La receta dice: 2 tazas de harina, 1 taza de azúcar, 3 huevos. Si quieres hacer el doble de la receta...", question: "¿Cuántas tazas de harina necesitas?", options: ["2 tazas", "3 tazas", "4 tazas", "6 tazas"], correct: 2, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "El doble de 2 tazas = 4 tazas." }
                     ],
-                    // BLOQUE 4: El Analista de Contextos ✅ NUEVO
                     4: [
-                        { id: 401, context: "La automatización no es un fenómeno nuevo; ya en la Revolución Industrial las máquinas reemplazaron tareas manuales. Sin embargo, hoy nos enfrentamos a algo distinto: la inteligencia artificial ya no solo reemplaza la fuerza física, sino que empieza a competir con la capacidad de decisión humana.", question: "¿Cuál es la función de mencionar la 'Revolución Industrial' en el texto?", options: ["Demostrar que la inteligencia artificial es un invento del siglo XVIII.", "Servir como un antecedente histórico para resaltar la diferencia con el fenómeno actual.", "Argumentar que todas las máquinas son peligrosas para el empleo.", "Explicar las leyes económicas que rigen la tecnología moderna."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "Se usa como punto de comparación para enfatizar que la automatización actual (IA) tiene una naturaleza distinta a la del pasado." },
-                        { id: 402, context: "Caricatura: Personas mirando celulares mientras un bosque se quema al fondo", question: "El mensaje central de la caricatura se enfoca en criticar:", options: ["La falta de cobertura de internet en las zonas rurales.", "El desarrollo tecnológico de las herramientas de tala de árboles.", "La distracción digital que invisibiliza los problemas ambientales graves.", "La necesidad de crear nuevas aplicaciones para el cuidado del bosque."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La imagen contrasta la 'hiperconexión' individual (celulares) con la 'desconexión' de la realidad física y el daño ecológico." },
-                        { id: 403, context: "(Párrafo 1): Muchos consideran que los viajes espaciales son un gasto innecesario de recursos. (Párrafo 2): Por el contrario, estas misiones han permitido el desarrollo de tecnologías médicas y de comunicación que usamos diariamente en la Tierra.", question: "El segundo párrafo cumple la función de:", options: ["Ofrecer una conclusión definitiva que cierra el debate.", "Presentar un contraargumento para invalidar la postura del primer párrafo.", "Ampliar la información sobre los costos de los viajes espaciales.", "Describir cronológicamente cómo se inventaron las tecnologías médicas."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "El conector 'Por el contrario' introduce una visión opuesta que desafía la idea de que la exploración espacial es un gasto inútil." },
-                        { id: 404, context: "En la antigua casa de la tía Elena, el piano de cola siempre estaba cerrado con llave. No era por falta de talento en la familia, sino porque su música guardaba el recuerdo de un tiempo que todos, por seguridad, habían decidido olvidar.", question: "En la narración, el 'piano cerrado con llave' simboliza:", options: ["La riqueza económica de la tía Elena.", "El deseo de los personajes de aprender a tocar música.", "Un pasado doloroso o traumático que la familia prefiere ocultar.", "La protección de los objetos valiosos contra los ladrones."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El texto vincula el cierre del piano con un 'recuerdo' que han decidido 'olvidar por seguridad', dándole un valor metafórico." },
-                        { id: 405, context: "Usted merece lo mejor. No se conforme con productos que duran solo un mes. Únase a los miles de clientes satisfechos que ya han cambiado su vida con nuestra tecnología alemana de larga duración.", question: "¿Qué estrategia utiliza el autor para convencer al lector?", options: ["Presentar datos estadísticos y científicos sobre la duración del producto.", "Apelar a las emociones del lector y al sentido de pertenencia a un grupo exitoso.", "Comparar técnicamente los materiales de fabricación de dos marcas distintas.", "Narrar la historia de cómo se fundó la empresa en Alemania."], correct: 1, difficulty: "medio", skill: "argumentacion", timeEstimate: 120, justification: "El texto usa frases aspiracionales ('usted merece lo mejor') y la validación social ('miles de clientes satisfechos') para persuadir." },
-                        { id: 406, context: "Diagrama de Venn: Redes Sociales ∩ Periódicos = 'Inmediatez'", question: "De acuerdo con el diagrama, ¿cuál es el rasgo que comparten ambos medios de comunicación?", options: ["La profundidad de sus análisis periodísticos.", "El uso de algoritmos personalizados para cada usuario.", "La capacidad de entregar información de manera rápida.", "La ausencia total de noticias falsas o erróneas."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La intersección de los círculos muestra la característica común, que en este caso es la 'inmediatez' de la información." },
-                        { id: 407, context: "En un mundo donde la eficiencia es el único valor, la belleza y el ocio son vistos como errores del sistema. Pero es precisamente en esos momentos de 'ineficiencia' donde nace la verdadera humanidad.", question: "Según el autor, ¿cuál es el peligro de valorar únicamente la eficiencia?", options: ["Que las empresas dejen de ser productivas y caigan en la quiebra.", "Que se pierdan los aspectos que nos definen como seres humanos.", "Que la tecnología deje de avanzar por falta de inversión.", "Que las personas tengan demasiado tiempo libre para aburrirse."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El autor afirma que la 'verdadera humanidad' nace de lo que el sistema llama ineficiente (belleza y ocio), sugiriendo que priorizar la eficiencia los destruye." },
-                        { id: 408, context: "La 'huella de carbono' no es solo un número en un informe ambiental; es el rastro invisible de nuestro estilo de vida sobre el planeta. Cada vuelo, cada producto procesado y cada bombilla encendida suma a esta cuenta que la Tierra ya no puede pagar.", question: "En este contexto, la frase 'cuenta que la Tierra ya no puede pagar' sugiere que:", options: ["El costo económico del petróleo ha subido demasiado.", "El planeta ha llegado a un límite de resistencia ante el daño ambiental.", "Los ciudadanos deben pagar más impuestos por usar energía.", "Es necesario pedir préstamos internacionales para salvar el medio ambiente."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La metáfora económica ('cuenta que no se puede pagar') se usa para expresar que el impacto ambiental ha superado la capacidad de recuperación del planeta." }
+                        { id: 25, context: "El aviso dice: 'Prohibido el paso. Peligro de derrumbe.'", question: "¿Cuál es el propósito de este aviso?", options: ["Invitar a los turistas.", "Advertir sobre un peligro.", "Promocionar el lugar.", "Indicar una ruta alternativa."], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La palabra 'Peligro' indica que es una advertencia de seguridad." },
+                        { id: 26, context: "Juan es más alto que Pedro. Pedro es más alto que Luis.", question: "¿Quién es el más bajo de los tres?", options: ["Juan", "Pedro", "Luis", "No se puede saber"], correct: 2, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "Si Juan > Pedro y Pedro > Luis, entonces Luis es el más bajo." },
+                        { id: 27, context: "El tren sale de Bogotá a las 6:00 AM y llega a Medellín a las 12:00 PM.", question: "¿Cuánto dura el viaje?", options: ["4 horas", "5 horas", "6 horas", "7 horas"], correct: 2, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "De 6:00 AM a 12:00 PM hay 6 horas de diferencia." },
+                        { id: 28, context: "Todos los mamíferos tienen pelo. La ballena es un mamífero.", question: "¿Qué podemos concluir?", options: ["La ballena no tiene pelo.", "La ballena tiene pelo.", "La ballena es un pez.", "No se puede concluir nada."], correct: 1, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "Si todos los mamíferos tienen pelo y la ballena es mamífero, entonces la ballena tiene pelo." },
+                        { id: 29, context: "La tienda abre a las 9:00 AM. Son las 8:45 AM.", question: "¿Cuánto falta para que abra la tienda?", options: ["5 minutos", "15 minutos", "30 minutos", "45 minutos"], correct: 1, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "De 8:45 AM a 9:00 AM faltan 15 minutos." },
+                        { id: 30, context: "El semáforo está en rojo. Los carros deben detenerse.", question: "¿Qué deben hacer los carros?", options: ["Acelerar", "Detenerse", "Girar", "Pitar"], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto indica explícitamente que 'Los carros deben detenerse' cuando está en rojo." },
+                        { id: 31, context: "Hay 5 manzanas en la canasta. Si quitas 2 manzanas...", question: "¿Cuántas manzanas quedan?", options: ["2", "3", "4", "5"], correct: 1, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "5 - 2 = 3 manzanas." },
+                        { id: 32, context: "El médico dice: 'Tome esta medicina cada 8 horas durante 5 días.'", question: "¿Cuántas veces al día debe tomar la medicina?", options: ["2 veces", "3 veces", "4 veces", "5 veces"], correct: 1, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "24 horas ÷ 8 horas = 3 veces al día." }
+                    ]
+                },
+                
+                // ✅ NIVEL 2 COMPLETO - 4 BLOQUES × 8 PREGUNTAS = 32 PREGUNTAS (DE TUS PDFS)
+                2: {
+                    1: [
+                        { id: 101, context: "La educación no debe limitarse a la transmisión de conocimientos técnicos que pronto quedarán obsoletos. Su verdadero fin es cultivar el pensamiento crítico, permitiendo que el individuo cuestione su realidad y proponga soluciones creativas a problemas que aún no existen.", question: "¿Cuál de las siguientes frases resume la idea principal del texto?", options: ["Los conocimientos técnicos son inútiles hoy en día.", "El fin de la educación es preparar para empleos actuales.", "El objetivo esencial de la educación es el desarrollo del pensamiento crítico.", "La realidad es un problema que no tiene solución."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C porque el texto presenta el pensamiento crítico como el 'verdadero fin' de la educación." },
+                        { id: 102, context: "(Párrafo 1): El cambio climático ha provocado un aumento en la temperatura de los océanos. (Párrafo 2): Como consecuencia, los arrecifes de coral están sufriendo un proceso de blanqueamiento masivo que amenaza la biodiversidad marina.", question: "¿Qué relación existe entre el primer y el segundo párrafo?", options: ["El segundo párrafo contradice lo dicho en el primero.", "El segundo párrafo presenta un efecto directo de la situación descrita en el primero.", "El primer párrafo es una conclusión de lo que se dice en el segundo.", "Ambos párrafos hablan de temas totalmente diferentes."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "El conector 'Como consecuencia' establece que el blanqueamiento (P2) es el resultado del aumento de temperatura (P1)." },
+                        { id: 103, context: "Ciclo de reciclaje: Consumidor → Contenedor → Fábrica → Producto → Consumidor", question: "De acuerdo con el ciclo de reciclaje, ¿qué sucede inmediatamente después de que el consumidor deposita el papel en el contenedor de reciclaje?", options: ["El papel se convierte en un árbol nuevo.", "El material es transportado nuevamente a la fábrica para su procesamiento.", "El papel es desechado definitivamente en un vertedero.", "El consumidor compra un producto nuevo de papel."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La flecha que sale del 'contenedor' se dirige de vuelta al icono de la 'fábrica', cerrando el ciclo." },
+                        { id: 104, context: "El caballero se preparó para la batalla final. Ajustó su armadura, pero su mano temblaba. No era el miedo a la muerte lo que lo paralizaba, sino la sospecha de que estaba luchando por una causa que ya no creía justa.", question: "El conflicto central que enfrenta el personaje es:", options: ["Una lucha física contra un enemigo poderoso.", "El miedo a morir en el campo de batalla.", "Un dilema ético sobre la validez de su misión.", "La dificultad para ajustar correctamente su armadura."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El texto aclara que el problema no es el miedo o la fuerza, sino su falta de fe en la 'justicia' de su causa." },
+                        { id: 105, context: "Muchos científicos afirman que estamos solos en el universo. Sin embargo, como dijo Carl Sagan: 'Si estuviéramos solos, sería un gran desperdicio de espacio'. Esta frase nos invita a reconsiderar nuestra posición ante lo desconocido.", question: "¿Para qué utiliza el autor la cita de Carl Sagan?", options: ["Para demostrar que Carl Sagan estaba equivocado.", "Para finalizar el texto de manera aburrida.", "Para apoyar una perspectiva diferente a la de otros científicos.", "Para dar una cifra exacta sobre el tamaño del universo."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La cita se usa para contrastar la idea de 'soledad en el universo' con una visión más abierta." },
+                        { id: 106, context: "El uso de redes sociales ha facilitado la comunicación instantánea a nivel global. No obstante, diversos estudios señalan que también ha incrementado la sensación de aislamiento y soledad en los jóvenes.", question: "¿Qué intención tiene el autor al usar la expresión 'No obstante'?", options: ["Enumerar los beneficios de las redes sociales.", "Explicar cómo funcionan las comunicaciones globales.", "Presentar un aspecto negativo que matiza el beneficio mencionado al inicio.", "Confirmar que la comunicación instantánea elimina la soledad."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "El conector introduce una cara negativa (aislamiento) que se opone a la positiva (comunicación fácil)." },
+                        { id: 107, context: "Gráfica de consumo energético 2020-2023: 60, 70, 80, 85 unidades (tendencia ascendente)", question: "Si la tendencia que se observa en la gráfica de consumo energético continúa, ¿qué se puede esperar para el año siguiente?", options: ["Que el consumo de energía baje a 50 unidades.", "Que el consumo se mantenga igual que en 2022.", "Que el consumo de energía supere las 90 unidades.", "Que la energía deje de utilizarse totalmente."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La gráfica muestra un crecimiento constante, por lo que la proyección lógica es que el siguiente dato sea mayor." },
+                        { id: 108, context: "Es necesario implementar jornadas laborales de cuatro días. Está demostrado que el descanso adicional reduce el estrés de los empleados, lo que a su vez se traduce en un aumento significativo de la productividad durante las horas de trabajo.", question: "¿Cuál es el argumento principal que sostiene la propuesta del autor?", options: ["Que trabajar cinco días es ilegal.", "Que el bienestar del empleado mejora la eficiencia de la empresa.", "Que los empleados no quieren trabajar más.", "Que las empresas deben cerrar los días viernes."], correct: 1, difficulty: "medio", skill: "argumentacion", timeEstimate: 120, justification: "El autor vincula el 'menor estrés' (bienestar) con el 'aumento de productividad' (eficiencia)." }
+                    ],
+                    2: [
+                        { id: 201, context: "La mayoría de las personas asumen que el éxito es una línea recta ascendente. Lo que no ven son las caídas, los desvíos y los momentos de estancamiento que, aunque parecen fracasos, son en realidad los cimientos de la maestría.", question: "Del texto se puede inferir que para el autor:", options: ["El éxito es un objetivo imposible de alcanzar.", "El fracaso es lo opuesto al éxito.", "Los errores son etapas necesarias del proceso de aprendizaje.", "La maestría se logra evitando los desvíos."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El autor describe los fallos como 'cimientos', lo que implica que son necesarios para construir el resultado final." },
+                        { id: 202, context: "Los vehículos eléctricos reducen drásticamente la emisión de gases contaminantes en las ciudades. Si bien su autonomía aún es limitada en viajes largos, representan la mejor alternativa para el transporte urbano actual.", question: "¿Qué función cumple la frase 'Si bien su autonomía aún es limitada en viajes largos' en el texto?", options: ["Refutar la idea de que los vehículos eléctricos son útiles.", "Presentar una limitación que matiza la defensa del producto.", "Demostrar que los viajes largos son imposibles hoy en día.", "Introducir la conclusión principal del autor."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La frase reconoce un punto débil para dar equilibrio al argumento, sin invalidar el beneficio principal." },
+                        { id: 203, context: "Diagrama de cadena alimenticia: Planta → Herbívoro → Carnívoro → Descomponedor", question: "En este diagrama de la cadena alimenticia, ¿cuál es la función de las flechas entre los organismos?", options: ["Mostrar el camino que recorren los animales en el ecosistema.", "Indicar quién es el animal más fuerte del grupo.", "Representar el flujo de energía de un ser vivo a otro al alimentarse.", "Señalar el orden alfabético de las especies."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "En ecología, las flechas representan la transferencia de energía (quién sirve de alimento a quién)." },
+                        { id: 204, context: "El científico trabajó durante décadas en su teoría, pero sentía que solo estaba rascando la superficie de un océano de conocimientos todavía por descubrir.", question: "La expresión 'rascando la superficie' sugiere que el científico:", options: ["Ha terminado su investigación por completo.", "Considera que sus descubrimientos son insignificantes.", "Reconoce que lo aprendido es mínimo comparado con lo que falta.", "Está cansado de trabajar en el mismo tema."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La metáfora del 'océano' frente a 'rascar la superficie' establece que lo desconocido es vasto y lo conocido es superficial." },
+                        { id: 205, context: "El arte urbano ha pasado de ser visto como vandalismo a ser reconocido como una herramienta de transformación social. En muchas ciudades, los murales han servido para recuperar espacios degradados y fortalecer el sentido de pertenencia de los vecinos.", question: "¿Cuál de los siguientes hechos fortalecería el argumento del texto?", options: ["El aumento de multas por realizar grafitis en zonas prohibidas.", "Una encuesta donde los vecinos reportan sentirse más seguros tras la creación de murales.", "La venta de pinturas en aerosol a precios más bajos.", "Un estudio sobre la historia de la pintura clásica en los museos."], correct: 1, difficulty: "medio", skill: "argumentacion", timeEstimate: 120, justification: "Un dato real de los vecinos confirmando esa mejora actúa como evidencia de apoyo." },
+                        { id: 206, context: "Pirámide de Maslow: 1. Fisiológicas, 2. Seguridad, 3. Afiliación, 4. Reconocimiento, 5. Autorrealización", question: "Si una persona no ha satisfecho las necesidades de la base de la pirámide, según la lógica del gráfico, esta persona:", options: ["Puede alcanzar directamente la cima de la pirámide.", "Tendrá dificultades para enfocarse en las necesidades de los niveles superiores.", "No necesita preocuparse por los niveles intermedios.", "Debe empezar a construir la pirámide desde arriba hacia abajo."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La estructura piramidal implica jerarquía; los niveles superiores se sostienen sobre los inferiores." },
+                        { id: 207, context: "¿Es realmente necesario que cada actualización de software obligue al usuario a comprar un dispositivo nuevo? Esta obsolescencia programada parece dictada más por los libros contables que por la innovación tecnológica.", question: "A partir del tono del texto, se puede concluir que el autor es:", options: ["Un defensor de las últimas tendencias tecnológicas.", "Un vendedor de software interesado en nuevas actualizaciones.", "Un crítico de las prácticas comerciales de la industria tecnológica.", "Un programador que explica cómo funciona un código."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El uso de términos como 'obsolescencia programada' revela una postura de cuestionamiento hacia las empresas." },
+                        { id: 208, context: "La fotosíntesis es el proceso mediante el cual las plantas convierten la luz solar en energía química. Sin este proceso, los niveles de oxígeno en la atmósfera caerían drásticamente, haciendo imposible la vida tal como la conocemos hoy.", question: "¿Cuál es la conclusión lógica que se deriva del texto?", options: ["Las plantas son los únicos seres vivos que necesitan luz.", "La luz solar es la única fuente de energía para todos los animales.", "La fotosíntesis es un proceso vital para el equilibrio de la vida en la Tierra.", "El oxígeno es un gas que se produce de forma artificial en la atmósfera."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El texto conecta la fotosíntesis con la existencia de oxígeno y la posibilidad de la vida." }
+                    ],
+                    3: [
+                        { id: 301, context: "Es curioso que llamemos 'progreso' a llenar nuestros océanos de plástico y nuestras ciudades de humo. Si este es el camino hacia el futuro, quizás deberíamos empezar a caminar hacia atrás.", question: "El tono que predomina en el texto anterior es:", options: ["Optimista y alentador.", "Irónico y crítico.", "Científico y objetivo.", "Indiferente y neutral."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El autor utiliza la ironía al cuestionar la palabra 'progreso' para describir la contaminación." },
+                        { id: 302, context: "Autor A: La educación virtual es la solución definitiva a la falta de cobertura académica en zonas rurales. Autor B: La educación virtual, aunque útil, es insuficiente si no se garantiza primero el acceso a servicios básicos y conectividad estable en el campo.", question: "Una diferencia fundamental entre la postura del Autor A y el Autor B es que:", options: ["El Autor A rechaza la tecnología mientras que el Autor B la defiende.", "El Autor B condiciona el éxito de la educación virtual a factores externos.", "Ambos autores consideran que la educación virtual es imposible de implementar.", "El Autor A se enfoca en los costos y el Autor B en la calidad pedagógica."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "El Autor B señala que se necesitan requisitos previos (conectividad y servicios) para que funcione." },
+                        { id: 303, context: "Gráfica: Porcentaje de lectura por edad (Niños 80%, Jóvenes 60%, Adultos 40%, Adultos Mayores 20%)", question: "A partir de los datos de la gráfica, se puede concluir válidamente que:", options: ["Los adultos mayores son los que más libros compran en el país.", "El interés por la lectura parece disminuir a medida que aumenta la edad de la población.", "Los jóvenes leen más que los niños debido a la universidad.", "Los adultos leen el doble que los adultos mayores."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La tendencia descendente muestra una correlación negativa entre la edad y el porcentaje de lectura." },
+                        { id: 304, context: "Para que la democracia sea real, no basta con ir a las urnas cada cuatro años; se requiere una ciudadanía informada y capaz de cuestionar el poder de manera constante.", question: "Un supuesto implícito en el texto es que:", options: ["Ir a las urnas es la única forma de participar.", "Actualmente la ciudadanía no cuestiona al poder.", "El voto por sí solo no garantiza una democracia plena.", "La información es un recurso que todos los ciudadanos poseen."], correct: 2, difficulty: "medio", skill: "argumentacion", timeEstimate: 120, justification: "El autor utiliza 'no basta', lo que implica que el voto es necesario pero insuficiente." },
+                        { id: 305, context: "El ministro afirmó que la economía está creciendo. Sin embargo, los pequeños comerciantes aseguran que las ventas han caído un 15% en el último trimestre. Parece que las cifras oficiales no coinciden con la realidad del mostrador.", question: "¿Qué voces se contrastan en el texto anterior?", options: ["La del ministro y la de los grandes empresarios internacionales.", "La de los expertos económicos y la de los compradores.", "La versión oficial del gobierno y la experiencia de los comerciantes locales.", "La del autor del texto y la de la fiscalía."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "El texto opone lo que dice el 'ministro' (oficial) frente a lo que dicen los 'comerciantes' (realidad local)." },
+                        { id: 306, context: "La memoria es un edificio en construcción constante. Cada nueva experiencia añade un ladrillo, pero el tiempo, como un viento persistente, se encarga de desgastar las paredes de los recuerdos más antiguos.", question: "En la metáfora del texto, el 'viento persistente' representa:", options: ["La llegada de nuevas y mejores experiencias.", "El proceso natural del olvido a través de los años.", "El esfuerzo por construir un futuro mejor.", "La solidez de los recuerdos de la infancia."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El autor asocia el viento con el 'desgaste' de las paredes (recuerdos), simbolizando cómo el tiempo borra la memoria." },
+                        { id: 307, context: "Imagen: Bosque quemado con eslogan 'Tu indiferencia los mata'", question: "El propósito comunicativo del eslogan en combinación con la imagen es:", options: ["Informar sobre el costo de la madera en el mercado.", "Persuadir al ciudadano para que cuide los recursos forestales.", "Explicar cómo se producen los incendios naturales.", "Promocionar un seguro contra incendios para el hogar."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La combinación del impacto visual y el mensaje de advertencia busca generar conciencia y cambio de conducta." },
+                        { id: 308, context: "Unos defienden el uso de la energía nuclear por su baja emisión de carbono; otros la rechazan por el riesgo de accidentes y el manejo de residuos. En medio de este debate, la sociedad busca un equilibrio entre necesidad energética y seguridad ambiental.", question: "La idea que sintetiza el conflicto presentado es:", options: ["La energía nuclear es la más segura del mundo.", "Los accidentes nucleares son inevitables.", "Existe una tensión entre los beneficios ambientales y los riesgos operativos de la energía nuclear.", "El manejo de residuos es el único problema de la energía moderna."], correct: 2, difficulty: "medio", skill: "sintesis", timeEstimate: 120, justification: "La respuesta engloba ambas partes del argumento (baja emisión vs. riesgo)." }
+                    ],
+                    4: [
+                        { id: 401, context: "La automatización no es un fenómeno nuevo; ya en la Revolución Industrial las máquinas reemplazaron tareas manuales. Sin embargo, hoy nos enfrentamos a algo distinto: la inteligencia artificial ya no solo reemplaza la fuerza física, sino que empieza a competir con la capacidad de decisión humana.", question: "¿Cuál es la función de mencionar la 'Revolución Industrial' en el texto?", options: ["Demostrar que la inteligencia artificial es un invento del siglo XVIII.", "Servir como un antecedente histórico para resaltar la diferencia con el fenómeno actual.", "Argumentar que todas las máquinas son peligrosas para el empleo.", "Explicar las leyes económicas que rigen la tecnología moderna."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "Se usa como punto de comparación para enfatizar que la automatización actual tiene una naturaleza distinta." },
+                        { id: 402, context: "Caricatura: Personas mirando celulares mientras un bosque se quema al fondo", question: "El mensaje central de la caricatura se enfoca en criticar:", options: ["La falta de cobertura de internet en las zonas rurales.", "El desarrollo tecnológico de las herramientas de tala de árboles.", "La distracción digital que invisibiliza los problemas ambientales graves.", "La necesidad de crear nuevas aplicaciones para el cuidado del bosque."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La imagen contrasta la 'hiperconexión' individual con la 'desconexión' de la realidad física y el daño ecológico." },
+                        { id: 403, context: "(Párrafo 1): Muchos consideran que los viajes espaciales son un gasto innecesario de recursos. (Párrafo 2): Por el contrario, estas misiones han permitido el desarrollo de tecnologías médicas y de comunicación que usamos diariamente en la Tierra.", question: "El segundo párrafo cumple la función de:", options: ["Ofrecer una conclusión definitiva que cierra el debate.", "Presentar un contraargumento para invalidar la postura del primer párrafo.", "Ampliar la información sobre los costos de los viajes espaciales.", "Describir cronológicamente cómo se inventaron las tecnologías médicas."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "El conector 'Por el contrario' introduce una visión opuesta que desafía la idea del primer párrafo." },
+                        { id: 404, context: "En la antigua casa de la tía Elena, el piano de cola siempre estaba cerrado con llave. No era por falta de talento en la familia, sino porque su música guardaba el recuerdo de un tiempo que todos, por seguridad, habían decidido olvidar.", question: "En la narración, el 'piano cerrado con llave' simboliza:", options: ["La riqueza económica de la tía Elena.", "El deseo de los personajes de aprender a tocar música.", "Un pasado doloroso o traumático que la familia prefiere ocultar.", "La protección de los objetos valiosos contra los ladrones."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El texto vincula el cierre del piano con un 'recuerdo' que han decidido 'olvidar por seguridad'." },
+                        { id: 405, context: "Usted merece lo mejor. No se conforme con productos que duran solo un mes. Únase a los miles de clientes satisfechos que ya han cambiado su vida con nuestra tecnología alemana de larga duración.", question: "¿Qué estrategia utiliza el autor para convencer al lector?", options: ["Presentar datos estadísticos y científicos sobre la duración del producto.", "Apelar a las emociones del lector y al sentido de pertenencia a un grupo exitoso.", "Comparar técnicamente los materiales de fabricación de dos marcas distintas.", "Narrar la historia de cómo se fundó la empresa en Alemania."], correct: 1, difficulty: "medio", skill: "argumentacion", timeEstimate: 120, justification: "El texto usa frases aspiracionales y la validación social para persuadir." },
+                        { id: 406, context: "Diagrama de Venn: Redes Sociales ∩ Periódicos = 'Inmediatez'", question: "De acuerdo con el diagrama, ¿cuál es el rasgo que comparten ambos medios de comunicación?", options: ["La profundidad de sus análisis periodísticos.", "El uso de algoritmos personalizados para cada usuario.", "La capacidad de entregar información de manera rápida.", "La ausencia total de noticias falsas o erróneas."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La intersección de los círculos muestra la característica común: la 'inmediatez'." },
+                        { id: 407, context: "En un mundo donde la eficiencia es el único valor, la belleza y el ocio son vistos como errores del sistema. Pero es precisamente en esos momentos de 'ineficiencia' donde nace la verdadera humanidad.", question: "Según el autor, ¿cuál es el peligro de valorar únicamente la eficiencia?", options: ["Que las empresas dejen de ser productivas y caigan en la quiebra.", "Que se pierdan los aspectos que nos definen como seres humanos.", "Que la tecnología deje de avanzar por falta de inversión.", "Que las personas tengan demasiado tiempo libre para aburrirse."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "El autor afirma que la 'verdadera humanidad' nace de lo que el sistema llama ineficiente." },
+                        { id: 408, context: "La 'huella de carbono' no es solo un número en un informe ambiental; es el rastro invisible de nuestro estilo de vida sobre el planeta. Cada vuelo, cada producto procesado y cada bombilla encendida suma a esta cuenta que la Tierra ya no puede pagar.", question: "En este contexto, la frase 'cuenta que la Tierra ya no puede pagar' sugiere que:", options: ["El costo económico del petróleo ha subido demasiado.", "El planeta ha llegado a un límite de resistencia ante el daño ambiental.", "Los ciudadanos deben pagar más impuestos por usar energía.", "Es necesario pedir préstamos internacionales para salvar el medio ambiente."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La metáfora expresa que el impacto ambiental ha superado la capacidad de recuperación del planeta." }
                     ]
                 },
                 3: { 1: [], 2: [], 3: [], 4: [] }
@@ -326,7 +364,7 @@
         }
         function saveData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
         
-        let questions = loadData('lecmafis_questions_v12', defaultQuestions);
+        let questions = loadData('lecmafis_questions_v13', defaultQuestions);
         let accessCodes = loadData('lecmafis_access_codes', []);
         let students = loadData('lecmafis_students', []);
         let currentUser = loadData('lecmafis_current_user', null);
@@ -400,21 +438,15 @@
         function calculateLevelAverage(component, level) {
             const progress = currentUser.progress?.[component];
             if (!progress || !progress.blockScores) return 0;
-            
             const completedInLevel = progress.completedBlocks.filter(b => {
                 const parts = b.split('-');
                 return parts[1] === `l${level}`;
             });
-            
             if (completedInLevel.length === 0) return 0;
-            
             let total = 0;
             completedInLevel.forEach(blockId => {
-                if (progress.blockScores[blockId]) {
-                    total += progress.blockScores[blockId];
-                }
+                if (progress.blockScores[blockId]) total += progress.blockScores[blockId];
             });
-            
             return Math.round(total / completedInLevel.length);
         }
 
@@ -427,7 +459,6 @@
                 const levelSection = document.getElementById(`level-${level}-section`);
                 const levelBadge = document.getElementById(`level-${level}-badge`);
                 const blocksGrid = document.getElementById(`level-${level}-blocks`);
-                
                 const levelAverage = calculateLevelAverage(component, level);
                 
                 let isUnlocked = level === 1;
@@ -456,55 +487,23 @@
 
                     const blockCard = document.createElement('div');
                     blockCard.className = `block-card ${isCompleted ? 'completed' : ''} ${!isAvailable && !isCompleted ? 'locked' : ''}`;
-                    blockCard.onclick = () => {
-                        if (isAvailable || isCompleted) startBlock(component, level, block, isCompleted);
-                    };
-
-                    blockCard.innerHTML = `
-                        <div class="block-number">${isCompleted ? '✅' : ''} Bloque ${block}</div>
-                        <div class="block-info">${COMPONENTS[component].questionsPerBlock} preguntas</div>
-                        <div class="block-info">${LEVEL_TIMES[level]} min</div>
-                        <div class="block-status ${isCompleted ? 'completed' : isAvailable ? 'available' : 'locked'}">
-                            ${isCompleted ? 'Contestado' : isAvailable ? 'Disponible' : 'Bloqueado'}
-                        </div>
-                    `;
+                    blockCard.onclick = () => { if (isAvailable || isCompleted) startBlock(component, level, block, isCompleted); };
+                    blockCard.innerHTML = `<div class="block-number">${isCompleted ? '✅' : ''} Bloque ${block}</div><div class="block-info">${COMPONENTS[component].questionsPerBlock} preguntas</div><div class="block-info">${LEVEL_TIMES[level]} min</div><div class="block-status ${isCompleted ? 'completed' : isAvailable ? 'available' : 'locked'}">${isCompleted ? 'Contestado' : isAvailable ? 'Disponible' : 'Bloqueado'}</div>`;
                     blocksGrid.appendChild(blockCard);
                 }
-
-                if (levelAverage > 0) {
-                    levelBadge.className = 'level-badge completed';
-                    levelBadge.textContent = `${levelAverage}%`;
-                }
+                if (levelAverage > 0) { levelBadge.className = 'level-badge completed'; levelBadge.textContent = `${levelAverage}%`; }
             }
         }
 
-        // ==================== QUIZ SYSTEM ====================
         let quizTimer = null, timeRemaining = 0, quizStartTime = null;
         
         function startBlock(component, level, block, isReview = false) {
             const blockId = `${component}-l${level}-b${block}`;
             const blockQuestions = questions[component]?.[level]?.[block] || [];
-            
-            if (blockQuestions.length === 0) {
-                alert('Este bloque aún no tiene preguntas. Contacta al administrador.');
-                return;
-            }
-
+            if (blockQuestions.length === 0) { alert('Este bloque aún no tiene preguntas. Contacta al administrador.'); return; }
             const componentProgress = currentUser.progress?.[component];
             const isCompleted = componentProgress?.completedBlocks?.includes(blockId);
-
-            currentQuiz = {
-                userId: currentUser.identification,
-                component, level, block, blockId,
-                questions: blockQuestions.sort(() => Math.random() - 0.5),
-                currentIndex: 0,
-                answers: isCompleted ? (componentProgress.blockAnswers?.[blockId] || []) : [],
-                score: 0,
-                startedAt: new Date().toISOString(),
-                timeLimit: LEVEL_TIMES[level] * 60,
-                isReviewMode: isCompleted
-            };
-
+            currentQuiz = { userId: currentUser.identification, component, level, block, blockId, questions: blockQuestions.sort(() => Math.random() - 0.5), currentIndex: 0, answers: isCompleted ? (componentProgress.blockAnswers?.[blockId] || []) : [], score: 0, startedAt: new Date().toISOString(), timeLimit: LEVEL_TIMES[level] * 60, isReviewMode: isCompleted };
             saveData('lecmafis_current_quiz', currentQuiz);
             document.getElementById('levels-container').classList.remove('active');
             document.getElementById('quiz-section').classList.add('active');
@@ -512,146 +511,64 @@
             document.getElementById('quiz-block-title').textContent = `Bloque ${block}`;
             document.getElementById('quiz-component-name').textContent = COMPONENTS[component].name;
             document.getElementById('total-questions').textContent = currentQuiz.questions.length;
-            
             document.getElementById('timer-display').textContent = `${LEVEL_TIMES[level]}:00`;
             document.getElementById('time-limit-text').textContent = `${LEVEL_TIMES[level]} minutos`;
-            
-            const exitBtn = document.getElementById('exit-btn');
-            const reviewBtn = document.getElementById('review-btn');
-            const nextBtn = document.getElementById('next-btn');
-            
+            const exitBtn = document.getElementById('exit-btn'), reviewBtn = document.getElementById('review-btn'), nextBtn = document.getElementById('next-btn');
             if (isCompleted) {
-                exitBtn.style.display = 'none';
-                reviewBtn.style.display = 'inline-flex';
+                exitBtn.style.display = 'none'; reviewBtn.style.display = 'inline-flex';
                 nextBtn.textContent = currentQuiz.currentIndex === 7 ? 'Terminar' : 'Siguiente';
                 document.getElementById('question-card').classList.add('review-mode');
                 document.getElementById('timer-display').style.display = 'none';
             } else {
-                exitBtn.style.display = 'inline-block';
-                reviewBtn.style.display = 'none';
+                exitBtn.style.display = 'inline-block'; reviewBtn.style.display = 'none';
                 nextBtn.textContent = currentQuiz.currentIndex === 7 ? 'Terminar' : 'Siguiente';
                 document.getElementById('question-card').classList.remove('review-mode');
                 document.getElementById('timer-display').style.display = 'block';
-                
-                timeRemaining = currentQuiz.timeLimit;
-                quizStartTime = Date.now();
-                startTimer();
+                timeRemaining = currentQuiz.timeLimit; quizStartTime = Date.now(); startTimer();
             }
-            
             showQuestion();
         }
 
-        function startTimer() {
-            updateTimerDisplay();
-            quizTimer = setInterval(() => {
-                timeRemaining--;
-                updateTimerDisplay();
-                if (timeRemaining <= 0) {
-                    stopTimer();
-                    alert('¡Tiempo terminado! Tu prueba se enviará automáticamente.');
-                    endQuiz(true);
-                }
-            }, 1000);
-        }
-
+        function startTimer() { updateTimerDisplay(); quizTimer = setInterval(() => { timeRemaining--; updateTimerDisplay(); if (timeRemaining <= 0) { stopTimer(); alert('¡Tiempo terminado! Tu prueba se enviará automáticamente.'); endQuiz(true); } }, 1000); }
         function stopTimer() { if (quizTimer) { clearInterval(quizTimer); quizTimer = null; } }
-        
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeRemaining / 60), seconds = timeRemaining % 60;
-            const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            const timerDisplay = document.getElementById('timer-display');
-            timerDisplay.textContent = display;
-            if (timeRemaining < 180) timerDisplay.classList.add('timer-warning');
-            else timerDisplay.classList.remove('timer-warning');
-        }
+        function updateTimerDisplay() { const minutes = Math.floor(timeRemaining / 60), seconds = timeRemaining % 60; const display = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`; const timerDisplay = document.getElementById('timer-display'); timerDisplay.textContent = display; if (timeRemaining < 180) timerDisplay.classList.add('timer-warning'); else timerDisplay.classList.remove('timer-warning'); }
 
         function showQuestion() {
             const question = currentQuiz.questions[currentQuiz.currentIndex];
             document.getElementById('current-question').textContent = currentQuiz.currentIndex + 1;
             document.getElementById('question-text').textContent = question.question;
-            
             const contextEl = document.getElementById('question-context');
-            if (question.context) { contextEl.style.display = 'block'; contextEl.textContent = question.context; }
-            else { contextEl.style.display = 'none'; }
-            
+            if (question.context) { contextEl.style.display = 'block'; contextEl.textContent = question.context; } else { contextEl.style.display = 'none'; }
             const skillTags = document.getElementById('skill-tags');
             skillTags.innerHTML = question.skill ? `<span class="skill-tag">${SKILLS[question.skill] || question.skill}</span>` : '';
-            
             const progress = ((currentQuiz.currentIndex + 1) / currentQuiz.questions.length) * 100;
             document.getElementById('progress-fill').style.width = progress + '%';
-            
             const optionsContainer = document.getElementById('options-container');
             const isReviewMode = currentQuiz.isReviewMode;
             const savedAnswer = currentQuiz.answers[currentQuiz.currentIndex];
-            
             optionsContainer.innerHTML = question.options.map((option, index) => {
-                let classes = 'option-btn';
-                let disabled = '';
-                
-                if (isReviewMode) {
-                    classes += ' review-mode';
-                    disabled = 'disabled';
-                    if (index === question.correct) classes += ' correct';
-                    if (savedAnswer === index && index !== question.correct) classes += ' incorrect';
-                } else if (savedAnswer !== undefined) {
-                    disabled = 'disabled';
-                    if (index === savedAnswer) classes += ' selected';
-                }
-                
-                return `<button class="${classes}" onclick="selectOption(${index})" ${disabled}>
-                    ${String.fromCharCode(65 + index)}. ${option}
-                </button>`;
+                let classes = 'option-btn', disabled = '';
+                if (isReviewMode) { classes += ' review-mode'; disabled = 'disabled'; if (index === question.correct) classes += ' correct'; if (savedAnswer === index && index !== question.correct) classes += ' incorrect'; }
+                else if (savedAnswer !== undefined) { disabled = 'disabled'; if (index === savedAnswer) classes += ' selected'; }
+                return `<button class="${classes}" onclick="selectOption(${index})" ${disabled}>${String.fromCharCode(65 + index)}. ${option}</button>`;
             }).join('');
-            
             const nextBtn = document.getElementById('next-btn');
-            if (currentQuiz.currentIndex === 7) {
-                nextBtn.textContent = 'Terminar';
-            } else {
-                nextBtn.textContent = 'Siguiente';
-            }
-            
+            nextBtn.textContent = currentQuiz.currentIndex === 7 ? 'Terminar' : 'Siguiente';
             nextBtn.disabled = !isReviewMode && savedAnswer === undefined;
         }
 
-        function selectOption(index) {
-            if (currentQuiz.isReviewMode) return;
-            if (currentQuiz.answers[currentQuiz.currentIndex] !== undefined) return;
-            
-            currentQuiz.answers[currentQuiz.currentIndex] = index;
-            saveData('lecmafis_current_quiz', currentQuiz);
-            showQuestion();
-        }
+        function selectOption(index) { if (currentQuiz.isReviewMode) return; if (currentQuiz.answers[currentQuiz.currentIndex] !== undefined) return; currentQuiz.answers[currentQuiz.currentIndex] = index; saveData('lecmafis_current_quiz', currentQuiz); showQuestion(); }
 
         function nextQuestion() {
             const question = currentQuiz.questions[currentQuiz.currentIndex];
             const userAnswer = currentQuiz.answers[currentQuiz.currentIndex];
-            
-            if (!currentQuiz.isReviewMode) {
-                if (userAnswer === question.correct) currentQuiz.score++;
-            }
-            
+            if (!currentQuiz.isReviewMode && userAnswer === question.correct) currentQuiz.score++;
             currentQuiz.currentIndex++;
             saveData('lecmafis_current_quiz', currentQuiz);
-            
-            if (currentQuiz.currentIndex >= currentQuiz.questions.length) {
-                if (currentQuiz.isReviewMode) {
-                    backToLevels();
-                } else {
-                    endQuiz(false);
-                }
-            } else {
-                showQuestion();
-            }
+            if (currentQuiz.currentIndex >= currentQuiz.questions.length) { if (currentQuiz.isReviewMode) backToLevels(); else endQuiz(false); } else showQuestion();
         }
 
-        function confirmExit() {
-            if (confirm('¿Estás seguro de salir? Tu progreso en este bloque se perderá.')) {
-                stopTimer();
-                currentQuiz = null;
-                saveData('lecmafis_current_quiz', null);
-                backToLevels();
-            }
-        }
+        function confirmExit() { if (confirm('¿Estás seguro de salir? Tu progreso en este bloque se perderá.')) { stopTimer(); currentQuiz = null; saveData('lecmafis_current_quiz', null); backToLevels(); } }
 
         function endQuiz(timeExpired = false) {
             stopTimer();
@@ -659,475 +576,62 @@
             const percentage = Math.round((currentQuiz.score / totalQuestions) * 100);
             const timeUsed = currentQuiz.timeLimit - timeRemaining;
             const minutesUsed = Math.floor(timeUsed / 60), secondsUsed = timeUsed % 60;
-
             if (!currentUser.progress) currentUser.progress = {};
-            if (!currentUser.progress[currentQuiz.component]) {
-                currentUser.progress[currentQuiz.component] = { 
-                    completedBlocks: [], 
-                    levelScores: { 1: 0, 2: 0, 3: 0 },
-                    blockScores: {},
-                    blockAnswers: {}
-                };
-            }
+            if (!currentUser.progress[currentQuiz.component]) currentUser.progress[currentQuiz.component] = { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {}, blockAnswers: {} };
             const componentProgress = currentUser.progress[currentQuiz.component];
-            
-            if (!componentProgress.completedBlocks.includes(currentQuiz.blockId)) {
-                componentProgress.completedBlocks.push(currentQuiz.blockId);
-                componentProgress.blockScores[currentQuiz.blockId] = percentage;
-                componentProgress.blockAnswers[currentQuiz.blockId] = currentQuiz.answers;
-            }
-
+            if (!componentProgress.completedBlocks.includes(currentQuiz.blockId)) { componentProgress.completedBlocks.push(currentQuiz.blockId); componentProgress.blockScores[currentQuiz.blockId] = percentage; componentProgress.blockAnswers[currentQuiz.blockId] = currentQuiz.answers; }
             const studentIndex = students.findIndex(s => s.identification === currentUser.identification);
             if (studentIndex !== -1) { students[studentIndex] = currentUser; saveData('lecmafis_students', students); }
             saveData('lecmafis_current_user', currentUser);
-
-            currentQuiz = null;
-            saveData('lecmafis_current_quiz', null);
-
-            if (currentQuiz && currentQuiz.block === 4) {
-                showLevelCompletionFeedback(percentage, componentProgress);
-                setTimeout(() => {
-                    backToLevels();
-                }, 5000);
-                return;
-            }
-
+            currentQuiz = null; saveData('lecmafis_current_quiz', null);
             document.getElementById('quiz-section').classList.remove('active');
             document.getElementById('results-section').classList.add('active');
             document.getElementById('final-score').textContent = percentage + '%';
-            document.getElementById('feedback-correct').textContent = currentQuiz ? currentQuiz.score : 0;
-            document.getElementById('feedback-incorrect').textContent = totalQuestions - (currentQuiz ? currentQuiz.score : 0);
+            document.getElementById('feedback-correct').textContent = currentQuiz?.score || 0;
+            document.getElementById('feedback-incorrect').textContent = totalQuestions - (currentQuiz?.score || 0);
             document.getElementById('feedback-total').textContent = totalQuestions;
             document.getElementById('feedback-time').textContent = `${minutesUsed}:${String(secondsUsed).padStart(2, '0')}`;
-            
             document.getElementById('feedback-recommendation-text').textContent = getRecommendation(percentage, currentQuiz?.component || 'lectura');
-
             const justificationsContainer = document.getElementById('justifications-container');
-            justificationsContainer.innerHTML = (currentQuiz?.questions || []).map((q, index) => {
-                const userAnswer = currentQuiz?.answers[index];
-                const isCorrect = userAnswer === q.correct;
-                const userAnswerText = userAnswer !== undefined ? q.options[userAnswer] : 'No respondida';
-                const correctAnswerText = q.options[q.correct];
-                
-                return `
-                    <div class="justification-item ${isCorrect ? 'correct' : 'incorrect'}">
-                        <div class="justification-question">Pregunta ${index + 1}: ${q.question}</div>
-                        <div class="justification-answer">
-                            <strong>Tu respuesta:</strong> ${userAnswerText} | 
-                            <strong>Correcta:</strong> ${correctAnswerText}<br>
-                            <strong>Justificación:</strong> ${q.justification}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            let message = '';
-            const requiredScore = LEVELS[currentQuiz?.level || 1].requiredScore;
-            if (percentage >= 90) message = '¡Excelente! Dominio excepcional del tema.';
-            else if (percentage >= requiredScore) message = '¡Muy bien! Has superado el bloque. Puedes continuar al siguiente.';
-            else if (percentage >= 60) message = 'Buen esfuerzo. Te falta poco para desbloquear el siguiente bloque.';
-            else message = 'Sigue practicando. Puedes intentar este bloque nuevamente.';
+            justificationsContainer.innerHTML = (currentQuiz?.questions || []).map((q, index) => { const userAnswer = currentQuiz?.answers[index]; const isCorrect = userAnswer === q.correct; const userAnswerText = userAnswer !== undefined ? q.options[userAnswer] : 'No respondida'; const correctAnswerText = q.options[q.correct]; return `<div class="justification-item ${isCorrect ? 'correct' : 'incorrect'}"><div class="justification-question">Pregunta ${index + 1}: ${q.question}</div><div class="justification-answer"><strong>Tu respuesta:</strong> ${userAnswerText} | <strong>Correcta:</strong> ${correctAnswerText}<br><strong>Justificación:</strong> ${q.justification}</div></div>`; }).join('');
+            let message = ''; const requiredScore = LEVELS[currentQuiz?.level || 1].requiredScore;
+            if (percentage >= 90) message = '¡Excelente! Dominio excepcional del tema.'; else if (percentage >= requiredScore) message = '¡Muy bien! Has superado el bloque.'; else if (percentage >= 60) message = 'Buen esfuerzo.'; else message = 'Sigue practicando.';
             if (timeExpired) message = '⏱️ El tiempo terminó. ' + message;
             document.getElementById('results-message').textContent = message;
-
-            document.getElementById('result-correct').textContent = currentQuiz ? currentQuiz.score : 0;
-            document.getElementById('result-incorrect').textContent = totalQuestions - (currentQuiz ? currentQuiz.score : 0);
+            document.getElementById('result-correct').textContent = currentQuiz?.score || 0;
+            document.getElementById('result-incorrect').textContent = totalQuestions - (currentQuiz?.score || 0);
             document.getElementById('result-time').textContent = `${minutesUsed}:${String(secondsUsed).padStart(2, '0')}`;
-
-            const canContinue = percentage >= requiredScore && 
-                ((currentQuiz?.block || 0) < 4 || ((currentQuiz?.block || 0) === 4 && (currentQuiz?.level || 0) < 3));
+            const canContinue = percentage >= requiredScore && ((currentQuiz?.block || 0) < 4 || ((currentQuiz?.block || 0) === 4 && (currentQuiz?.level || 0) < 3));
             document.getElementById('next-block-btn').style.display = canContinue ? 'inline-block' : 'none';
-
             updateDashboard();
         }
 
-        function showLevelCompletionFeedback(percentage, componentProgress) {
-            const completedBlocks = componentProgress.completedBlocks.length;
-            const averageScore = percentage;
-            
-            let feedbackText = '';
-            if (averageScore >= 80) {
-                feedbackText = `¡Felicitaciones! Has completado este nivel con un promedio de ${averageScore}%. Has demostrado excelentes competencias en interpretación, análisis y argumentación. Estás listo para avanzar al siguiente nivel.`;
-            } else if (averageScore >= 60) {
-                feedbackText = `Has completado este nivel con un promedio de ${averageScore}%. Tus competencias en lectura crítica son buenas, pero puedes mejorar en análisis de textos complejos. Te recomendamos practicar más antes de avanzar.`;
-            } else {
-                feedbackText = `Has completado este nivel con un promedio de ${averageScore}%. Necesitas reforzar tus competencias en interpretación y análisis de textos. Te sugerimos repasar los conceptos básicos antes de continuar.`;
-            }
-            
-            alert(`📊 RETROALIMENTACIÓN DEL NIVEL\n\n${feedbackText}\n\nBloques completados: ${completedBlocks}\nSerás redirigido a la vista de bloques...`);
-        }
+        function getRecommendation(score, component) { const componentNames = { lectura: 'Lectura Crítica', matematicas: 'Matemáticas', fisica: 'Física' }; if (score >= 90) return `¡Felicitaciones! Dominio excelente en ${componentNames[component]} (${score}/100).`; else if (score >= 75) return `¡Buen trabajo! ${score}/100 en ${componentNames[component]}.`; else if (score >= 60) return `Has completado con ${score}/100. Hay espacio para mejorar.`; else return `Obtuviste ${score}/100. Necesitas reforzar este tema.`; }
 
-        function getRecommendation(score, component) {
-            const componentNames = { lectura: 'Lectura Crítica', matematicas: 'Matemáticas', fisica: 'Física' };
-            if (score >= 90) return `¡Felicitaciones! Has demostrado un dominio excelente en ${componentNames[component]} con una calificación de ${score}/100. Te recomendamos continuar con el siguiente bloque para mantener tu ritmo de aprendizaje.`;
-            else if (score >= 75) return `¡Buen trabajo! Obtuviste ${score}/100 en ${componentNames[component]}. Para mejorar aún más, te sugerimos repasar los temas donde tuviste errores. ¡Estás muy cerca del nivel excelente!`;
-            else if (score >= 60) return `Has completado el bloque con ${score}/100 en ${componentNames[component]}. Hay espacio para mejorar. Te recomendamos: 1) Revisar los conceptos básicos, 2) Practicar más ejercicios del mismo tipo.`;
-            else return `Obtuviste ${score}/100 en ${componentNames[component]}. Necesitas reforzar este tema. Te sugerimos: 1) Repasar los fundamentos, 2) Intentar este bloque nuevamente después de estudiar. ¡No te desanimes, la práctica hace al maestro!`;
-        }
+        function nextBlock() { if (!currentQuiz) return; if (currentQuiz.block < 4) startBlock(currentQuiz.component, currentQuiz.level, currentQuiz.block + 1); else if (currentQuiz.level < 3) startBlock(currentQuiz.component, currentQuiz.level + 1, 1); else { alert('¡Felicidades! Has completado todos los bloques.'); backToComponents(); } }
 
-        function nextBlock() {
-            if (!currentQuiz) return;
-            if (currentQuiz.block < 4) startBlock(currentQuiz.component, currentQuiz.level, currentQuiz.block + 1);
-            else if (currentQuiz.level < 3) startBlock(currentQuiz.component, currentQuiz.level + 1, 1);
-            else { alert('¡Felicidades! Has completado todos los bloques de este componente.'); backToComponents(); }
-        }
-
-        // ==================== DASHBOARD & AUTH ====================
-        function updateDashboard() {
-            if (!currentUser) return;
-            document.getElementById('welcome-message').textContent = '👋 ¡Bienvenido, ' + currentUser.names + ' ' + currentUser.surnames + ' - Grado ' + (currentUser.grade || 'N/A') + '° Grupo ' + (currentUser.group || '') + '!';
-            const progress = currentUser.progress || {};
-            let totalBlocks = 0, totalScore = 0, scoreCount = 0;
-            Object.keys(COMPONENTS).forEach(comp => {
-                if (progress[comp]) {
-                    totalBlocks += progress[comp].completedBlocks?.length || 0;
-                    if (progress[comp].blockScores) {
-                        Object.values(progress[comp].blockScores).forEach(score => {
-                            totalScore += score;
-                            scoreCount++;
-                        });
-                    }
-                }
-            });
-            const averageScore = scoreCount > 0 ? Math.round(totalScore / scoreCount) : 0;
-            document.getElementById('total-blocks').textContent = totalBlocks;
-            document.getElementById('average-score').textContent = averageScore + '%';
-            document.getElementById('total-time').textContent = '0h';
-            Object.keys(COMPONENTS).forEach(comp => {
-                if (COMPONENTS[comp].locked) return;
-                const compProgress = progress[comp]?.completedBlocks?.length || 0;
-                const totalCompBlocks = COMPONENTS[comp].totalBlocks;
-                const percentage = Math.round((compProgress / totalCompBlocks) * 100);
-                document.getElementById(`${comp}-progress`).style.width = percentage + '%';
-                document.getElementById(`${comp}-progress-text`).textContent = percentage + '%';
-            });
-            document.getElementById('quiz-section').classList.remove('active');
-            document.getElementById('results-section').classList.remove('active');
-        }
+        function updateDashboard() { if (!currentUser) return; document.getElementById('welcome-message').textContent = '👋 ¡Bienvenido, ' + currentUser.names + ' ' + currentUser.surnames + ' - Grado ' + (currentUser.grade || 'N/A') + '° Grupo ' + (currentUser.group || '') + '!'; const progress = currentUser.progress || {}; let totalBlocks = 0, totalScore = 0, scoreCount = 0; Object.keys(COMPONENTS).forEach(comp => { if (progress[comp]) { totalBlocks += progress[comp].completedBlocks?.length || 0; if (progress[comp].blockScores) { Object.values(progress[comp].blockScores).forEach(score => { totalScore += score; scoreCount++; }); } } }); const averageScore = scoreCount > 0 ? Math.round(totalScore / scoreCount) : 0; document.getElementById('total-blocks').textContent = totalBlocks; document.getElementById('average-score').textContent = averageScore + '%'; document.getElementById('total-time').textContent = '0h'; Object.keys(COMPONENTS).forEach(comp => { if (COMPONENTS[comp].locked) return; const compProgress = progress[comp]?.completedBlocks?.length || 0; const percentage = Math.round((compProgress / COMPONENTS[comp].totalBlocks) * 100); document.getElementById(`${comp}-progress`).style.width = percentage + '%'; document.getElementById(`${comp}-progress-text`).textContent = percentage + '%'; }); }
         function openModal(type) { document.getElementById(type + '-modal').classList.add('active'); }
         function closeModal(type) { document.getElementById(type + '-modal').classList.remove('active'); }
-        function validateAccessCode() { 
-            const code = document.getElementById('access-code-input').value.trim().toUpperCase(); 
-            if (!code) { alert('Por favor ingresa un código de acceso'); return; } 
-            const codeData = accessCodes.find(c => c.code === code); 
-            if (!codeData) { alert('Código de acceso no válido. Por favor verifica el código.'); return; } 
-            if (codeData.used) { alert('Este código de acceso ya ha sido utilizado.'); return; } 
-            if (new Date(codeData.expiresAt) < new Date()) { alert('Este código de acceso ha expirado.'); return; } 
-            document.getElementById('register-access-code').value = code; 
-            openModal('register'); 
-            document.getElementById('access-page').classList.remove('active'); 
-        }
-        
-        function generateAccessCodes() { 
-            const quantity = parseInt(document.getElementById('code-quantity').value); 
-            const validity = parseInt(document.getElementById('code-validity').value); 
-            
-            if (quantity > 100) {
-                alert('El máximo de códigos por generación es 100. Puedes generar más en otro momento.');
-                return;
-            }
-            
-            const newCodes = [], today = new Date(); 
-            for (let i = 0; i < quantity; i++) { 
-                const code = 'LECMAFIS-' + today.getFullYear() + '-' + String(accessCodes.length + i + 1).padStart(3, '0'); 
-                newCodes.push({ 
-                    code, 
-                    createdAt: today.toISOString(), 
-                    expiresAt: new Date(today.getTime() + validity * 24 * 60 * 60 * 1000).toISOString(), 
-                    used: false, 
-                    usedBy: null 
-                }); 
-            } 
-            accessCodes.push(...newCodes); 
-            saveData('lecmafis_access_codes', accessCodes); 
-            displayGeneratedCodes(accessCodes);
-            alert('Se generaron ' + quantity + ' códigos de acceso exitosamente. Total: ' + accessCodes.length + ' códigos.'); 
-        }
-        
-        function displayGeneratedCodes(codes) { 
-            const container = document.getElementById('codes-container'); 
-            container.innerHTML = codes.map((code, index) => `
-                <div class="code-card ${code.used ? 'used' : 'active'}">
-                    <button class="code-delete-btn" onclick="deleteCode(${index})" title="Eliminar código">×</button>
-                    <div class="code-value">${code.code}</div>
-                    <div class="code-status">${code.used ? '✅ Usado por: ' + (code.usedBy || 'N/A') : '⏳ Disponible'}</div>
-                    <div class="code-status">Vence: ${new Date(code.expiresAt).toLocaleDateString()}</div>
-                </div>
-            `).join(''); 
-        }
-        
-        function deleteCode(index) {
-            const code = accessCodes[index];
-            if (code.used) {
-                if (!confirm('Este código ya fue usado por un estudiante. ¿Estás seguro de eliminarlo? El estudiante podrá seguir usando la plataforma pero no podrá registrarse otro con este código.')) {
-                    return;
-                }
-            } else {
-                if (!confirm('¿Estás seguro de eliminar el código ' + code.code + '?')) {
-                    return;
-                }
-            }
-            
-            accessCodes.splice(index, 1);
-            saveData('lecmafis_access_codes', accessCodes);
-            displayGeneratedCodes(accessCodes);
-            alert('Código eliminado correctamente.');
-        }
-
-        function handleRegister(event) { 
-            event.preventDefault(); 
-            const accessCode = document.getElementById('register-access-code').value.trim().toUpperCase(), 
-                identification = document.getElementById('register-identification').value.trim(), 
-                names = document.getElementById('register-names').value.trim(), 
-                surnames = document.getElementById('register-surnames').value.trim(), 
-                age = parseInt(document.getElementById('register-age').value),
-                grade = document.getElementById('register-grade').value,
-                group = document.getElementById('register-group').value;
-            const codeIndex = accessCodes.findIndex(c => c.code === accessCode); 
-            if (codeIndex === -1) { alert('Código de acceso no válido.'); return; } 
-            if (accessCodes[codeIndex].used) { alert('Este código de acceso ya ha sido utilizado.'); return; } 
-            const existingStudent = students.find(s => s.identification === identification); 
-            if (existingStudent) { alert('Ya existe un estudiante registrado con este número de identificación.'); return; } 
-            const newStudent = { 
-                identification, names, surnames, age, grade, group, accessCode,
-                registeredAt: new Date().toISOString(), 
-                isAdmin: false, 
-                progress: { 
-                    lectura: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {}, blockAnswers: {} }, 
-                    matematicas: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {}, blockAnswers: {} }, 
-                    fisica: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {}, blockAnswers: {} } 
-                } 
-            }; 
-            students.push(newStudent); 
-            saveData('lecmafis_students', students); 
-            accessCodes[codeIndex].used = true; 
-            accessCodes[codeIndex].usedBy = identification; 
-            accessCodes[codeIndex].usedAt = new Date().toISOString(); 
-            saveData('lecmafis_access_codes', accessCodes); 
-            currentUser = newStudent; 
-            saveData('lecmafis_current_user', currentUser); 
-            closeModal('register'); 
-            updateAuthUI(); 
-            showPage('dashboard'); 
-            alert('¡Registro exitoso! Bienvenido a LECMAFIS, ' + names + '!'); 
-        }
-        function handleLogin(event) { 
-            event.preventDefault(); 
-            const identification = document.getElementById('login-identification').value.trim(); 
-            const student = students.find(s => s.identification === identification); 
-            if (!student) { alert('No se encontró un estudiante con este número de identificación. Por favor regístrate primero.'); return; } 
-            currentUser = student; 
-            saveData('lecmafis_current_user', currentUser); 
-            closeModal('login'); 
-            updateAuthUI(); 
-            showPage('dashboard'); 
-            alert('¡Bienvenido de nuevo, ' + student.names + '!'); 
-        }
+        function validateAccessCode() { const code = document.getElementById('access-code-input').value.trim().toUpperCase(); if (!code) { alert('Por favor ingresa un código'); return; } const codeData = accessCodes.find(c => c.code === code); if (!codeData) { alert('Código no válido'); return; } if (codeData.used) { alert('Código ya usado'); return; } if (new Date(codeData.expiresAt) < new Date()) { alert('Código expirado'); return; } document.getElementById('register-access-code').value = code; openModal('register'); document.getElementById('access-page').classList.remove('active'); }
+        function generateAccessCodes() { const quantity = parseInt(document.getElementById('code-quantity').value); const validity = parseInt(document.getElementById('code-validity').value); if (quantity > 100) { alert('Máximo 100 códigos'); return; } const newCodes = [], today = new Date(); for (let i = 0; i < quantity; i++) { const code = 'LECMAFIS-' + today.getFullYear() + '-' + String(accessCodes.length + i + 1).padStart(3, '0'); newCodes.push({ code, createdAt: today.toISOString(), expiresAt: new Date(today.getTime() + validity * 24 * 60 * 60 * 1000).toISOString(), used: false, usedBy: null }); } accessCodes.push(...newCodes); saveData('lecmafis_access_codes', accessCodes); displayGeneratedCodes(accessCodes); alert('Se generaron ' + quantity + ' códigos. Total: ' + accessCodes.length); }
+        function displayGeneratedCodes(codes) { document.getElementById('codes-container').innerHTML = codes.map((code, index) => `<div class="code-card ${code.used ? 'used' : 'active'}"><button class="code-delete-btn" onclick="deleteCode(${index})">×</button><div class="code-value">${code.code}</div><div class="code-status">${code.used ? '✅ Usado' : '⏳ Disponible'}</div><div class="code-status">Vence: ${new Date(code.expiresAt).toLocaleDateString()}</div></div>`).join(''); }
+        function deleteCode(index) { const code = accessCodes[index]; if (!confirm('¿Eliminar código ' + code.code + '?')) return; accessCodes.splice(index, 1); saveData('lecmafis_access_codes', accessCodes); displayGeneratedCodes(accessCodes); alert('Código eliminado'); }
+        function handleRegister(event) { event.preventDefault(); const accessCode = document.getElementById('register-access-code').value.trim().toUpperCase(), identification = document.getElementById('register-identification').value.trim(), names = document.getElementById('register-names').value.trim(), surnames = document.getElementById('register-surnames').value.trim(), age = parseInt(document.getElementById('register-age').value), grade = document.getElementById('register-grade').value, group = document.getElementById('register-group').value; const codeIndex = accessCodes.findIndex(c => c.code === accessCode); if (codeIndex === -1) { alert('Código no válido'); return; } if (accessCodes[codeIndex].used) { alert('Código ya usado'); return; } if (students.find(s => s.identification === identification)) { alert('Ya existe un estudiante con esta identificación'); return; } const newStudent = { identification, names, surnames, age, grade, group, accessCode, registeredAt: new Date().toISOString(), isAdmin: false, progress: { lectura: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {}, blockAnswers: {} }, matematicas: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {}, blockAnswers: {} }, fisica: { completedBlocks: [], levelScores: { 1: 0, 2: 0, 3: 0 }, blockScores: {}, blockAnswers: {} } } }; students.push(newStudent); saveData('lecmafis_students', students); accessCodes[codeIndex].used = true; accessCodes[codeIndex].usedBy = identification; accessCodes[codeIndex].usedAt = new Date().toISOString(); saveData('lecmafis_access_codes', accessCodes); currentUser = newStudent; saveData('lecmafis_current_user', currentUser); closeModal('register'); updateAuthUI(); showPage('dashboard'); alert('¡Registro exitoso!'); }
+        function handleLogin(event) { event.preventDefault(); const identification = document.getElementById('login-identification').value.trim(); const student = students.find(s => s.identification === identification); if (!student) { alert('Estudiante no encontrado'); return; } currentUser = student; saveData('lecmafis_current_user', currentUser); closeModal('login'); updateAuthUI(); showPage('dashboard'); alert('¡Bienvenido!'); }
         function logout() { currentUser = null; saveData('lecmafis_current_user', null); updateAuthUI(); showPage('home'); }
-        function updateAuthUI() { 
-            const authButtons = document.getElementById('auth-buttons'), 
-                userInfo = document.getElementById('user-info'), 
-                usernameDisplay = document.getElementById('username-display'), 
-                navDashboard = document.getElementById('nav-dashboard'), 
-                navAdmin = document.getElementById('nav-admin'); 
-            if (currentUser) { 
-                authButtons.classList.add('hidden'); 
-                userInfo.classList.remove('hidden'); 
-                usernameDisplay.textContent = '👤 ' + currentUser.names + ' ' + currentUser.surnames + ' (' + (currentUser.grade || '') + '°' + (currentUser.group || '') + ')';
-                navDashboard.style.display = 'block'; 
-                if (currentUser.isAdmin) navAdmin.style.display = 'block'; else navAdmin.style.display = 'none'; 
-            } else { 
-                authButtons.classList.remove('hidden'); 
-                userInfo.classList.add('hidden'); 
-                navDashboard.style.display = 'none'; 
-                navAdmin.style.display = 'none'; 
-            } 
-        }
+        function updateAuthUI() { const authButtons = document.getElementById('auth-buttons'), userInfo = document.getElementById('user-info'), usernameDisplay = document.getElementById('username-display'), navDashboard = document.getElementById('nav-dashboard'), navAdmin = document.getElementById('nav-admin'); if (currentUser) { authButtons.classList.add('hidden'); userInfo.classList.remove('hidden'); usernameDisplay.textContent = '👤 ' + currentUser.names + ' ' + currentUser.surnames + ' (' + (currentUser.grade || '') + '°' + (currentUser.group || '') + ')'; navDashboard.style.display = 'block'; if (currentUser.isAdmin) navAdmin.style.display = 'block'; else navAdmin.style.display = 'none'; } else { authButtons.classList.remove('hidden'); userInfo.classList.add('hidden'); navDashboard.style.display = 'none'; navAdmin.style.display = 'none'; } }
+        function updateAdminPanel() { updateAdminStats(); updateStudentsTable(); displayGeneratedCodes(accessCodes); }
+        function updateAdminStats() { let total = 0; Object.keys(questions).forEach(c => Object.keys(questions[c]).forEach(l => Object.keys(questions[c][l]).forEach(b => total += questions[c][l][b].length))); document.getElementById('questions-count').textContent = 'Total: ' + total; }
+        function updateStudentsTable() { document.getElementById('students-table-body').innerHTML = students.filter(s => !s.isAdmin).map((s, i) => { let b = 0; Object.keys(s.progress || {}).forEach(c => b += s.progress[c]?.completedBlocks?.length || 0); return `<tr><td>${s.identification}</td><td>${s.names}</td><td>${s.surnames}</td><td>${s.grade || 'N/A'}°</td><td>${s.group || 'N/A'}</td><td>${s.accessCode}</td><td>${new Date(s.registeredAt).toLocaleDateString()}</td><td><span class="status-badge status-active">${Math.round((b/36)*100)}%</span></td><td><button class="student-delete-btn" onclick="deleteStudent(${i})">Eliminar</button></td></tr>`; }).join(''); }
+        function deleteStudent(index) { const s = students.filter(x => !x.isAdmin)[index]; if (!confirm('¿Eliminar a ' + s.names + '?')) return; const i = students.findIndex(x => x.identification === s.identification); if (i !== -1) { students.splice(i, 1); saveData('lecmafis_students', students); updateStudentsTable(); alert('Eliminado'); } }
+        function downloadTemplate() { const t = { lectura: { 1: { 1: [{ id: 1, context: "Texto", question: "¿?", options: ["A","B","C","D"], correct: 0, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Justificación" }], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } }, matematicas: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } }, fisica: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } } }; const d = JSON.stringify(t, null, 2); const b = new Blob([d], { type: 'application/json' }); const u = URL.createObjectURL(b); const l = document.createElement('a'); l.href = u; l.download = 'lecmafis-plantilla.json'; document.body.appendChild(l); l.click(); document.body.removeChild(l); URL.revokeObjectURL(u); }
+        function addQuestion() { const c = document.getElementById('admin-component').value, l = parseInt(document.getElementById('admin-level').value), b = parseInt(document.getElementById('admin-block').value), sk = document.getElementById('admin-skill').value, cx = document.getElementById('admin-context').value.trim(), q = document.getElementById('admin-question').value.trim(), a = document.getElementById('admin-option-a').value.trim(), bb = document.getElementById('admin-option-b').value.trim(), cc = document.getElementById('admin-option-c').value.trim(), d = document.getElementById('admin-option-d').value.trim(), cr = parseInt(document.getElementById('admin-correct').value); if (!q || !a || !bb || !cc || !d) { alert('Completa todos los campos'); return; } const nq = { id: Date.now(), context: cx || null, question: q, options: [a, bb, cc, d], correct: cr, skill: sk, timeEstimate: parseInt(document.getElementById('admin-time').value) || 120, justification: "" }; if (!questions[c]) questions[c] = { 1: {}, 2: {}, 3: {} }; if (!questions[c][l]) questions[c][l] = {}; if (!questions[c][l][b]) questions[c][l][b] = []; questions[c][l][b].push(nq); saveData('lecmafis_questions_v13', questions); document.getElementById('admin-question').value = ''; document.getElementById('admin-option-a').value = ''; document.getElementById('admin-option-b').value = ''; document.getElementById('admin-option-c').value = ''; document.getElementById('admin-option-d').value = ''; document.getElementById('admin-context').value = ''; updateAdminStats(); alert('Pregunta agregada'); }
+        function handleImport(event) { const f = event.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = function(e) { try { questions = JSON.parse(e.target.result); saveData('lecmafis_questions_v13', questions); updateAdminStats(); alert('Importado'); } catch (err) { alert('Error en el archivo'); } }; r.readAsText(f); }
 
-        // ==================== ADMIN PANEL ====================
-        function updateAdminPanel() { 
-            updateAdminStats(); 
-            updateStudentsTable(); 
-            displayGeneratedCodes(accessCodes);
-        }
-        function updateAdminStats() { 
-            let totalQuestions = 0; 
-            Object.keys(questions).forEach(comp => { 
-                Object.keys(questions[comp]).forEach(level => { 
-                    Object.keys(questions[comp][level]).forEach(block => { 
-                        totalQuestions += questions[comp][level][block].length; 
-                    }); 
-                }); 
-            }); 
-            document.getElementById('questions-count').textContent = 'Total de preguntas: ' + totalQuestions; 
-        }
-        
-        function updateStudentsTable() { 
-            const tbody = document.getElementById('students-table-body'); 
-            tbody.innerHTML = students.filter(s => !s.isAdmin).map((student, index) => { 
-                const progress = student.progress || {}; 
-                let totalBlocks = 0; 
-                Object.keys(progress).forEach(comp => { 
-                    totalBlocks += progress[comp]?.completedBlocks?.length || 0; 
-                }); 
-                const progressPercent = Math.round((totalBlocks / 36) * 100); 
-                return `
-                    <tr>
-                        <td>${student.identification}</td>
-                        <td>${student.names}</td>
-                        <td>${student.surnames}</td>
-                        <td>${student.grade || 'N/A'}°</td>
-                        <td>${student.group || 'N/A'}</td>
-                        <td>${student.accessCode}</td>
-                        <td>${new Date(student.registeredAt).toLocaleDateString()}</td>
-                        <td><span class="status-badge status-active">${progressPercent}%</span></td>
-                        <td><button class="student-delete-btn" onclick="deleteStudent(${index})">Eliminar</button></td>
-                    </tr>
-                `; 
-            }).join(''); 
-        }
-        
-        function deleteStudent(index) {
-            const student = students.filter(s => !s.isAdmin)[index];
-            if (!confirm(`¿Estás seguro de eliminar al estudiante ${student.names} ${student.surnames}? Esta acción no se puede deshacer y el estudiante perderá todo su progreso.`)) {
-                return;
-            }
-            
-            const realIndex = students.findIndex(s => s.identification === student.identification);
-            if (realIndex !== -1) {
-                students.splice(realIndex, 1);
-                saveData('lecmafis_students', students);
-                updateStudentsTable();
-                alert('Estudiante eliminado correctamente.');
-            }
-        }
-
-        function downloadTemplate() { 
-            const template = { 
-                lectura: { 
-                    1: { 
-                        1: [{ 
-                            id: 1, 
-                            context: "Texto base", 
-                            question: "¿Pregunta?", 
-                            options: ["A", "B", "C", "D"], 
-                            correct: 0, 
-                            difficulty: "facil", 
-                            skill: "interpretacion", 
-                            timeEstimate: 120, 
-                            justification: "Justificación de ejemplo" 
-                        }], 
-                        2: [], 3: [], 4: [] 
-                    }, 
-                    2: { 1: [], 2: [], 3: [], 4: [] }, 
-                    3: { 1: [], 2: [], 3: [], 4: [] } 
-                }, 
-                matematicas: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } }, 
-                fisica: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } } 
-            }; 
-            const dataStr = JSON.stringify(template, null, 2); 
-            const blob = new Blob([dataStr], { type: 'application/json' }); 
-            const url = URL.createObjectURL(blob); 
-            const linkElement = document.createElement('a'); 
-            linkElement.href = url; 
-            linkElement.download = 'lecmafis-plantilla-preguntas.json'; 
-            document.body.appendChild(linkElement); 
-            linkElement.click(); 
-            document.body.removeChild(linkElement); 
-            URL.revokeObjectURL(url); 
-        }
-        
-        function addQuestion() { 
-            const component = document.getElementById('admin-component').value, 
-                level = parseInt(document.getElementById('admin-level').value), 
-                block = parseInt(document.getElementById('admin-block').value), 
-                skill = document.getElementById('admin-skill').value, 
-                context = document.getElementById('admin-context').value.trim(), 
-                question = document.getElementById('admin-question').value.trim(), 
-                optionA = document.getElementById('admin-option-a').value.trim(), 
-                optionB = document.getElementById('admin-option-b').value.trim(), 
-                optionC = document.getElementById('admin-option-c').value.trim(), 
-                optionD = document.getElementById('admin-option-d').value.trim(), 
-                correct = parseInt(document.getElementById('admin-correct').value); 
-            if (!question || !optionA || !optionB || !optionC || !optionD) { 
-                alert('Por favor completa todos los campos requeridos'); 
-                return; 
-            } 
-            const newQuestion = { 
-                id: Date.now(), 
-                context: context || null, 
-                question, 
-                options: [optionA, optionB, optionC, optionD], 
-                correct, 
-                skill, 
-                timeEstimate: parseInt(document.getElementById('admin-time').value) || 120, 
-                justification: "" 
-            }; 
-            if (!questions[component]) questions[component] = { 1: {}, 2: {}, 3: {} }; 
-            if (!questions[component][level]) questions[component][level] = {}; 
-            if (!questions[component][level][block]) questions[component][level][block] = []; 
-            questions[component][level][block].push(newQuestion); 
-            saveData('lecmafis_questions_v12', questions); 
-            document.getElementById('admin-question').value = ''; 
-            document.getElementById('admin-option-a').value = ''; 
-            document.getElementById('admin-option-b').value = ''; 
-            document.getElementById('admin-option-c').value = ''; 
-            document.getElementById('admin-option-d').value = ''; 
-            document.getElementById('admin-context').value = ''; 
-            updateAdminStats(); 
-            alert('¡Pregunta agregada exitosamente!'); 
-        }
-        
-        function handleImport(event) { 
-            const file = event.target.files[0]; 
-            if (!file) return; 
-            const reader = new FileReader(); 
-            reader.onload = function(e) { 
-                try { 
-                    const imported = JSON.parse(e.target.result); 
-                    questions = imported; 
-                    saveData('lecmafis_questions_v12', questions); 
-                    updateAdminStats(); 
-                    alert('¡Preguntas importadas exitosamente!'); 
-                } catch (error) { 
-                    alert('Error al importar el archivo. Asegúrate de que sea un JSON válido.'); 
-                } 
-            }; 
-            reader.readAsText(file); 
-        }
-
-        // ==================== INITIALIZATION ====================
-        document.addEventListener('DOMContentLoaded', function() { 
-            const adminExists = students.find(s => s.identification === 'admin'); 
-            if (!adminExists) { 
-                students.push({ 
-                    identification: 'admin', 
-                    names: 'Administrador', 
-                    surnames: 'LECMAFIS', 
-                    age: 30, 
-                    grade: '',
-                    group: '',
-                    accessCode: 'ADMIN-MASTER', 
-                    registeredAt: new Date().toISOString(), 
-                    isAdmin: true, 
-                    progress: {} 
-                }); 
-                saveData('lecmafis_students', students); 
-            } 
-            updateAuthUI(); 
-            showPage('home'); 
-        });
-        document.querySelectorAll('.modal').forEach(modal => { 
-            modal.addEventListener('click', function(e) { 
-                if (e.target === this) this.classList.remove('active'); 
-            }); 
-        });
-        window.addEventListener('beforeunload', function(e) { 
-            if (currentQuiz) { 
-                e.preventDefault(); 
-                e.returnValue = ''; 
-            } 
-        });
+        document.addEventListener('DOMContentLoaded', function() { if (!students.find(s => s.identification === 'admin')) { students.push({ identification: 'admin', names: 'Administrador', surnames: 'LECMAFIS', age: 30, grade: '', group: '', accessCode: 'ADMIN-MASTER', registeredAt: new Date().toISOString(), isAdmin: true, progress: {} }); saveData('lecmafis_students', students); } updateAuthUI(); showPage('home'); });
+        document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('active'); }));
+        window.addEventListener('beforeunload', function(e) { if (currentQuiz) { e.preventDefault(); e.returnValue = ''; } });
     </script>
 </body>
 </html>
