@@ -25,10 +25,9 @@
         .btn-secondary:hover { background: var(--primary); color: white; }
         .btn-success { background: linear-gradient(135deg, var(--secondary), #059669); color: white; }
         .btn-danger { background: linear-gradient(135deg, var(--danger), #DC2626); color: white; }
-        .btn-danger:hover { background: var(--danger); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
         .hero { padding: 10rem 2rem 4rem; text-align: center; color: white; position: relative; z-index: 1; }
-        .hero h1 { font-size: 4rem; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); letter-spacing: 2px; }
+        .hero h1 { font-size: 4rem; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
         .hero-slogan { font-size: 1.5rem; font-weight: 300; margin-bottom: 1.5rem; opacity: 0.95; font-style: italic; }
         .hero-description { font-size: 1.2rem; max-width: 800px; margin: 0 auto 2rem; opacity: 0.95; line-height: 1.8; }
         .hero-badges { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
@@ -36,7 +35,6 @@
         .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         .hero-icons { display: flex; justify-content: center; gap: 2rem; margin-top: 3rem; flex-wrap: wrap; }
         .hero-icon { font-size: 3rem; animation: bounce 2s infinite; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); }
-        .hero-icon:nth-child(2) { animation-delay: 0.2s; } .hero-icon:nth-child(3) { animation-delay: 0.4s; } .hero-icon:nth-child(4) { animation-delay: 0.6s; } .hero-icon:nth-child(5) { animation-delay: 0.8s; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         .features { background: white; padding: 5rem 2rem; position: relative; z-index: 1; }
         .features-container { max-width: 1200px; margin: 0 auto; }
@@ -45,72 +43,45 @@
         .feature-card { background: var(--light); padding: 2rem; border-radius: 15px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
         .feature-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .feature-icon { width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2.5rem; }
-        .feature-card h3 { color: var(--dark); margin-bottom: 1rem; font-size: 1.5rem; }
+        .feature-card h3 { color: var(--dark); margin-bottom: 1rem; }
         .feature-card p { color: var(--gray); line-height: 1.6; }
         .dashboard { padding: 6rem 2rem 4rem; max-width: 1400px; margin: 0 auto; display: none; position: relative; z-index: 1; }
         .dashboard.active { display: block; }
         .dashboard-header { background: white; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .dashboard-header h2 { color: var(--dark); margin-bottom: 0.5rem; }
-        .dashboard-header p { color: var(--gray); }
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
         .stat-card { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; }
         .stat-card.green { background: linear-gradient(135deg, var(--secondary), #059669); }
-        .stat-card.orange { background: linear-gradient(135deg, var(--accent), #D97706); }
         .stat-number { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .stat-label { font-size: 0.9rem; opacity: 0.9; }
         .components-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
         .component-card { background: white; padding: 2rem; border-radius: 15px; text-align: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid var(--primary); }
         .component-card.lectura { border-color: var(--lectura); }
-        .component-card.matematicas { border-color: var(--matematicas); }
-        .component-card.fisica { border-color: var(--fisica); }
-        .component-card.logico { border-color: var(--logico); opacity: 0.6; cursor: not-allowed; }
+        .component-card.logico { opacity: 0.6; cursor: not-allowed; }
         .component-card:hover:not(.logico) { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
         .component-icon { font-size: 3.5rem; margin-bottom: 1rem; }
         .component-card h3 { color: var(--dark); margin-bottom: 0.5rem; }
-        .component-card p { color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem; }
-        .component-progress { background: var(--light); border-radius: 10px; padding: 0.75rem; }
+        .component-card p { color: var(--gray); font-size: 0.9rem; }
         .progress-bar { height: 8px; background: #e5e7eb; border-radius: 4px; overflow: hidden; margin-top: 0.5rem; }
-        .progress-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
-        .component-card.lectura .progress-fill { background: var(--lectura); }
-        .component-card.matematicas .progress-fill { background: var(--matematicas); }
-        .component-card.fisica .progress-fill { background: var(--fisica); }
+        .progress-fill { height: 100%; border-radius: 4px; transition: width 0.3s; background: var(--lectura); }
         .levels-container { background: white; padding: 2rem; border-radius: 15px; margin-top: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: none; }
         .levels-container.active { display: block; }
         .level-section { margin-bottom: 2rem; border: 2px solid var(--light); border-radius: 12px; overflow: hidden; }
         .level-section.locked { opacity: 0.6; pointer-events: none; }
-        .level-header { padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-        .level-header.lectura { background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.2)); }
-        .level-header.matematicas { background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.2)); }
-        .level-header.fisica { background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(249, 115, 22, 0.2)); }
+        .level-header { padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(139, 92, 246, 0.2)); }
         .level-title { font-size: 1.3rem; font-weight: 600; color: var(--dark); }
-        .level-badge { padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
-        .level-badge.locked { background: #e5e7eb; color: #6B7280; }
-        .level-badge.available { background: #D1FAE5; color: #065F46; }
-        .level-badge.completed { background: #DBEAFE; color: #1E40AF; }
+        .level-badge { padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; background: #e5e7eb; color: #6B7280; }
         .blocks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; padding: 1.5rem; background: var(--light); }
         .block-card { background: white; padding: 1.5rem; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s; border: 2px solid transparent; }
         .block-card:hover:not(.locked) { border-color: var(--primary); transform: translateY(-3px); }
-        .block-card.locked { opacity: 0.5; cursor: not-allowed; background: #f3f4f6; }
+        .block-card.locked { opacity: 0.5; cursor: not-allowed; }
         .block-card.completed { border-color: var(--secondary); background: rgba(16, 185, 129, 0.05); }
         .block-number { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
         .block-card.completed .block-number { color: var(--secondary); }
         .block-info { font-size: 0.85rem; color: var(--gray); }
-        .block-status { margin-top: 0.5rem; font-size: 0.8rem; font-weight: 600; }
-        .block-status.locked { color: #9CA3AF; }
-        .block-status.available { color: var(--secondary); }
-        .block-status.completed { color: var(--secondary); }
         .quiz-section { background: white; padding: 2rem; border-radius: 15px; margin-top: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: none; }
         .quiz-section.active { display: block; }
         .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 2px solid var(--light); flex-wrap: wrap; gap: 1rem; }
-        .timer-display { background: linear-gradient(135deg, var(--danger), #DC2626); color: white; padding: 1rem 2rem; border-radius: 10px; font-size: 1.5rem; font-weight: 700; font-family: 'Courier New', monospace; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3); }
-        .timer-warning { background: linear-gradient(135deg, var(--accent), #D97706); animation: pulse 1s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-        .quiz-progress { flex: 1; min-width: 200px; }
-        .progress-bar-large { height: 12px; background: var(--light); border-radius: 6px; overflow: hidden; }
-        .progress-fill-large { height: 100%; background: linear-gradient(135deg, var(--primary), var(--secondary)); transition: width 0.3s; }
+        .timer-display { background: linear-gradient(135deg, var(--danger), #DC2626); color: white; padding: 1rem 2rem; border-radius: 10px; font-size: 1.5rem; font-weight: 700; font-family: 'Courier New', monospace; }
         .question-card { background: var(--light); padding: 2rem; border-radius: 12px; margin-bottom: 2rem; }
-        .question-card.review-mode { opacity: 0.9; }
-        .question-context { background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid var(--primary); font-style: italic; color: var(--gray); line-height: 1.8; }
         .question-text { font-size: 1.2rem; color: var(--dark); margin-bottom: 1.5rem; line-height: 1.6; font-weight: 500; }
         .options-grid { display: grid; gap: 1rem; }
         .option-btn { padding: 1.25rem 1.5rem; background: white; border: 2px solid var(--light); border-radius: 10px; text-align: left; cursor: pointer; transition: all 0.3s; font-size: 1rem; }
@@ -119,152 +90,466 @@
         .option-btn.correct { border-color: var(--secondary); background: rgba(16, 185, 129, 0.1); }
         .option-btn.incorrect { border-color: var(--danger); background: rgba(239, 68, 68, 0.1); }
         .option-btn:disabled { cursor: not-allowed; }
-        .option-btn.review-mode { cursor: default; }
         .quiz-actions { display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; }
-        .skill-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
-        .skill-tag { padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.75rem; font-weight: 600; background: rgba(79, 70, 229, 0.1); color: var(--primary); }
         .results-card { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; padding: 3rem; border-radius: 15px; text-align: center; margin-top: 2rem; display: none; }
         .results-card.active { display: block; }
         .results-score { font-size: 4rem; font-weight: 700; margin: 1rem 0; }
         .results-message { font-size: 1.2rem; opacity: 0.9; margin-bottom: 2rem; }
         .results-feedback { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 2rem; border-radius: 12px; margin: 2rem 0; text-align: left; }
-        .results-feedback h3 { font-size: 1.3rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
         .feedback-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
         .feedback-stat { background: rgba(255, 255, 255, 0.1); padding: 1rem; border-radius: 8px; text-align: center; }
         .feedback-stat-value { font-size: 1.8rem; font-weight: 700; }
-        .feedback-stat-label { font-size: 0.8rem; opacity: 0.8; }
-        .feedback-recommendation { background: rgba(255, 255, 255, 0.15); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent); }
-        .feedback-recommendation h4 { font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        .feedback-recommendation p { font-size: 0.95rem; line-height: 1.6; opacity: 0.95; }
         .justifications-list { margin-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1rem; }
         .justification-item { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-bottom: 0.75rem; }
         .justification-item.correct { border-left: 4px solid var(--secondary); }
         .justification-item.incorrect { border-left: 4px solid var(--danger); }
         .justification-question { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
         .justification-answer { font-size: 0.9rem; opacity: 0.9; }
-        .results-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2); }
-        .result-stat { text-align: center; }
-        .result-stat-value { font-size: 2rem; font-weight: 700; }
-        .result-stat-label { font-size: 0.85rem; opacity: 0.8; }
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 2000; }
         .modal.active { display: flex; }
         .modal-content { background: white; padding: 2rem; border-radius: 15px; max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
         .modal-header h3 { color: var(--dark); }
         .close-modal { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--gray); }
-        .access-section { background: white; padding: 3rem 2rem; border-radius: 15px; max-width: 500px; margin: 2rem auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: none; }
-        .access-section.active { display: block; }
-        .access-section h2 { text-align: center; color: var(--dark); margin-bottom: 1rem; }
-        .access-section p { text-align: center; color: var(--gray); margin-bottom: 2rem; }
-        .admin-panel { background: white; padding: 2rem; border-radius: 15px; margin-top: 2rem; display: none; }
-        .admin-panel.active { display: block; }
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; color: var(--dark); font-weight: 600; margin-bottom: 0.5rem; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; border: 2px solid var(--light); border-radius: 8px; font-size: 1rem; transition: border-color 0.3s; }
-        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
-        .form-group textarea { min-height: 100px; resize: vertical; }
+        .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: 2px solid var(--light); border-radius: 8px; font-size: 1rem; }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
         .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-        .student-list { background: white; padding: 2rem; border-radius: 15px; margin-top: 2rem; overflow-x: auto; }
-        .student-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-        .student-table th, .student-table td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--light); }
-        .student-table th { background: var(--light); color: var(--dark); font-weight: 600; }
-        .student-table tr:hover { background: rgba(79, 70, 229, 0.05); }
-        .status-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
-        .status-active { background: #D1FAE5; color: #065F46; }
-        .status-inactive { background: #FEE2E2; color: #991B1B; }
-        .code-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; max-height: 400px; overflow-y: auto; }
-        .code-card { background: var(--light); padding: 1.5rem; border-radius: 10px; text-align: center; border: 2px solid transparent; transition: all 0.3s; position: relative; }
-        .code-card.active { border-color: var(--secondary); background: rgba(16, 185, 129, 0.1); }
-        .code-card.used { border-color: var(--gray); opacity: 0.6; }
-        .code-value { font-size: 1.5rem; font-weight: 700; color: var(--primary); letter-spacing: 2px; margin: 0.5rem 0; }
-        .code-status { font-size: 0.85rem; color: var(--gray); }
-        .code-delete-btn { position: absolute; top: 0.5rem; right: 0.5rem; background: var(--danger); color: white; border: none; width: 24px; height: 24px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
-        .code-delete-btn:hover { background: #DC2626; }
-        .student-delete-btn { background: var(--danger); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
-        .student-delete-btn:hover { background: #DC2626; }
-        .info-box { background: rgba(79, 70, 229, 0.1); border-left: 4px solid var(--primary); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
-        .info-box p { color: var(--dark); font-size: 0.9rem; }
-        .warning-box { background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--accent); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; }
-        .warning-box p { color: var(--dark); font-size: 0.9rem; }
-        .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 600; cursor: pointer; margin-bottom: 1rem; transition: color 0.3s; }
-        .back-btn:hover { color: var(--primary-dark); }
         .footer { background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); padding: 2rem; text-align: center; color: white; margin-top: 4rem; position: relative; z-index: 1; }
-        .footer-content { max-width: 1200px; margin: 0 auto; }
-        .footer-logo { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, #fff, #e0e0e0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .footer-slogan { font-size: 1.1rem; margin-bottom: 1.5rem; opacity: 0.9; font-style: italic; }
-        .footer-credits { padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 1.5rem; }
-        .footer-credits p { font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem; }
-        .footer-credits .creator { font-weight: 600; color: #fff; font-size: 1rem; }
-        .footer-icons { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; font-size: 1.5rem; opacity: 0.7; }
-        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .hero-slogan { font-size: 1.2rem; } .nav-links { display: none; } .dashboard-header { padding: 1.5rem; } .quiz-header { flex-direction: column; align-items: stretch; } .timer-display { font-size: 1.2rem; padding: 0.75rem 1rem; } .student-table { font-size: 0.85rem; } .student-table th, .student-table td { padding: 0.5rem; } .blocks-grid { grid-template-columns: 1fr; } .hero-icons { gap: 1rem; } .hero-icon { font-size: 2rem; } .results-feedback { padding: 1.5rem; } .feedback-stats { grid-template-columns: 1fr 1fr; } }
-        .hidden { display: none !important; } .text-center { text-align: center; } .mt-4 { margin-top: 1rem; } .mb-4 { margin-bottom: 1rem; } .text-sm { font-size: 0.875rem; } .font-bold { font-weight: 700; }
-        
-        .justifications-toggle {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1rem;
-            margin-top: 1rem;
-            transition: all 0.3s;
-        }
-        .justifications-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        .justifications-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-        }
-        .justifications-content.show {
-            max-height: 2000px;
-        }
+        .hidden { display: none !important; }
+        .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 600; cursor: pointer; margin-bottom: 1rem; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2.5rem; } .nav-links { display: none; } .blocks-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <!-- Floating Background Shapes -->
     <div class="floating-shapes">
-        <div class="floating-shape" style="top: 10%; left: 5%;">∫</div><div class="floating-shape" style="top: 20%; right: 10%;">∑</div><div class="floating-shape" style="top: 40%; left: 15%;">π</div><div class="floating-shape" style="top: 60%; right: 5%;">√</div><div class="floating-shape" style="top: 70%; left: 20%;">∞</div><div class="floating-shape" style="top: 30%; left: 80%;">±</div><div class="floating-shape" style="top: 80%; right: 15%;">÷</div><div class="floating-shape" style="top: 50%; left: 70%;">×</div><div class="floating-shape" style="top: 15%; left: 40%;">📐</div><div class="floating-shape" style="top: 85%; left: 60%;">📊</div><div class="floating-shape" style="top: 25%; right: 30%;">🎯</div><div class="floating-shape" style="top: 65%; left: 35%;">🏆</div><div class="floating-shape" style="top: 45%; right: 25%;">📚</div><div class="floating-shape" style="top: 75%; right: 40%;">✏️</div><div class="floating-shape" style="top: 55%; left: 85%;">🧮</div>
+        <div class="floating-shape" style="top: 10%; left: 5%;">∫</div><div class="floating-shape" style="top: 20%; right: 10%;">∑</div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar"><div class="nav-container"><div class="logo">🎓 LECMAFIS</div><ul class="nav-links"><li><a onclick="showPage('home')">Inicio</a></li><li><a onclick="showPage('dashboard')" id="nav-dashboard" style="display: none;">Mi Progreso</a></li><li><a onclick="showPage('admin')" id="nav-admin" style="display: none;">Admin</a></li></ul><div id="auth-buttons"><button class="btn btn-secondary" onclick="openModal('login')">Ingresar</button><button class="btn btn-primary" onclick="openModal('register')">Registrarse</button></div><div id="user-info" class="hidden"><span id="username-display" style="margin-right: 1rem; color: var(--dark); font-weight: 600;"></span><button class="btn btn-secondary" onclick="logout()">Cerrar Sesión</button></div></div></nav>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🎓 LECMAFIS</div>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')">Inicio</a></li>
+                <li><a onclick="showPage('dashboard')" id="nav-dashboard" style="display: none;">Mi Progreso</a></li>
+            </ul>
+            <div id="auth-buttons">
+                <button class="btn btn-secondary" onclick="openModal('login')">Ingresar</button>
+                <button class="btn btn-primary" onclick="openModal('register')">Registrarse</button>
+            </div>
+            <div id="user-info" class="hidden">
+                <span id="username-display" style="margin-right: 1rem; color: var(--dark); font-weight: 600;"></span>
+                <button class="btn btn-secondary" onclick="logout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home-page">
         <h1>🎓 LECMAFIS</h1>
         <p class="hero-slogan">"¡Potencia tus habilidades!"</p>
-        <p class="hero-description">Plataforma educativa inteligente que fortalece la comprensión lectora, razonamiento matemático y física mediante evaluaciones adaptativas tipo ICFES.</p>
-        <div class="hero-badges"><div class="hero-badge">⏱️ 2 min/pregunta</div><div class="hero-badge">📊 3 Componentes</div><div class="hero-badge">🎯 288 Preguntas</div><div class="hero-badge">📈 Progreso Personalizado</div></div>
-        <div class="hero-buttons"><button class="btn btn-primary" onclick="openModal('register')">Comenzar Ahora</button><button class="btn btn-secondary" onclick="scrollToFeatures()">Saber Más</button></div>
-        <div class="hero-icons"><div class="hero-icon">📖</div><div class="hero-icon">🔢</div><div class="hero-icon">⚛️</div><div class="hero-icon">🧠</div><div class="hero-icon">🏆</div></div>
+        <p class="hero-description">Plataforma educativa inteligente con 96 preguntas de Lectura Crítica en 3 niveles</p>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="openModal('register')">Comenzar Ahora</button>
+        </div>
+        <div class="hero-icons"><div class="hero-icon">📖</div><div class="hero-icon">🎯</div><div class="hero-icon">🏆</div></div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features"><div class="features-container"><h2 class="section-title">¿Por qué elegir LECMAFIS?</h2><div class="features-grid"><div class="feature-card"><div class="feature-icon">🎯</div><h3>Evaluaciones Adaptativas</h3><p>El sistema ajusta la dificultad según tu desempeño.</p></div><div class="feature-card"><div class="feature-icon">⏱️</div><h3>Simulacro ICFES Real</h3><p>Cronómetro oficial tipo ICFES.</p></div><div class="feature-card"><div class="feature-icon">📊</div><h3>Seguimiento Detallado</h3><p>Visualiza tu avance con estadísticas.</p></div><div class="feature-card"><div class="feature-icon">🔓</div><h3>Progresión por Bloques</h3><p>Desbloquea contenido gradualmente.</p></div><div class="feature-card"><div class="feature-icon">🧠</div><h3>4 Habilidades Clave</h3><p>Desarrolla análisis e interpretación.</p></div><div class="feature-card"><div class="feature-icon">🔐</div><h3>Acceso Seguro</h3><p>Códigos de acceso exclusivos.</p></div></div></div></section>
-
-    <!-- Dashboard -->
-    <section class="dashboard" id="dashboard-page"><div class="dashboard-header"><h2 id="welcome-message">👋 ¡Bienvenido!</h2><p>Selecciona un componente para comenzar</p><div class="stats-grid"><div class="stat-card"><div class="stat-number" id="total-blocks">0</div><div class="stat-label">Bloques Completados</div></div><div class="stat-card green"><div class="stat-number" id="average-score">0%</div><div class="stat-label">Promedio General</div></div><div class="stat-card orange"><div class="stat-number" id="total-time">0h</div><div class="stat-label">Tiempo de Estudio</div></div></div></div><div class="components-grid" id="components-grid"><div class="component-card lectura" onclick="selectComponent('lectura')"><div class="component-icon">📖</div><h3>Lectura Crítica</h3><p>96 preguntas • 3 niveles • 12 bloques</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Progreso</span><span id="lectura-progress-text">0%</span></div><div class="progress-bar"><div class="progress-fill" id="lectura-progress" style="width: 0%"></div></div></div></div><div class="component-card matematicas" onclick="selectComponent('matematicas')"><div class="component-icon">🔢</div><h3>Matemáticas</h3><p>96 preguntas • 3 niveles • 12 bloques</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Progreso</span><span id="matematicas-progress-text">0%</span></div><div class="progress-bar"><div class="progress-fill" id="matematicas-progress" style="width: 0%"></div></div></div></div><div class="component-card fisica" onclick="selectComponent('fisica')"><div class="component-icon">⚛️</div><h3>Física</h3><p>96 preguntas • 3 niveles • 12 bloques</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Progreso</span><span id="fisica-progress-text">0%</span></div><div class="progress-bar"><div class="progress-fill" id="fisica-progress" style="width: 0%"></div></div></div></div><div class="component-card logico"><div class="component-icon">🧩</div><h3>Razonamiento Lógico</h3><p>Próximamente disponible</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Estado</span><span>En desarrollo</span></div><div class="progress-bar"><div class="progress-fill" style="width: 0%; background: var(--logico);"></div></div></div></div></div><div class="levels-container" id="levels-container"><div class="back-btn" onclick="backToComponents()"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver a Componentes</div><h2 id="selected-component-title" style="color: var(--dark); margin-bottom: 0.5rem;">Componente</h2><p id="selected-component-desc" style="color: var(--gray); margin-bottom: 2rem;">Descripción</p><div class="level-section" id="level-1-section"><div class="level-header lectura" onclick="toggleLevel('level-1-blocks')"><div><div class="level-title">🌱 Nivel 1: Fundamentos</div><div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas • ~10 min</div></div><span class="level-badge" id="level-1-badge">Bloqueado</span></div><div class="blocks-grid" id="level-1-blocks" style="display: none;"></div></div><div class="level-section locked" id="level-2-section"><div class="level-header matematicas" onclick="toggleLevel('level-2-blocks')"><div><div class="level-title">⚡ Nivel 2: Desarrollo</div><div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas • ~13 min</div></div><span class="level-badge locked" id="level-2-badge">Bloqueado</span></div><div class="blocks-grid" id="level-2-blocks" style="display: none;"></div></div><div class="level-section locked" id="level-3-section"><div class="level-header fisica" onclick="toggleLevel('level-3-blocks')"><div><div class="level-title">🏆 Nivel 3: Avanzado</div><div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas • ~16 min</div></div><span class="level-badge locked" id="level-3-badge">Bloqueado</span></div><div class="blocks-grid" id="level-3-blocks" style="display: none;"></div></div></div><div class="quiz-section" id="quiz-section"><div class="back-btn" onclick="backToLevels()"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver a Bloques</div><div class="quiz-header"><div><h3 id="quiz-block-title">Bloque</h3><p id="quiz-component-name" style="color: var(--gray); font-size: 0.9rem;">Componente</p></div><div class="timer-display" id="timer-display">10:00</div><div class="quiz-progress"><div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;"><span>Pregunta <span id="current-question">1</span> de <span id="total-questions">8</span></span><span id="quiz-skill">Análisis</span></div><div class="progress-bar-large"><div class="progress-fill-large" id="progress-fill" style="width: 0%"></div></div></div></div><div class="warning-box"><p>⏱️ <strong>Tiempo límite:</strong> <span id="time-limit-text">10 minutos</span></p></div><div class="question-card" id="question-card"><div class="question-context" id="question-context" style="display: none;"></div><p class="question-text" id="question-text">Cargando...</p><div class="options-grid" id="options-container"></div><div class="skill-tags" id="skill-tags"></div></div><div class="quiz-actions"><button class="btn btn-secondary" id="review-btn" onclick="backToLevels()" style="display: none;">Volver</button><button class="btn btn-danger" id="exit-btn" onclick="confirmExit()">Salir</button><button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>Siguiente</button></div></div><div class="results-card" id="results-section"><h2>🎉 ¡Bloque Completado!</h2><div class="results-score" id="final-score">0%</div><p class="results-message" id="results-message"></p><div class="results-feedback"><h3>📊 Retroalimentación</h3><div class="feedback-stats"><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-correct" style="color: var(--secondary);">0</div><div class="feedback-stat-label">Correctas</div></div><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-incorrect" style="color: var(--danger);">0</div><div class="feedback-stat-label">Incorrectas</div></div><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-total">8</div><div class="feedback-stat-label">Total</div></div><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-time">00:00</div><div class="feedback-stat-label">Tiempo</div></div></div><div class="feedback-recommendation"><h4>💡 Recomendación</h4><p id="feedback-recommendation-text"></p></div><div class="justifications-list" id="justifications-container"></div><button class="justifications-toggle" id="justifications-toggle-btn" onclick="toggleJustifications()" style="display: none;">📋 Ver Justificaciones</button><div class="justifications-content" id="justifications-content"></div></div><div class="results-details"><div class="result-stat"><div class="result-stat-value" id="result-correct">0</div><div class="result-stat-label">Correctas</div></div><div class="result-stat"><div class="result-stat-value" id="result-incorrect">0</div><div class="result-stat-label">Incorrectas</div></div><div class="result-stat"><div class="result-stat-value" id="result-time">00:00</div><div class="result-stat-label">Tiempo</div></div><div class="result-stat"><div class="result-stat-value" id="result-next">🔒</div><div class="result-stat-label">Siguiente</div></div></div><div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;"><button class="btn btn-secondary" onclick="backToLevels()">Volver</button><button class="btn btn-success" id="next-block-btn" onclick="nextBlock()" style="display: none;">Continuar</button></div></div><div class="admin-panel" id="admin-panel"><h2 style="color: var(--dark); margin-bottom: 1.5rem;">🔧 Panel de Administración</h2><div style="background: var(--light); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
-        <h3 style="color: var(--dark); margin-bottom: 1rem;">🔑 Generar Códigos</h3>
-        <div class="form-row">
-            <div class="form-group"><label>Cantidad (1-100)</label><input type="number" id="code-quantity" value="10" min="1" max="100"></div>
-            <div class="form-group"><label>Vigencia (días)</label><input type="number" id="code-validity" value="30" min="1" max="365"></div>
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">¿Por qué elegir LECMAFIS?</h2>
+            <div class="features-grid">
+                <div class="feature-card"><div class="feature-icon">🎯</div><h3>Evaluaciones Adaptativas</h3><p>Sistema ajusta dificultad según desempeño</p></div>
+                <div class="feature-card"><div class="feature-icon">⏱️</div><h3>Simulacro ICFES</h3><p>Cronómetro oficial tipo ICFES</p></div>
+                <div class="feature-card"><div class="feature-icon">📊</div><h3>Seguimiento Detallado</h3><p>Visualiza tu avance con estadísticas</p></div>
+            </div>
         </div>
-        <div class="info-box"><p>💡 Los códigos tienen formato: LECMAFIS-AÑO-NÚMERO</p></div>
-        <button class="btn btn-primary" onclick="generateAccessCodes()">Generar Códigos</button>
-        <button class="btn btn-secondary" style="margin-left:0.5rem;" onclick="exportAccessCodes()">Exportar Códigos</button>
-        <div class="code-grid" id="codes-container"></div>
-    </div><div class="student-list"><h3 style="color: var(--dark); margin-bottom: 1rem;">📚 Estudiantes</h3>
-        <button class="btn btn-secondary" style="margin-bottom:1rem;" onclick="exportStudents()">Exportar Estudiantes</button>
-        <button class="btn btn-secondary" style="margin-bottom:1rem; margin-left:0.5rem;" onclick="importStudents()">Importar Estudiantes</button>
-        <table class="student-table"><thead><tr><th>ID</th><th>Nombre</th><th>Grado</th><th>Grupo</th><th>Código</th><th>Progreso</th><th>Acción</th></tr></thead><tbody id="students-table-body"></tbody></table></div></div></section>
+    </section>
 
-    <footer class="footer"><div class="footer-content"><div class="footer-logo">🎓 LECMAFIS</div><p class="footer-slogan">"¡Potencia tus habilidades!"</p><div class="footer-credits"><p>&copy; 2024 Todos los derechos reservados</p><p class="creator">Creado por: MALDANAC@S</p></div></div></footer>
+    <section class="dashboard" id="dashboard-page">
+        <div class="dashboard-header">
+            <h2 id="welcome-message">👋 ¡Bienvenido!</h2>
+            <p>Selecciona Lectura para comenzar</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-blocks">0</div>
+                    <div>Bloques Completados</div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-number" id="average-score">0%</div>
+                    <div>Promedio</div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Login Modal -->
-    <div class="modal" id="login-modal"><div class="modal-content"><div class="modal-header"><h3>🔐 Iniciar Sesión</h3><button class="close-modal" onclick="closeModal('login')">&times;</button></div><form onsubmit="handleLogin(event)"><div class="form-group"><label>Identificación</label><input type="text" id="login-identification" required placeholder="Ej: 1234567890"></div><button type="submit" class="btn btn-primary" style="width: 100%;">Ingresar</button></form><p class="text-center mt-4"><a onclick="openModal('register')" style="color: var(--primary); cursor: pointer;">Registrarse</a></p></div></div>
+        <div class="components-grid" id="components-grid">
+            <div class="component-card lectura" onclick="selectComponent('lectura')">
+                <div class="component-icon">📖</div>
+                <h3>Lectura Crítica</h3>
+                <p>96 preguntas • 3 niveles • 12 bloques</p>
+                <div class="progress-bar"><div class="progress-fill" id="lectura-progress" style="width: 0%"></div></div>
+            </div>
+        </div>
 
-    <!-- Register Modal -->
-    <div class="modal" id="register-modal"><div class="modal-content"><div class="modal-header"><h3>📝 Registro</h3><button class="close-modal" onclick="closeModal('register')">&times;</button></div><form onsubmit="handleRegister(event)"><div class="form-group"><label>Código de Acceso <span style="font-weight:400; font-size:0.85rem; color:var(--gray);">(opcional)</span></label><input type="text" id="register-access-code" placeholder="LECMAFIS-2024-001"></div><div class="form-row"><div class="form-group"><label>Identificación *</label><input type="text" id="register-identification" required></div><div class="form-group"><label>Edad *</label><input type="number" id="register-age" required min="5" max="100"></div></div><div class="form-row"><div class="form-group"><label>Nombres *</label><input type="text" id="register-names" required></div><div class="form-group"><label>Apellidos *</label><input type="text" id="register-surnames" required></div></div><div class="form-row"><div class="form-group"><label>Grado *</label><select id="register-grade" required><option value="">Selecciona</option><option value="6">6°</option><option value="7">7°</option><option value="8">8°</option><option value="9">9°</option><option value="10">10°</option><option value="11">11°</option></select></div><div class="form-group"><label>Grupo *</label><select id=
+        <div class="levels-container" id="levels-container">
+            <div class="back-btn" onclick="backToComponents()">← Volver</div>
+            <h2 style="color: var(--dark); margin-bottom: 2rem;">Selecciona un nivel</h2>
+            
+            <div class="level-section" id="level-1-section">
+                <div class="level-header" onclick="toggleLevel('level-1-blocks')">
+                    <div><div class="level-title">🌱 Nivel 1: Fundamentos</div></div>
+                    <span class="level-badge" id="level-1-badge">Disponible</span>
+                </div>
+                <div class="blocks-grid" id="level-1-blocks" style="display: none;"></div>
+            </div>
+
+            <div class="level-section locked" id="level-2-section">
+                <div class="level-header" onclick="toggleLevel('level-2-blocks')">
+                    <div><div class="level-title">⚡ Nivel 2: Desarrollo</div></div>
+                    <span class="level-badge locked" id="level-2-badge">Bloqueado</span>
+                </div>
+                <div class="blocks-grid" id="level-2-blocks" style="display: none;"></div>
+            </div>
+
+            <div class="level-section locked" id="level-3-section">
+                <div class="level-header" onclick="toggleLevel('level-3-blocks')">
+                    <div><div class="level-title">🏆 Nivel 3: Avanzado</div></div>
+                    <span class="level-badge locked" id="level-3-badge">Bloqueado</span>
+                </div>
+                <div class="blocks-grid" id="level-3-blocks" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="quiz-section" id="quiz-section">
+            <div class="back-btn" onclick="backToLevels()">← Volver</div>
+            <div class="quiz-header">
+                <div><h3 id="quiz-block-title">Bloque</h3></div>
+                <div class="timer-display" id="timer-display">10:00</div>
+            </div>
+            <div class="question-card" id="question-card">
+                <p class="question-text" id="question-text">Cargando...</p>
+                <div class="options-grid" id="options-container"></div>
+            </div>
+            <div class="quiz-actions">
+                <button class="btn btn-danger" id="exit-btn" onclick="confirmExit()">Salir</button>
+                <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>Siguiente</button>
+            </div>
+        </div>
+
+        <div class="results-card" id="results-section">
+            <h2>🎉 ¡Bloque Completado!</h2>
+            <div class="results-score" id="final-score">0%</div>
+            <p class="results-message" id="results-message"></p>
+            <div class="results-feedback">
+                <h3>📊 Retroalimentación</h3>
+                <div class="feedback-stats">
+                    <div class="feedback-stat"><div class="feedback-stat-value" id="feedback-correct" style="color: var(--secondary);">0</div><div>Correctas</div></div>
+                    <div class="feedback-stat"><div class="feedback-stat-value" id="feedback-incorrect" style="color: var(--danger);">0</div><div>Incorrectas</div></div>
+                </div>
+                <div class="justifications-list" id="justifications-container"></div>
+            </div>
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+                <button class="btn btn-secondary" onclick="backToLevels()">Volver</button>
+                <button class="btn btn-success" id="next-block-btn" onclick="nextBlock()" style="display: none;">Continuar</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 LECMAFIS | Creado por MALDANAC@S</p>
+    </footer>
+
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🔐 Iniciar Sesión</h3>
+                <button class="close-modal" onclick="closeModal('login')">&times;</button>
+            </div>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Identificación</label>
+                    <input type="text" id="login-identification" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Ingresar</button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem;"><a onclick="openModal('register')" style="color: var(--primary); cursor: pointer;">Registrarse</a></p>
+        </div>
+    </div>
+
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📝 Registro</h3>
+                <button class="close-modal" onclick="closeModal('register')">&times;</button>
+            </div>
+            <form onsubmit="handleRegister(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Identificación *</label>
+                        <input type="text" id="register-identification" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Edad *</label>
+                        <input type="number" id="register-age" required min="5" max="100">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombres *</label>
+                        <input type="text" id="register-names" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Apellidos *</label>
+                        <input type="text" id="register-surnames" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Grado *</label>
+                        <select id="register-grade" required>
+                            <option value="">Selecciona</option>
+                            <option value="6">6°</option><option value="7">7°</option><option value="8">8°</option>
+                            <option value="9">9°</option><option value="10">10°</option><option value="11">11°</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Grupo *</label>
+                        <select id="register-group" required>
+                            <option value="">Selecciona</option>
+                            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const LEVEL_TIMES = { 1: 10, 2: 13, 3: 16 };
+        const LEVELS = { 1: { name: 'Fundamentos', requiredScore: 70 }, 2: { name: 'Desarrollo', requiredScore: 70 }, 3: { name: 'Avanzado', requiredScore: 70 } };
+
+        const defaultQuestions = {
+            lectura: {
+                1: {
+                    1: [{ id: 1, context: "El reloj de la plaza marcó las doce. Pedro decidió caminar hacia la estación de tren.", question: "¿Hacia dónde se dirigió Pedro?", options: ["Al café", "A la estación de tren", "A casa", "Al parque"], correct: 1, justification: "El texto dice 'caminar hacia la estación de tren'." },
+                    { id: 2, context: "El oso de anteojos habita en Suramérica. Su dieta incluye bromelias.", question: "¿Qué come?", options: ["Carne", "Bromelias", "Pescado", "Granos"], correct: 1, justification: "El texto menciona bromelias." },
+                    { id: 3, context: "1. Pon un balde. 2. Usa agua para trapear. 3. No uses para cocinar.", question: "¿Para qué NO usar?", options: ["Trapear", "Cocinar", "Regar", "Lavar"], correct: 1, justification: "Paso 3 prohíbe cocinar." },
+                    { id: 4, context: "Capitán ordenó no claudicar pues cima estaba cerca.", question: "¿Claudicar?", options: ["Avanzar", "Rendirse", "Correr", "Descansar"], correct: 1, justification: "Significa rendirse." },
+                    { id: 5, context: "Imprenta: 1440. Biblia: 1455.", question: "¿Biblia?", options: ["1440", "1455", "1450", "1500"], correct: 1, justification: "1455." },
+                    { id: 6, context: "Tomás dibujaba. Marta miraba reloj.", question: "¿Quién dibuja?", options: ["Marta", "Tomás", "Abuelo", "Nadie"], correct: 1, justification: "Tomás." },
+                    { id: 7, context: "Devolver libros en recepción.", question: "¿Dónde?", options: ["Estantes", "Recepción", "Mesas", "Entrada"], correct: 1, justification: "Recepción." },
+                    { id: 8, context: "María corrió. No quería llegar tarde.", question: "¿Por qué?", options: ["Olvidó libro", "Calor", "Llegar tarde", "Autobús"], correct: 2, justification: "No llegar tarde." }],
+                    2: [{ id: 9, context: "Agua esencial para vida.", question: "Idea:", options: ["Limitada", "Fundamental", "Plantas", "Desperdicio"], correct: 1, justification: "Fundamental." },
+                    { id: 10, context: "Semáforo: rojo=detener, amarillo=precaución, verde=avanzar.", question: "¿Amarillo?", options: ["Acelerar", "Detener", "Precaución", "Ignorar"], correct: 2, justification: "Precaución." },
+                    { id: 11, context: "24 horas: 8 dormir, 8 trabajo, 8 personal.", question: "¿Personal?", options: ["6", "8", "10", "12"], correct: 1, justification: "8." },
+                    { id: 12, context: "Torta: 1. Secos. 2. Húmedos. 3. Hornear.", question: "¿1°?", options: ["Hornear", "Húmedos", "Secos", "Comprar"], correct: 2, justification: "Secos." },
+                    { id: 13, context: "Meses: enero...junio, julio...", question: "¿Junio?", options: ["Mayo", "Julio", "Agosto", "Septiembre"], correct: 1, justification: "Julio." },
+                    { id: 14, context: "Médico: lavar, mascarilla, distancia.", question: "¿NO?", options: ["Lavar", "Mascarilla", "Distancia", "Vitaminas"], correct: 3, justification: "Vitaminas no." },
+                    { id: 15, context: "Bus: 7,9,11,1pm.", question: "10am?", options: ["9am", "11am", "1pm", "7am"], correct: 1, justification: "11am." },
+                    { id: 16, context: "Herbívoro=plantas, Carnívoro=carne, Omnívoro=ambos.", question: "¿Ambos?", options: ["Herbívoro", "Carnívoro", "Omnívoro", "Ninguno"], correct: 2, justification: "Omnívoro." }],
+                    3: [{ id: 17, context: "Biblioteca: L-V 8-6pm, S 9-1pm, D cerrada.", question: "¿D 10am?", options: ["Abierta", "Cerrada", "Reserva", "Verano"], correct: 1, justification: "Cerrada." },
+                    { id: 18, context: "Viajar: pasaporte, visa, tiquete.", question: "¿Qué?", options: ["Pasaporte", "Visa", "Tiquete", "Los 3"], correct: 3, justification: "Los 3." },
+                    { id: 19, context: "Termómetro: 38°. Normal: 37°.", question: "¿Indica?", options: ["Normal", "Fiebre", "Hipotermia", "Nada"], correct: 1, justification: "Fiebre." },
+                    { id: 20, context: "Estaciones: primavera, verano, otoño, invierno.", question: "¿Invierno?", options: ["Verano", "Otoño", "Primavera", "Nada"], correct: 2, justification: "Primavera." },
+                    { id: 21, context: "Producto: $50k. Descuento 10%.", question: "¿Pagas?", options: ["$50k", "$45k", "$40k", "$35k"], correct: 1, justification: "$45k." },
+                    { id: 22, context: "Colores: rojo, azul, amarillo. R+A=morado.", question: "¿R+A?", options: ["Verde", "Naranja", "Morado", "Negro"], correct: 2, justification: "Morado." },
+                    { id: 23, context: "Examen: 40 preguntas. Aprobado: 30.", question: "¿%?", options: ["60%", "70%", "75%", "80%"], correct: 2, justification: "75%." },
+                    { id: 24, context: "Receta: 2 tazas harina. Doble.", question: "¿Tazas?", options: ["2", "3", "4", "6"], correct: 2, justification: "4." }],
+                    4: [{ id: 25, context: "Aviso: Prohibido. Peligro.", question: "¿Propósito?", options: ["Invitar", "Advertir", "Promocionar", "Indicar"], correct: 1, justification: "Advertir." },
+                    { id: 26, context: "Juan > Pedro > Luis.", question: "¿Bajo?", options: ["Juan", "Pedro", "Luis", "Nada"], correct: 2, justification: "Luis." },
+                    { id: 27, context: "Tren: 6am sale, 12pm llega.", question: "¿Duración?", options: ["4h", "5h", "6h", "7h"], correct: 2, justification: "6h." },
+                    { id: 28, context: "Mamíferos tienen pelo. Ballena mamífero.", question: "¿Conclusión?", options: ["Sin pelo", "Pelo", "Pez", "Nada"], correct: 1, justification: "Tiene pelo." },
+                    { id: 29, context: "Tienda 9am. Ahora 8:45am.", question: "¿Falta?", options: ["5min", "15min", "30min", "45min"], correct: 1, justification: "15min." },
+                    { id: 30, context: "Semáforo rojo. Detener.", question: "¿Hacer?", options: ["Acelerar", "Detener", "Girar", "Pitar"], correct: 1, justification: "Detener." },
+                    { id: 31, context: "5 manzanas. Quita 2.", question: "¿Quedan?", options: ["2", "3", "4", "5"], correct: 1, justification: "3." },
+                    { id: 32, context: "Medicina cada 8 horas.", question: "¿Día?", options: ["2", "3", "4", "5"], correct: 1, justification: "3." }]
+                },
+                2: {
+                    1: [{ id: 101, context: "Educación: no solo conocimiento. Fin real: pensamiento crítico.", question: "Principal:", options: ["Conocimiento", "Empleos", "Crítico", "Nada"], correct: 2, justification: "Pensamiento crítico." },
+                    { id: 102, context: "P1: Clima aumenta temperatura océano. P2: Por eso, corales blanquean.", question: "Relación:", options: ["Contradicen", "Efecto", "Conclusión", "Diferentes"], correct: 1, justification: "Efecto directo." },
+                    { id: 103, context: "Ciclo: Consumidor → Contenedor → Fábrica → Producto", question: "¿Después contenedor?", options: ["Árbol", "Fábrica", "Vertedero", "Compra"], correct: 1, justification: "Fábrica." },
+                    { id: 104, context: "Caballero: miedo no. Duda sobre justicia de causa.", question: "Conflicto:", options: ["Físico", "Miedo", "Ético", "Armadura"], correct: 2, justification: "Dilema ético." },
+                    { id: 105, context: "Sagan: 'Si solos, desperdicio espacio'.", question: "¿Función?", options: ["Equivocado", "Aburrida", "Perspectiva", "Cifra"], correct: 2, justification: "Perspectiva diferente." },
+                    { id: 106, context: "Redes: comunican. Pero incrementan aislamiento.", question: "'Pero':", options: ["Enumera", "Explica", "Negativo", "Confirma"], correct: 2, justification: "Aspecto negativo." },
+                    { id: 107, context: "Consumo: 60, 70, 80, 85.", question: "¿Próximo?", options: ["Baje", "Igual", "Supere 90", "Cero"], correct: 2, justification: "Tendencia sube." },
+                    { id: 108, context: "4 días: descanso reduce estrés, aumenta productividad.", question: "Argumento:", options: ["Ilegal", "Bienestar=eficiencia", "No trabajar", "Viernes"], correct: 1, justification: "Vincula bienestar." }],
+                    2: [{ id: 201, context: "Éxito no línea recta. Caídas y desvíos = maestría.", question: "Inferencia:", options: ["Imposible", "Opuesto", "Errores necesarios", "Evitar"], correct: 2, justification: "Necesarios." },
+                    { id: 202, context: "Eléctricos: reducen. Pero autonomía limitada, mejor urbano.", question: "Función:", options: ["Refuta", "Matiza", "Imposible", "Conclusión"], correct: 1, justification: "Reconoce punto débil." },
+                    { id: 203, context: "Cadena: Planta → Herbívoro → Carnívoro → Descomponedor", question: "Flechas:", options: ["Camino", "Fuerte", "Energía", "Alfabético"], correct: 2, justification: "Transferencia energía." },
+                    { id: 204, context: "Científico: 'superficie océano conocimiento'.", question: "¿Sugiere?", options: ["Terminó", "Insignificante", "Mínimo", "Cansado"], correct: 2, justification: "Mínimo comparado." },
+                    { id: 205, context: "Arte urbano: recupera espacios, pertenencia.", question: "¿Fortalece?", options: ["Multas", "Encuesta", "Pintura", "Museos"], correct: 1, justification: "Datos vecinos." },
+                    { id: 206, context: "Pirámide Maslow: base=fisiológicas, cima=autorrealización.", question: "¿Sin base?", options: ["Llega", "Dificultades", "Nada", "Arriba"], correct: 1, justification: "Requisito previo." },
+                    { id: 207, context: "¿Actualización obliga? Obsolescencia programada.", question: "Autor:", options: ["Defensor", "Vendedor", "Crítico", "Programador"], correct: 2, justification: "Cuestiona." },
+                    { id: 208, context: "Fotosíntesis: luz en energía. Sin ella, oxígeno, vida imposible.", question: "Conclusión:", options: ["Único luz", "Única fuente", "Vital", "Artificial"], correct: 2, justification: "Vital para vida." }],
+                    3: [{ id: 301, context: "'Progreso' = plástico océanos, humo ciudades. Atrás?", question: "Tono:", options: ["Optimista", "Irónico", "Científico", "Indiferente"], correct: 1, justification: "Ironía crítica." },
+                    { id: 302, context: "A: virtual = solución. B: insuficiente sin conectividad.", question: "Diferencia:", options: ["A rechaza", "B condiciona", "Ambos no", "Costos"], correct: 1, justification: "B requiere requisitos." },
+                    { id: 303, context: "Gráfica: Niños 80%, Jóvenes 60%, Adultos 40%, Mayores 20%", question: "Conclusión:", options: ["Mayores compran", "Disminuye edad", "Universidad", "Adultos doble"], correct: 1, justification: "Descendente edad." },
+                    { id: 304, context: "Democracia real: no basta votar. Ciudadanía informada.", question: "Supuesto:", options: ["Única", "No cuestiona", "Insuficiente", "Todos saben"], correct: 2, justification: "No basta." },
+                    { id: 305, context: "Ministro: crece. Comerciantes: caída 15%.", question: "Voces:", options: ["vs", "Expertos vs", "Oficial vs", "Autor vs"], correct: 2, justification: "Oficial vs local." },
+                    { id: 306, context: "Memoria = edificio. Tiempo = viento desgasta.", question: "Viento:", options: ["Experiencias", "Olvido", "Futuro", "Infancia"], correct: 1, justification: "Olvido." },
+                    { id: 307, context: "Imagen: bosque quema. 'Tu indiferencia mata'", question: "Propósito:", options: ["Costo", "Persuadir", "Explicar", "Seguro"], correct: 1, justification: "Conciencia cambio." },
+                    { id: 308, context: "Nuclear: baja emisión vs riesgo. Equilibrio.", question: "Síntesis:", options: ["Segura", "Inevitables", "Tensión", "Residuos"], correct: 2, justification: "Ambas posturas." }],
+                    4: [{ id: 401, context: "IA: Revolución Industrial reemplazó fuerza. IA compite decisión.", question: "¿RI?", options: ["XVIII", "Antecedente", "Peligrosa", "Económica"], correct: 1, justification: "Comparación histórica." },
+                    { id: 402, context: "Caricatura: celulares, bosque quema fondo", question: "Critica:", options: ["Internet", "Herramientas", "Distracción digital", "Apps"], correct: 2, justification: "Hiperconexión." },
+                    { id: 403, context: "P1: Espaciales gasto. P2: Al contrario, tecnologías médicas.", question: "P2:", options: ["Conclusión", "Contraargumento", "Costos", "Cronología"], correct: 1, justification: "Visión opuesta." },
+                    { id: 404, context: "Piano cerrado con llave: recuerdo que olvidaron.", question: "Simboliza:", options: ["Riqueza", "Música", "Pasado doloroso", "Proteger"], correct: 2, justification: "Pasado doloroso." },
+                    { id: 405, context: "'Mereces mejor'. 'Miles satisfechos'.", question: "Estrategia:", options: ["Científica", "Emociones", "Técnica", "Histórica"], correct: 1, justification: "Emociones + validación." },
+                    { id: 406, context: "Venn: Redes ∩ Periódicos = 'Inmediatez'", question: "Común:", options: ["Profundidad", "Algoritmos", "Rapidez", "Sin falsas"], correct: 2, justification: "Inmediatez." },
+                    { id: 407, context: "Eficiencia único valor. Belleza error. Ahí humanidad.", question: "¿Peligro?", options: ["Quiebra", "Humanidad", "Tecnología", "Aburrimiento"], correct: 1, justification: "Perder humanidad." },
+                    { id: 408, context: "Huella carbono: cuenta que Tierra no puede pagar.", question: "¿Sugiere?", options: ["Petróleo", "Límite", "Impuestos", "Préstamos"], correct: 1, justification: "Límite resistencia." }]
+                },
+                3: {
+                    1: [{ id: 501, context: "Internet libertad. Pero algoritmos espejos. Pecera digital.", question: "¿Supuesto?", options: ["Manipula", "Ideas contrarias", "Comodidad", "Democracia"], correct: 1, justification: "Autonomía requiere diversidad." },
+                    { id: 502, context: "Internet libertad. Pero algoritmos espejos. Pecera digital.", question: "¿'Pecera'?", options: ["Privacidad", "Controlado", "Fluida", "Superficie"], correct: 1, justification: "Ilusión libertad." },
+                    { id: 503, context: "Algoritmo justicia: 99% precisión. ¿Reemplazar? Máquina sin sesgo. Humano redención.", question: "¿Conflicto?", options: ["Técnica", "Eficiencia vs libre albedrío", "Leyes", "Rapidez"], correct: 1, justification: "Predicción vs cambio." },
+                    { id: 504, context: "Arte sin utilidad. Si educa, deja ser arte.", question: "¿Desafío?", options: ["Abstractos", "Poema", "Mural bello útil", "Sin mensaje"], correct: 2, justification: "Invalida separación." },
+                    { id: 505, context: "Flexibilización = única puerta. O mercado global o desaparición.", question: "¿Recurso?", options: ["Estadística", "Falso dilema", "Expertos", "Técnico"], correct: 1, justification: "O X o Y absoluto." },
+                    { id: 506, context: "Contradicción: invierten anti-tabaco pero subsidian tabacaleras.", question: "¿Intención?", options: ["Insuficiente", "Inconsistencia ética", "Defender", "Balance"], correct: 1, justification: "Falta coherencia." },
+                    { id: 507, context: "Meritocracia: éxito = esfuerzo. Pero carrera desigual: calzado vs descalzos.", question: "¿Tesis?", options: ["Esfuerzo", "Justa", "Mérito insuficiente", "Atletismo"], correct: 2, justification: "Sin igualdad inicial." },
+                    { id: 508, context: "Resiliencia urbana: ciudades verdes reducen huella. Pero gentrificación desplaza.", question: "¿Conflicto?", options: ["Economía", "Ecología vs justicia", "Tecnología", "Crecimiento"], correct: 1, justification: "Beneficios vs desplazamiento." }],
+                    2: [{ id: 601, context: "IA no reemplaza creatividad, amplifica. Artista colabora algoritmos.", question: "¿Principal?", options: ["Elimina", "Colaboración", "Finita", "Autónomos"], correct: 1, justification: "Colaboración." },
+                    { id: 602, context: "IA no reemplaza creatividad, amplifica. Artista colabora algoritmos.", question: "¿'Amplifica'?", options: ["Reduce", "Aumenta", "Iguala", "Limita"], correct: 1, justification: "Expansión." },
+                    { id: 603, context: "Democracia digital: participación masiva redes. Pero algoritmos filtran, burbujas.", question: "¿Contradicción?", options: ["Limitada", "Universal", "Filtrado", "Obsoletas"], correct: 2, justification: "Participación vs filtrado." },
+                    { id: 604, context: "Democracia digital: participación masiva redes. Pero algoritmos filtran, burbujas.", question: "¿Consecuencia?", options: ["Mayor debate", "Polarizadas", "Neutral", "Reducida"], correct: 1, justification: "Refuerzan similares." },
+                    { id: 605, context: "Biotecnología: editar genes curar. Pero ¿dónde cura vs mejora?", question: "¿Dilema?", options: ["Prohibida", "Cura vs mejora", "Costos", "Incurables"], correct: 1, justification: "Tratamiento vs potenciación." },
+                    { id: 606, context: "Biotecnología: editar genes curar. Pero ¿dónde cura vs mejora?", question: "¿Implícito?", options: ["Mejora mala", "Línea clara", "Individual", "Neutral"], correct: 1, justification: "Ambigüedad distinción." },
+                    { id: 607, context: "Globalización: intercambios enriquecen. Sin embargo, culturas se diluyen.", question: "¿Tesis?", options: ["Positiva", "Equilibrio", "Total", "Inmutables"], correct: 1, justification: "Beneficios y riesgos." },
+                    { id: 608, context: "Globalización: intercambios enriquecen. Sin embargo, culturas se diluyen.", question: "¿'Embargo'?", options: ["Refuerzo", "Contraste", "Ejemplo", "Conclusión"], correct: 1, justification: "Aspecto opuesto." }],
+                    3: [{ id: 701, context: "Memoria colectiva: narrativas compartidas. Olvidos resurgen por intereses presentes.", question: "¿Narrativas?", options: ["Preservan", "Manipulan", "Neutrales", "Individuales"], correct: 1, justification: "Según intereses." },
+                    { id: 702, context: "Memoria colectiva: narrativas compartidas. Olvidos resurgen por intereses presentes.", question: "¿Implicación?", options: ["Objetiva", "Selectiva", "Imposible", "Fijas"], correct: 1, justification: "Depende presente." },
+                    { id: 703, context: "Sostenibilidad: ciudades verdes reducen. Pero gentrificación desplaza.", question: "¿Conflicto?", options: ["Ambiente vs economía", "Ecología vs justicia", "Tecnología", "Crecimiento"], correct: 1, justification: "Ambiental vs social." },
+                    { id: 704, context: "Sostenibilidad: ciudades verdes reducen. Pero gentrificación desplaza.", question: "¿Solución?", options: ["Abandonar", "Equidad", "Sin gente", "Controlada"], correct: 1, justification: "Justicia social." },
+                    { id: 705, context: "Posthumanismo: límites superados tecnología. ¿Humanidad sin límites?", question: "¿Central?", options: ["Mala", "Redefinición", "Naturales", "Eterna"], correct: 1, justification: "Esencia humana." },
+                    { id: 706, context: "Posthumanismo: límites superados tecnología. ¿Humanidad sin límites?", question: "¿Tono?", options: ["Crítico", "Especulativo", "Defensivo", "Científico"], correct: 1, justification: "Invita reflexión." },
+                    { id: 707, context: "Economía circular: residuos recursos. Pero requiere cambio sistémico.", question: "¿Desafío?", options: ["Tecnología", "Cambio cultural", "Recursos", "Costos"], correct: 1, justification: "Transformación profunda." },
+                    { id: 708, context: "Economía circular: residuos recursos. Pero requiere cambio sistémico.", question: "¿Beneficio?", options: ["Más residuos", "Infinita", "Reducida", "Cero"], correct: 1, justification: "Recursos renovables." }],
+                    4: [{ id: 801, context: "Neurociencia: emociones influyen decisiones racionales. ¿Dónde razón y sentimiento?", question: "¿Intersección?", options: ["Puras", "Emocional", "Inconscientes", "Irrelevantes"], correct: 1, justification: "Emociones afectan." },
+                    { id: 802, context: "Neurociencia: emociones influyen decisiones racionales. ¿Dónde razón y sentimiento?", question: "¿Práctica?", options: ["Ignorar", "Integrar ambas", "Razón", "Eliminar"], correct: 1, justification: "Óptimas consideran." },
+                    { id: 803, context: "Arte contemporáneo: provocación crítica. ¿Cuándo daño innecesario?", question: "¿Límite?", options: ["Absoluta", "Crítica vs daño", "Prohibida", "Neutral"], correct: 1, justification: "Balance expresión." },
+                    { id: 804, context: "Arte contemporáneo: provocación crítica. ¿Cuándo daño innecesario?", question: "¿'Innecesario'?", options: ["Siempre malo", "Sin propósito", "Esencial", "Inofensivo"], correct: 1, justification: "Sin contribución." },
+                    { id: 805, context: "Clima: adaptación inevitable. Resiliencia urbana, migración planificada.", question: "¿Enfoque?", options: ["Mitigación", "Adaptación", "Negación", "Mágica"], correct: 1, justification: "Acepta y planea." },
+                    { id: 806, context: "Clima: adaptación inevitable. Resiliencia urbana, migración planificada.", question: "¿Riesgo migración?", options: ["Conflictos", "Fácil", "Seguras", "Estable"], correct: 0, justification: "Tensiones sociales." },
+                    { id: 807, context: "Psicología positiva: felicidad cultivable. Pero ¿ignora sufrimiento inherente?", question: "¿Crítica?", options: ["Imposible", "Incompleta", "Evitable", "Inútil"], correct: 1, justification: "No aborda aspectos." },
+                    { id: 808, context: "Psicología positiva: felicidad cultivable. Pero ¿ignora sufrimiento inherente?", question: "¿Alternativa?", options: ["Rechazar", "Aceptar dualidad", "Solo sufrimiento", "Balanceadas"], correct: 1, justification: "Reconocer ambas." }]
+                }
+            },
+            matematicas: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } },
+            fisica: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } }
+        };
+
+        function loadData(key, defaultValue) { const stored = localStorage.getItem(key); return stored ? JSON.parse(stored) : (defaultValue !== undefined ? (localStorage.setItem(key, JSON.stringify(defaultValue)), defaultValue) : null); }
+        function saveData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
+
+        let questions = loadData('lecmafis_questions_v16', defaultQuestions);
+        let students = loadData('lecmafis_students', []);
+        let currentUser = loadData('lecmafis_current_user', null);
+        let currentQuiz = null;
+
+        function showPage(page) { document.getElementById('home-page').style.display = page === 'home' ? 'block' : 'none'; document.getElementById('features').style.display = page === 'home' ? 'block' : 'none'; document.getElementById('dashboard-page').classList.toggle('active', page === 'dashboard'); if (page === 'dashboard' && !currentUser) openModal('login'); window.scrollTo(0, 0); }
+        function selectComponent(component) { document.getElementById('components-grid').style.display = 'none'; document.getElementById('levels-container').classList.add('active'); renderLevels(component); }
+        function backToComponents() { document.getElementById('components-grid').style.display = 'grid'; document.getElementById('levels-container').classList.remove('active'); }
+        function backToLevels() { document.getElementById('quiz-section').classList.remove('active'); document.getElementById('results-section').classList.remove('active'); document.getElementById('levels-container').classList.add('active'); stopTimer(); }
+        function toggleLevel(id) { const el = document.getElementById(id); el.style.display = el.style.display === 'none' ? 'grid' : 'none'; }
+
+        function renderLevels(component) {
+            if (!currentUser) return;
+            for (let level = 1; level <= 3; level++) {
+                const grid = document.getElementById(`level-${level}-blocks`);
+                grid.innerHTML = '';
+                for (let block = 1; block <= 4; block++) {
+                    const card = document.createElement('div');
+                    card.className = 'block-card';
+                    card.innerHTML = `<div class="block-number">Bloque ${block}</div><div class="block-info">8 preguntas</div>`;
+                    card.onclick = () => startBlock(component, level, block);
+                    grid.appendChild(card);
+                }
+            }
+        }
+
+        let quizTimer, timeRemaining = 0;
+        function startBlock(component, level, block) {
+            const blockQuestions = questions[component]?.[level]?.[block] || [];
+            if (blockQuestions.length === 0) { alert('Sin preguntas'); return; }
+            currentQuiz = { component, level, block, questions: blockQuestions, currentIndex: 0, answers: [], score: 0, timeLimit: LEVEL_TIMES[level] * 60 };
+            document.getElementById('levels-container').classList.remove('active');
+            document.getElementById('quiz-section').classList.add('active');
+            document.getElementById('timer-display').textContent = `${LEVEL_TIMES[level]}:00`;
+            timeRemaining = currentQuiz.timeLimit;
+            startTimer();
+            showQuestion();
+        }
+
+        function startTimer() { updateTimerDisplay(); quizTimer = setInterval(() => { timeRemaining--; updateTimerDisplay(); if (timeRemaining <= 0) { stopTimer(); endQuiz(true); } }, 1000); }
+        function stopTimer() { if (quizTimer) clearInterval(quizTimer); }
+        function updateTimerDisplay() { const m = Math.floor(timeRemaining / 60), s = timeRemaining % 60; document.getElementById('timer-display').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; }
+
+        function showQuestion() {
+            const q = currentQuiz.questions[currentQuiz.currentIndex];
+            document.getElementById('question-text').textContent = q.question;
+            const opts = document.getElementById('options-container');
+            opts.innerHTML = q.options.map((opt, i) => {
+                let cls = 'option-btn';
+                if (currentQuiz.answers[currentQuiz.currentIndex] !== undefined) { cls += ' disabled'; if (i === currentQuiz.answers[currentQuiz.currentIndex]) cls += ' selected'; }
+                return `<button class="${cls}" onclick="selectOption(${i})" ${currentQuiz.answers[currentQuiz.currentIndex] !== undefined ? 'disabled' : ''}>${String.fromCharCode(65+i)}. ${opt}</button>`;
+            }).join('');
+            document.getElementById('next-btn').textContent = currentQuiz.currentIndex === 7 ? 'Terminar' : 'Siguiente';
+            document.getElementById('next-btn').disabled = currentQuiz.answers[currentQuiz.currentIndex] === undefined;
+        }
+
+        function selectOption(i) { if (currentQuiz.answers[currentQuiz.currentIndex] !== undefined) return; currentQuiz.answers[currentQuiz.currentIndex] = i; showQuestion(); }
+
+        function nextQuestion() {
+            if (currentQuiz.answers[currentQuiz.currentIndex] === currentQuiz.questions[currentQuiz.currentIndex].correct) currentQuiz.score++;
+            currentQuiz.currentIndex++;
+            if (currentQuiz.currentIndex >= 8) endQuiz(false); else showQuestion();
+        }
+
+        function confirmExit() { if (confirm('¿Salir? Perderás progreso.')) { stopTimer(); backToLevels(); } }
+
+        function endQuiz(timeExpired) {
+            stopTimer();
+            const pct = Math.round((currentQuiz.score / 8) * 100);
+            if (!currentUser.progress) currentUser.progress = {};
+            if (!currentUser.progress.lectura) currentUser.progress.lectura = { completedBlocks: [], blockScores: {} };
+            currentUser.progress.lectura.completedBlocks.push(`lectura-l${currentQuiz.level}-b${currentQuiz.block}`);
+            currentUser.progress.lectura.blockScores[`lectura-l${currentQuiz.level}-b${currentQuiz.block}`] = pct;
+            const idx = students.findIndex(s => s.identification === currentUser.identification);
+            if (idx !== -1) students[idx] = currentUser;
+            saveData('lecmafis_students', students);
+            saveData('lecmafis_current_user', currentUser);
+
+            document.getElementById('quiz-section').classList.remove('active');
+            document.getElementById('results-section').classList.add('active');
+            document.getElementById('final-score').textContent = pct + '%';
+            document.getElementById('feedback-correct').textContent = currentQuiz.score;
+            document.getElementById('feedback-incorrect').textContent = 8 - currentQuiz.score;
+
+            const justHTML = currentQuiz.questions.map((q, i) => {
+                const ans = currentQuiz.answers[i];
+                const correct = ans === q.correct;
+                return `<div class="justification-item ${correct ? 'correct' : 'incorrect'}"><div class="justification-question">P${i+1}: ${q.question}</div><div class="justification-answer"><strong>Tu:</strong> ${ans !== undefined ? q.options[ans] : 'N/A'} | <strong>Correcta:</strong> ${q.options[q.correct]}<br><strong>Justificación:</strong> ${q.justification}</div></div>`;
+            }).join('');
+            document.getElementById('justifications-container').innerHTML = justHTML;
+            document.getElementById('results-message').textContent = pct >= 70 ? '¡Muy bien!' : 'Necesitas mejorar';
+            updateDashboard();
+        }
+
+        function nextBlock() { if (currentQuiz.block < 4) startBlock(currentQuiz.component, currentQuiz.level, currentQuiz.block + 1); else if (currentQuiz.level < 3) startBlock(currentQuiz.component, currentQuiz.level + 1, 1); else { alert('¡Completado!'); backToComponents(); } }
+
+        function updateDashboard() { if (!currentUser) return; document.getElementById('welcome-message').textContent = '👋 ' + currentUser.names; const p = currentUser.progress?.lectura; let b = 0, s = 0; if (p) { b = p.completedBlocks?.length || 0; Object.values(p.blockScores || {}).forEach(x => { s += x; }); } document.getElementById('total-blocks').textContent = b; document.getElementById('average-score').textContent = p ? Math.round(s / b) + '%' : '0%'; }
+
+        function openModal(t) { const modal = document.getElementById(t + '-modal'); if (modal) { modal.classList.add('active'); if (t === 'register') { document.getElementById('register-identification').value = ''; document.getElementById('register-names').value = ''; document.getElementById('register-surnames').value = ''; document.getElementById('register-age').value = ''; document.getElementById('register-grade').value = ''; document.getElementById('register-group').value = ''; } } }
+        function closeModal(t) { const modal = document.getElementById(t + '-modal'); if (modal) modal.classList.remove('active'); }
+
+        function handleRegister(e) { e.preventDefault(); const id = document.getElementById('register-identification').value.trim(), names = document.getElementById('register-names').value.trim(), surnames = document.getElementById('register-surnames').value.trim(), age = parseInt(document.getElementById('register-age').value), grade = document.getElementById('register-grade').value, group = document.getElementById('register-group').value; if (students.find(s => s.identification === id)) { alert('ID existente'); return; } const ns = { identification: id, names, surnames, age, grade, group, registeredAt: new Date().toISOString(), progress: { lectura: { completedBlocks: [], blockScores: {} } } }; students.push(ns); saveData('lecmafis_students', students); currentUser = ns; saveData('lecmafis_current_user', currentUser); closeModal('register'); updateAuthUI(); showPage('dashboard'); alert('¡Registrado!'); }
+        function handleLogin(e) { e.preventDefault(); const id = document.getElementById('login-identification').value.trim(); const s = students.find(x => x.identification === id); if (!s) { alert('No encontrado'); return; } currentUser = s; saveData('lecmafis_current_user', currentUser); closeModal('login'); updateAuthUI(); showPage('dashboard'); }
+        function logout() { currentUser = null; saveData('lecmafis_current_user', null); updateAuthUI(); showPage('home'); }
+        function updateAuthUI() { const ab = document.getElementById('auth-buttons'), ui = document.getElementById('user-info'); if (currentUser) { ab.classList.add('hidden'); ui.classList.remove('hidden'); document.getElementById('username-display').textContent = '👤 ' + currentUser.names; } else { ab.classList.remove('hidden'); ui.classList.add('hidden'); } }
+
+        document.addEventListener('DOMContentLoaded', () => { updateAuthUI(); showPage('home'); });
+        document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); }));
+    </script>
+</body>
+</html>
