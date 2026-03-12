@@ -188,6 +188,10 @@
         .justifications-toggle:hover { background: rgba(255, 255, 255, 0.3); }
         .justifications-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; }
         .justifications-content.show { max-height: 2000px; }
+        
+        /* Loading Spinner */
+        .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -204,27 +208,30 @@
         <h1>🎓 LECMAFIS</h1>
         <p class="hero-slogan">"¡Potencia tus habilidades!"</p>
         <p class="hero-description">Plataforma educativa inteligente que fortalece la comprensión lectora, razonamiento matemático y física mediante evaluaciones adaptativas tipo ICFES.</p>
-        <div class="hero-badges"><div class="hero-badge">⏱️ 2 min/pregunta</div><div class="hero-badge">📊 3 Componentes</div><div class="hero-badge">🎯 288 Preguntas</div><div class="hero-badge">📈 Progreso Personalizado</div></div>
+        <div class="hero-badges"><div class="hero-badge">⏱️ 2 min/pregunta</div><div class="hero-badge">📊 3 Componentes</div><div class="hero-badge">🎯 288 Preguntas</div><div class="hero-badge">📈 Progreso Sincronizado</div></div>
         <div class="hero-buttons"><button class="btn btn-primary" onclick="openModal('register')">Comenzar Ahora</button><button class="btn btn-secondary" onclick="scrollToFeatures()">Saber Más</button></div>
         <div class="hero-icons"><div class="hero-icon">📖</div><div class="hero-icon">🔢</div><div class="hero-icon">⚛️</div><div class="hero-icon">🧠</div><div class="hero-icon">🏆</div></div>
     </section>
 
     <!-- Features Section -->
-    <section class="features" id="features"><div class="features-container"><h2 class="section-title">¿Por qué elegir LECMAFIS?</h2><div class="features-grid"><div class="feature-card"><div class="feature-icon">🎯</div><h3>Evaluaciones Adaptativas</h3><p>El sistema ajusta la dificultad según tu desempeño.</p></div><div class="feature-card"><div class="feature-icon">⏱️</div><h3>Simulacro ICFES Real</h3><p>Cronómetro oficial tipo ICFES.</p></div><div class="feature-card"><div class="feature-icon">📊</div><h3>Seguimiento Detallado</h3><p>Visualiza tu avance con estadísticas.</p></div><div class="feature-card"><div class="feature-icon">🔓</div><h3>Progresión por Bloques</h3><p>Desbloquea contenido gradualmente.</p></div><div class="feature-card"><div class="feature-icon">🧠</div><h3>4 Habilidades Clave</h3><p>Desarrolla análisis e interpretación.</p></div><div class="feature-card"><div class="feature-icon">🔐</div><h3>Acceso Seguro</h3><p>Registro simple con identificación.</p></div></div></div></section>
+    <section class="features" id="features"><div class="features-container"><h2 class="section-title">¿Por qué elegir LECMAFIS?</h2><div class="features-grid"><div class="feature-card"><div class="feature-icon">🎯</div><h3>Evaluaciones Adaptativas</h3><p>El sistema ajusta la dificultad según tu desempeño.</p></div><div class="feature-card"><div class="feature-icon">⏱️</div><h3>Simulacro ICFES Real</h3><p>Cronómetro oficial tipo ICFES.</p></div><div class="feature-card"><div class="feature-icon">📊</div><h3>Seguimiento Detallado</h3><p>Visualiza tu avance con estadísticas.</p></div><div class="feature-card"><div class="feature-icon">🔓</div><h3>Progresión por Bloques</h3><p>Desbloquea contenido gradualmente.</p></div><div class="feature-card"><div class="feature-icon">🧠</div><h3>4 Habilidades Clave</h3><p>Desarrolla análisis e interpretación.</p></div><div class="feature-card"><div class="feature-icon">☁️</div><h3>Progreso en la Nube</h3><p>Tu avance se guarda y sincroniza entre dispositivos.</p></div></div></div></section>
 
     <!-- Dashboard -->
-    <section class="dashboard" id="dashboard-page"><div class="dashboard-header"><h2 id="welcome-message">👋 ¡Bienvenido!</h2><p>Selecciona un componente para comenzar</p><div class="stats-grid"><div class="stat-card"><div class="stat-number" id="total-blocks">0</div><div class="stat-label">Bloques Completados</div></div><div class="stat-card green"><div class="stat-number" id="average-score">0%</div><div class="stat-label">Promedio General</div></div><div class="stat-card orange"><div class="stat-number" id="total-time">0h</div><div class="stat-label">Tiempo de Estudio</div></div></div></div><div class="components-grid" id="components-grid"><div class="component-card lectura" onclick="selectComponent('lectura')"><div class="component-icon">📖</div><h3>Lectura Crítica</h3><p>96 preguntas • 3 niveles • 12 bloques</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Progreso</span><span id="lectura-progress-text">0%</span></div><div class="progress-bar"><div class="progress-fill" id="lectura-progress" style="width: 0%"></div></div></div></div><div class="component-card matematicas" onclick="selectComponent('matematicas')"><div class="component-icon">🔢</div><h3>Matemáticas</h3><p>96 preguntas • 3 niveles • 12 bloques</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Progreso</span><span id="matematicas-progress-text">0%</span></div><div class="progress-bar"><div class="progress-fill" id="matematicas-progress" style="width: 0%"></div></div></div></div><div class="component-card fisica" onclick="selectComponent('fisica')"><div class="component-icon">⚛️</div><h3>Física</h3><p>96 preguntas • 3 niveles • 12 bloques</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Progreso</span><span id="fisica-progress-text">0%</span></div><div class="progress-bar"><div class="progress-fill" id="fisica-progress" style="width: 0%"></div></div></div></div><div class="component-card logico"><div class="component-icon">🧩</div><h3>Razonamiento Lógico</h3><p>Próximamente disponible</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Estado</span><span>En desarrollo</span></div><div class="progress-bar"><div class="progress-fill" style="width: 0%; background: var(--logico);"></div></div></div></div></div><div class="levels-container" id="levels-container"><div class="back-btn" onclick="backToComponents()"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver a Componentes</div><h2 id="selected-component-title" style="color: var(--dark); margin-bottom: 0.5rem;">Componente</h2><p id="selected-component-desc" style="color: var(--gray); margin-bottom: 2rem;">Descripción</p><div class="level-section" id="level-1-section"><div class="level-header lectura" onclick="toggleLevel('level-1-blocks')"><div><div class="level-title">🌱 Nivel 1: Fundamentos</div><div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas • ~10 min</div></div><span class="level-badge" id="level-1-badge">Bloqueado</span></div><div class="blocks-grid" id="level-1-blocks" style="display: none;"></div></div><div class="level-section locked" id="level-2-section"><div class="level-header matematicas" onclick="toggleLevel('level-2-blocks')"><div><div class="level-title">⚡ Nivel 2: Desarrollo</div><div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas • ~13 min</div></div><span class="level-badge locked" id="level-2-badge">Bloqueado</span></div><div class="blocks-grid" id="level-2-blocks" style="display: none;"></div></div><div class="level-section locked" id="level-3-section"><div class="level-header fisica" onclick="toggleLevel('level-3-blocks')"><div><div class="level-title">🏆 Nivel 3: Avanzado</div><div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas • ~16 min</div></div><span class="level-badge locked" id="level-3-badge">Bloqueado</span></div><div class="blocks-grid" id="level-3-blocks" style="display: none;"></div></div></div><div class="quiz-section" id="quiz-section"><div class="back-btn" onclick="backToLevels()"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver a Bloques</div><div class="quiz-header"><div><h3 id="quiz-block-title">Bloque</h3><p id="quiz-component-name" style="color: var(--gray); font-size: 0.9rem;">Componente</p></div><div class="timer-display" id="timer-display">10:00</div><div class="quiz-progress"><div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;"><span>Pregunta <span id="current-question">1</span> de <span id="total-questions">8</span></span><span id="quiz-skill">Análisis</span></div><div class="progress-bar-large"><div class="progress-fill-large" id="progress-fill" style="width: 0%"></div></div></div></div><div class="warning-box"><p>⏱️ <strong>Tiempo límite:</strong> <span id="time-limit-text">10 minutos</span></p></div><div class="question-card" id="question-card"><div class="question-context" id="question-context" style="display: none;"></div><p class="question-text" id="question-text">Cargando...</p><div class="options-grid" id="options-container"></div><div class="skill-tags" id="skill-tags"></div></div><div class="quiz-actions"><button class="btn btn-secondary" id="review-btn" onclick="backToLevels()" style="display: none;">Volver</button><button class="btn btn-danger" id="exit-btn" onclick="confirmExit()">Salir</button><button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>Siguiente</button></div></div><div class="results-card" id="results-section"><h2>🎉 ¡Bloque Completado!</h2><div class="results-score" id="final-score">0%</div><p class="results-message" id="results-message"></p><div class="results-feedback"><h3>📊 Retroalimentación</h3><div class="feedback-stats"><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-correct" style="color: var(--secondary);">0</div><div class="feedback-stat-label">Correctas</div></div><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-incorrect" style="color: var(--danger);">0</div><div class="feedback-stat-label">Incorrectas</div></div><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-total">8</div><div class="feedback-stat-label">Total</div></div><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-time">00:00</div><div class="feedback-stat-label">Tiempo</div></div></div><div class="feedback-recommendation"><h4>💡 Recomendación</h4><p id="feedback-recommendation-text"></p></div><div class="justifications-list" id="justifications-container"></div><button class="justifications-toggle" id="justifications-toggle-btn" onclick="toggleJustifications()" style="display: none;">📋 Ver Justificaciones</button><div class="justifications-content" id="justifications-content"></div></div><div class="results-details"><div class="result-stat"><div class="result-stat-value" id="result-correct">0</div><div class="result-stat-label">Correctas</div></div><div class="result-stat"><div class="result-stat-value" id="result-incorrect">0</div><div class="result-stat-label">Incorrectas</div></div><div class="result-stat"><div class="result-stat-value" id="result-time">00:00</div><div class="result-stat-label">Tiempo</div></div><div class="result-stat"><div class="result-stat-value" id="result-next">🔒</div><div class="result-stat-label">Siguiente</div></div></div><div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;"><button class="btn btn-secondary" onclick="backToLevels()">Volver</button><button class="btn btn-success" id="next-block-btn" onclick="nextBlock()" style="display: none;">Continuar</button></div></div><div class="admin-panel" id="admin-panel"><h2 style="color: var(--dark); margin-bottom: 1.5rem;">🔧 Panel de Administración</h2><div class="student-list"><h3 style="color: var(--dark); margin-bottom: 1rem;">📚 Estudiantes Registrados</h3><table class="student-table"><thead><tr><th>ID</th><th>Nombre</th><th>Grado</th><th>Grupo</th><th>Fecha</th><th>Progreso</th><th>Acción</th></tr></thead><tbody id="students-table-body"></tbody></table></div></div></section>
+    <section class="dashboard" id="dashboard-page"><div class="dashboard-header"><h2 id="welcome-message">👋 ¡Bienvenido!</h2><p>Selecciona un componente para comenzar</p><div class="stats-grid"><div class="stat-card"><div class="stat-number" id="total-blocks">0</div><div class="stat-label">Bloques Completados</div></div><div class="stat-card green"><div class="stat-number" id="average-score">0%</div><div class="stat-label">Promedio General</div></div><div class="stat-card orange"><div class="stat-number" id="total-time">0h</div><div class="stat-label">Tiempo de Estudio</div></div></div></div><div class="components-grid" id="components-grid"><div class="component-card lectura" onclick="selectComponent('lectura')"><div class="component-icon">📖</div><h3>Lectura Crítica</h3><p>96 preguntas • 3 niveles • 12 bloques</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Progreso</span><span id="lectura-progress-text">0%</span></div><div class="progress-bar"><div class="progress-fill" id="lectura-progress" style="width: 0%"></div></div></div></div><div class="component-card matematicas" onclick="selectComponent('matematicas')"><div class="component-icon">🔢</div><h3>Matemáticas</h3><p>96 preguntas • 3 niveles • 12 bloques</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Progreso</span><span id="matematicas-progress-text">0%</span></div><div class="progress-bar"><div class="progress-fill" id="matematicas-progress" style="width: 0%"></div></div></div></div><div class="component-card fisica" onclick="selectComponent('fisica')"><div class="component-icon">⚛️</div><h3>Física</h3><p>96 preguntas • 3 niveles • 12 bloques</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Progreso</span><span id="fisica-progress-text">0%</span></div><div class="progress-bar"><div class="progress-fill" id="fisica-progress" style="width: 0%"></div></div></div></div><div class="component-card logico"><div class="component-icon">🧩</div><h3>Razonamiento Lógico</h3><p>Próximamente disponible</p><div class="component-progress"><div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.5rem;"><span>Estado</span><span>En desarrollo</span></div><div class="progress-bar"><div class="progress-fill" style="width: 0%; background: var(--logico);"></div></div></div></div></div><div class="levels-container" id="levels-container"><div class="back-btn" onclick="backToComponents()"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver a Componentes</div><h2 id="selected-component-title" style="color: var(--dark); margin-bottom: 0.5rem;">Componente</h2><p id="selected-component-desc" style="color: var(--gray); margin-bottom: 2rem;">Descripción</p><div class="level-section" id="level-1-section"><div class="level-header lectura" onclick="toggleLevel('level-1-blocks')"><div><div class="level-title">🌱 Nivel 1: Fundamentos</div><div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas • ~10 min</div></div><span class="level-badge" id="level-1-badge">Bloqueado</span></div><div class="blocks-grid" id="level-1-blocks" style="display: none;"></div></div><div class="level-section locked" id="level-2-section"><div class="level-header matematicas" onclick="toggleLevel('level-2-blocks')"><div><div class="level-title">⚡ Nivel 2: Desarrollo</div><div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas • ~13 min</div></div><span class="level-badge locked" id="level-2-badge">Bloqueado</span></div><div class="blocks-grid" id="level-2-blocks" style="display: none;"></div></div><div class="level-section locked" id="level-3-section"><div class="level-header fisica" onclick="toggleLevel('level-3-blocks')"><div><div class="level-title">🏆 Nivel 3: Avanzado</div><div class="text-sm" style="color: var(--gray);">4 bloques × 8 preguntas • ~16 min</div></div><span class="level-badge locked" id="level-3-badge">Bloqueado</span></div><div class="blocks-grid" id="level-3-blocks" style="display: none;"></div></div></div><div class="quiz-section" id="quiz-section"><div class="back-btn" onclick="backToLevels()"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>Volver a Bloques</div><div class="quiz-header"><div><h3 id="quiz-block-title">Bloque</h3><p id="quiz-component-name" style="color: var(--gray); font-size: 0.9rem;">Componente</p></div><div class="timer-display" id="timer-display">10:00</div><div class="quiz-progress"><div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;"><span>Pregunta <span id="current-question">1</span> de <span id="total-questions">8</span></span><span id="quiz-skill">Análisis</span></div><div class="progress-bar-large"><div class="progress-fill-large" id="progress-fill" style="width: 0%"></div></div></div></div><div class="warning-box"><p>⏱️ <strong>Tiempo límite:</strong> <span id="time-limit-text">10 minutos</span></p></div><div class="question-card" id="question-card"><div class="question-context" id="question-context" style="display: none;"></div><p class="question-text" id="question-text">Cargando...</p><div class="options-grid" id="options-container"></div><div class="skill-tags" id="skill-tags"></div></div><div class="quiz-actions"><button class="btn btn-secondary" id="review-btn" onclick="backToLevels()" style="display: none;">Volver</button><button class="btn btn-danger" id="exit-btn" onclick="confirmExit()">Salir</button><button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" disabled>Siguiente</button></div></div><div class="results-card" id="results-section"><h2>🎉 ¡Bloque Completado!</h2><div class="results-score" id="final-score">0%</div><p class="results-message" id="results-message"></p><div class="results-feedback"><h3>📊 Retroalimentación</h3><div class="feedback-stats"><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-correct" style="color: var(--secondary);">0</div><div class="feedback-stat-label">Correctas</div></div><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-incorrect" style="color: var(--danger);">0</div><div class="feedback-stat-label">Incorrectas</div></div><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-total">8</div><div class="feedback-stat-label">Total</div></div><div class="feedback-stat"><div class="feedback-stat-value" id="feedback-time">00:00</div><div class="feedback-stat-label">Tiempo</div></div></div><div class="feedback-recommendation"><h4>💡 Recomendación</h4><p id="feedback-recommendation-text"></p></div><div class="justifications-list" id="justifications-container"></div><button class="justifications-toggle" id="justifications-toggle-btn" onclick="toggleJustifications()" style="display: none;">📋 Ver Justificaciones</button><div class="justifications-content" id="justifications-content"></div></div><div class="results-details"><div class="result-stat"><div class="result-stat-value" id="result-correct">0</div><div class="result-stat-label">Correctas</div></div><div class="result-stat"><div class="result-stat-value" id="result-incorrect">0</div><div class="result-stat-label">Incorrectas</div></div><div class="result-stat"><div class="result-stat-value" id="result-time">00:00</div><div class="result-stat-label">Tiempo</div></div><div class="result-stat"><div class="result-stat-value" id="result-next">🔒</div><div class="result-stat-label">Siguiente</div></div></div><div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;"><button class="btn btn-secondary" onclick="backToLevels()">Volver</button><button class="btn btn-success" id="next-block-btn" onclick="nextBlock()" style="display: none;">Continuar</button></div></div><div class="admin-panel" id="admin-panel"><h2 style="color: var(--dark); margin-bottom: 1.5rem;">🔧 Panel de Administración</h2><div class="student-list"><h3 style="color: var(--dark); margin-bottom: 1rem;">📚 Estudiantes Registrados</h3><table class="student-table"><thead><tr><th>ID</th><th>Nombre</th><th>Grado</th><th>Grupo</th><th>Fecha</th><th>Progreso</th><th>Acción</th></tr></thead><tbody id="students-table-body"></tbody></table></div><div style="margin-top: 2rem;"><a href="https://sheets.google.com" target="_blank" class="btn btn-primary">📊 Ver Google Sheet</a></div></div></section>
 
     <footer class="footer"><div class="footer-content"><div class="footer-logo">🎓 LECMAFIS</div><p class="footer-slogan">"¡Potencia tus habilidades!"</p><div class="footer-credits"><p>&copy; 2024 Todos los derechos reservados</p><p class="creator">Creado por: MALDANAC@S</p></div></div></footer>
 
     <!-- Login Modal -->
-    <div class="modal" id="login-modal"><div class="modal-content"><div class="modal-header"><h3>🔐 Iniciar Sesión</h3><button class="close-modal" onclick="closeModal('login')">&times;</button></div><form onsubmit="handleLogin(event)"><div class="form-group"><label>Identificación</label><input type="text" id="login-identification" required placeholder="Ej: 1234567890"></div><button type="submit" class="btn btn-primary" style="width: 100%;">Ingresar</button></form></div></div>
+    <div class="modal" id="login-modal"><div class="modal-content"><div class="modal-header"><h3>🔐 Iniciar Sesión</h3><button class="close-modal" onclick="closeModal('login')">&times;</button></div><form onsubmit="handleLogin(event)"><div class="form-group"><label>Identificación</label><input type="text" id="login-identification" required placeholder="Ej: 1234567890"></div><button type="submit" class="btn btn-primary" style="width: 100%;" id="login-btn">Ingresar</button></form></div></div>
 
-    <!-- Register Modal - SIN CÓDIGO -->
-    <div class="modal" id="register-modal"><div class="modal-content"><div class="modal-header"><h3>📝 Registro de Estudiante</h3><button class="close-modal" onclick="closeModal('register')">&times;</button></div><div class="info-box"><p>ℹ️ Completa tus datos para crear tu cuenta. ¡Es rápido y sin códigos!</p></div><form onsubmit="handleRegister(event)"><div class="form-group"><label>Identificación *</label><input type="text" id="register-identification" required placeholder="Tu número de ID"></div><div class="form-row"><div class="form-group"><label>Nombres *</label><input type="text" id="register-names" required></div><div class="form-group"><label>Apellidos *</label><input type="text" id="register-surnames" required></div></div><div class="form-row"><div class="form-group"><label>Edad *</label><input type="number" id="register-age" required min="5" max="100"></div><div class="form-group"><label>Grado *</label><select id="register-grade" required><option value="">Selecciona</option><option value="6">6°</option><option value="7">7°</option><option value="8">8°</option><option value="9">9°</option><option value="10">10°</option><option value="11">11°</option></select></div></div><div class="form-group"><label>Grupo *</label><select id="register-group" required><option value="">Selecciona</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></div><button type="submit" class="btn btn-primary" style="width: 100%;">Registrarse</button></form><p class="text-center mt-4"><a onclick="openModal('login')" style="color: var(--primary); cursor: pointer;">¿Ya tienes cuenta? Inicia sesión</a></p></div></div>
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal"><div class="modal-content"><div class="modal-header"><h3>📝 Registro de Estudiante</h3><button class="close-modal" onclick="closeModal('register')">&times;</button></div><div class="info-box"><p>ℹ️ Completa tus datos para crear tu cuenta. ¡Tu progreso se guardará en la nube!</p></div><form onsubmit="handleRegister(event)"><div class="form-group"><label>Identificación *</label><input type="text" id="register-identification" required placeholder="Tu número de ID"></div><div class="form-row"><div class="form-group"><label>Nombres *</label><input type="text" id="register-names" required></div><div class="form-group"><label>Apellidos *</label><input type="text" id="register-surnames" required></div></div><div class="form-row"><div class="form-group"><label>Edad *</label><input type="number" id="register-age" required min="5" max="100"></div><div class="form-group"><label>Grado *</label><select id="register-grade" required><option value="">Selecciona</option><option value="6">6°</option><option value="7">7°</option><option value="8">8°</option><option value="9">9°</option><option value="10">10°</option><option value="11">11°</option></select></div></div><div class="form-group"><label>Grupo *</label><select id="register-group" required><option value="">Selecciona</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></div><button type="submit" class="btn btn-primary" style="width: 100%;" id="register-btn">Registrarse</button></form><p class="text-center mt-4"><a onclick="openModal('login')" style="color: var(--primary); cursor: pointer;">¿Ya tienes cuenta? Inicia sesión</a></p></div></div>
 
     <script>
-        // ==================== CONFIGURATION ====================
+        // ==================== CONFIGURACIÓN ====================
+        // ⚠️ REEMPLAZA ESTO CON TU URL DE APPS SCRIPT
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwY4JoB7FQSQAqBoOAo0Qq_XdJJi8XqnIyJJi4atb-Wneg9vZhD5aG-8z4WvyZwYvHm/exec';
+        
         const COMPONENTS = {
             lectura: { name: 'Lectura Crítica', icon: '📖', color: 'lectura', totalBlocks: 12, questionsPerBlock: 8 },
             matematicas: { name: 'Matemáticas', icon: '🔢', color: 'matematicas', totalBlocks: 12, questionsPerBlock: 8 },
@@ -236,10 +243,9 @@
         const LEVELS = { 1: { name: 'Fundamentos', requiredScore: 70 }, 2: { name: 'Desarrollo', requiredScore: 70 }, 3: { name: 'Avanzado', requiredScore: 70 } };
         const SKILLS = { analisis: 'Análisis', interpretacion: 'Interpretación', argumentacion: 'Argumentación', formulacion: 'Formulación' };
 
-        // ==================== TODAS LAS PREGUNTAS - NIVELES 1, 2 Y 3 ====================
+        // ==================== TODAS LAS PREGUNTAS - NIVEL 2 COMPLETO ====================
         const defaultQuestions = {
             lectura: {
-                // NIVEL 1 - 4 BLOQUES × 8 PREGUNTAS = 32 PREGUNTAS
                 1: {
                     1: [
                         { id: 1, context: "El reloj de la plaza marcó las doce. Pedro decidió caminar hacia la estación de tren.", question: "¿Hacia dónde se dirigió Pedro?", options: ["Al café", "A la estación de tren", "A casa", "Al parque"], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto indica explícitamente 'caminar hacia la estación de tren'." },
@@ -251,41 +257,9 @@
                         { id: 7, context: "Devolver los libros en la recepción.", question: "¿Dónde devolver libros?", options: ["Estantes", "Recepción", "Mesas", "Entrada"], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "La instrucción indica recepción." },
                         { id: 8, context: "María salió corriendo. No quería llegar tarde a clase.", question: "¿Por qué corrió María?", options: ["Olvidó libro", "Hacía calor", "No llegar tarde", "Perdió autobús"], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto dice 'no quería llegar tarde'." }
                     ],
-                    2: [
-                        { id: 9, context: "El agua es esencial para la vida.", question: "Idea principal:", options: ["Agua limitada", "Agua fundamental", "Plantas necesitan agua", "Humanos desperdician"], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto enfatiza que el agua es esencial." },
-                        { id: 10, context: "Semáforo: rojo=detener, amarillo=precaución, verde=avanzar.", question: "¿Qué significa amarillo?", options: ["Acelerar", "Detener", "Precaución", "Ignorar"], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto indica precaución." },
-                        { id: 11, context: "24 horas: 8 dormimos, 8 trabajamos, 8 personales.", question: "¿Horas personales?", options: ["6", "8", "10", "12"], correct: 1, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "El texto dice 8 horas." },
-                        { id: 12, context: "Torta: 1. Mezclar secos. 2. Agregar húmedos. 3. Hornear.", question: "¿Primer paso?", options: ["Hornear", "Húmedos", "Secos", "Comprar"], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Primero mezclar secos." },
-                        { id: 13, context: "Meses: enero, febrero... junio, julio...", question: "¿Después de junio?", options: ["Mayo", "Julio", "Agosto", "Septiembre"], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Julio sigue a junio." },
-                        { id: 14, context: "Médico recomienda: lavar manos, mascarilla, distancia.", question: "¿Qué NO recomienda?", options: ["Lavar manos", "Mascarilla", "Distancia", "Vitaminas"], correct: 3, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "No menciona vitaminas." },
-                        { id: 15, context: "Autobús: 7AM, 9AM, 11AM, 1PM.", question: "Llegas 10AM, ¿próximo?", options: ["9AM", "11AM", "1PM", "7AM"], correct: 1, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "11AM es el próximo después de 10AM." },
-                        { id: 16, context: "Herbívoros=comen plantas, Carnívoros=comen carne, Omnívoros=ambos.", question: "¿Quién come ambos?", options: ["Herbívoro", "Carnívoro", "Omnívoro", "Ninguno"], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Omnívoros comen ambos." }
-                    ],
-                    3: [
-                        { id: 17, context: "Biblioteca: Lun-Vie 8AM-6PM, Sáb 9AM-1PM, Dom cerrada.", question: "¿Domingo 10AM?", options: ["Abierta", "Cerrada", "Reserva", "Solo verano"], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Los domingos está cerrada." },
-                        { id: 18, context: "Viajar: pasaporte, visa, tiquete.", question: "¿Qué necesitas?", options: ["Solo pasaporte", "Solo visa", "Solo tiquete", "Los tres"], correct: 3, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "Los tres son requisitos." },
-                        { id: 19, context: "Termómetro: 38°C. Normal: 37°C.", question: "¿Qué indica?", options: ["Normal", "Fiebre", "Hipotermia", "Nada"], correct: 1, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "38°C > 37°C = fiebre." },
-                        { id: 20, context: "Estaciones: primavera, verano, otoño, invierno.", question: "¿Después de invierno?", options: ["Verano", "Otoño", "Primavera", "Nada"], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Primavera sigue a invierno." },
-                        { id: 21, context: "Producto: $50.000. Descuento 10% efectivo.", question: "¿Cuánto pagas?", options: ["$50.000", "$45.000", "$40.000", "$35.000"], correct: 1, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "$50.000 - 10% = $45.000." },
-                        { id: 22, context: "Colores primarios: rojo, azul, amarillo. Rojo+azul=morado.", question: "¿Rojo+azul?", options: ["Verde", "Naranja", "Morado", "Negro"], correct: 2, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "El texto dice morado." },
-                        { id: 23, context: "Examen: 40 preguntas. Necesitas 30 para aprobar.", question: "¿Qué porcentaje?", options: ["60%", "70%", "75%", "80%"], correct: 2, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "30/40 = 75%." },
-                        { id: 24, context: "Receta: 2 tazas harina. Quieres el doble.", question: "¿Cuántas tazas?", options: ["2", "3", "4", "6"], correct: 2, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "2 × 2 = 4 tazas." }
-                    ],
-                    4: [
-                        { id: 25, context: "Aviso: Prohibido el paso. Peligro.", question: "¿Propósito?", options: ["Invitar", "Advertir", "Promocionar", "Indicar"], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Peligro = advertencia." },
-                        { id: 26, context: "Juan > Pedro > Luis.", question: "¿Quién más bajo?", options: ["Juan", "Pedro", "Luis", "Nada"], correct: 2, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "Luis es el más bajo." },
-                        { id: 27, context: "Tren: 6AM sale, 12PM llega.", question: "¿Duración?", options: ["4h", "5h", "6h", "7h"], correct: 2, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "6AM a 12PM = 6 horas." },
-                        { id: 28, context: "Todos los mamíferos tienen pelo. Ballena es mamífero.", question: "¿Conclusión?", options: ["No tiene pelo", "Tiene pelo", "Es pez", "Nada"], correct: 1, difficulty: "facil", skill: "analisis", timeEstimate: 120, justification: "Si es mamífero, tiene pelo." },
-                        { id: 29, context: "Tienda abre 9AM. Son 8:45AM.", question: "¿Cuánto falta?", options: ["5min", "15min", "30min", "45min"], correct: 1, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "8:45 a 9:00 = 15 min." },
-                        { id: 30, context: "Semáforo rojo. Carros deben detenerse.", question: "¿Qué hacer?", options: ["Acelerar", "Detenerse", "Girar", "Pitar"], correct: 1, difficulty: "facil", skill: "interpretacion", timeEstimate: 120, justification: "Rojo = detenerse." },
-                        { id: 31, context: "5 manzanas. Quitas 2.", question: "¿Cuántas quedan?", options: ["2", "3", "4", "5"], correct: 1, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "5 - 2 = 3." },
-                        { id: 32, context: "Medicina cada 8 horas.", question: "¿Cuántas veces al día?", options: ["2", "3", "4", "5"], correct: 1, difficulty: "facil", skill: "formulacion", timeEstimate: 120, justification: "24 ÷ 8 = 3 veces." }
-                    ]
+                    2: [], 3: [], 4: []
                 },
-                
-                // NIVEL 2 - 4 BLOQUES × 8 PREGUNTAS = 32 PREGUNTAS (DE TUS PDFS)
                 2: {
-                    // BLOQUE 1: Conexión y Sentido Global
                     1: [
                         { id: 101, context: "La educación no debe limitarse a la transmisión de conocimientos técnicos que pronto quedarán obsoletos. Su verdadero fin es cultivar el pensamiento crítico, permitiendo que el individuo cuestione su realidad y proponga soluciones creativas a problemas que aún no existen.", question: "¿Cuál de las siguientes frases resume la idea principal del texto?", options: ["Los conocimientos técnicos son inútiles hoy en día.", "El fin de la educación es preparar para empleos actuales.", "El objetivo esencial de la educación es el desarrollo del pensamiento crítico.", "La realidad es un problema que no tiene solución."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C porque el texto presenta el pensamiento crítico como el 'verdadero fin' de la educación, contrastándolo con la mera transmisión de datos." },
                         { id: 102, context: "(Párrafo 1): El cambio climático ha provocado un aumento en la temperatura de los océanos. (Párrafo 2): Como consecuencia, los arrecifes de coral están sufriendo un proceso de blanqueamiento masivo que amenaza la biodiversidad marina.", question: "¿Qué relación existe entre el primer y el segundo párrafo?", options: ["El segundo párrafo contradice lo dicho en el primero.", "El segundo párrafo presenta un efecto directo de la situación descrita en el primero.", "El primer párrafo es una conclusión de lo que se dice en el segundo.", "Ambos párrafos hablan de temas totalmente diferentes."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La respuesta es la B. El conector 'Como consecuencia' establece que el blanqueamiento (P2) es el resultado del aumento de temperatura (P1)." },
@@ -296,7 +270,6 @@
                         { id: 107, context: "Gráfica de consumo energético 2020-2023: 60, 70, 80, 85 unidades (tendencia ascendente)", question: "Si la tendencia que se observa en la gráfica de consumo energético continúa, ¿qué se puede esperar para el año siguiente?", options: ["Que el consumo de energía baje a 50 unidades.", "Que el consumo se mantenga igual que en 2022.", "Que el consumo de energía supere las 90 unidades.", "Que la energía deje de utilizarse totalmente."], correct: 2, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La respuesta es la C. La gráfica muestra un crecimiento constante (ascendente), por lo que la proyección lógica es que el siguiente dato sea mayor." },
                         { id: 108, context: "Es necesario implementar jornadas laborales de cuatro días. Está demostrado que el descanso adicional reduce el estrés de los empleados, lo que a su vez se traduce en un aumento significativo de la productividad durante las horas de trabajo.", question: "¿Cuál es el argumento principal que sostiene la propuesta del autor?", options: ["Que trabajar cinco días es ilegal.", "Que el bienestar del empleado mejora la eficiencia de la empresa.", "Que los empleados no quieren trabajar más.", "Que las empresas deben cerrar los días viernes."], correct: 1, difficulty: "medio", skill: "argumentacion", timeEstimate: 120, justification: "La respuesta es la B. El autor vincula el 'menor estrés' (bienestar) con el 'aumento de productividad' (eficiencia) para justificar su idea." }
                     ],
-                    // BLOQUE 2: Estructura y Relación de Ideas
                     2: [
                         { id: 201, context: "La mayoría de las personas asumen que el éxito es una línea recta ascendente. Lo que no ven son las caídas, los desvíos y los momentos de estancamiento que, aunque parecen fracasos, son en realidad los cimientos de la maestría.", question: "Del texto se puede inferir que para el autor:", options: ["El éxito es un objetivo imposible de alcanzar.", "El fracaso es lo opuesto al éxito.", "Los errores son etapas necesarias del proceso de aprendizaje.", "La maestría se logra evitando los desvíos."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C. El autor describe los fallos no como lo opuesto al éxito, sino como 'cimientos', lo que implica que son necesarios para construir el resultado final." },
                         { id: 202, context: "Los vehículos eléctricos reducen drásticamente la emisión de gases contaminantes en las ciudades. Si bien su autonomía aún es limitada en viajes largos, representan la mejor alternativa para el transporte urbano actual.", question: "¿Qué función cumple la frase 'Si bien su autonomía aún es limitada en viajes largos' en el texto?", options: ["Refutar la idea de que los vehículos eléctricos son útiles.", "Presentar una limitación que matiza la defensa del producto.", "Demostrar que los viajes largos son imposibles hoy en día.", "Introducir la conclusión principal del autor."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La respuesta es la B. La frase reconoce un punto débil (la autonomía) para dar equilibrio al argumento, sin llegar a invalidar el beneficio principal." },
@@ -307,7 +280,6 @@
                         { id: 207, context: "¿Es realmente necesario que cada actualización de software obligue al usuario a comprar un dispositivo nuevo? Esta obsolescencia programada parece dictada más por los libros contables que por la innovación tecnológica.", question: "A partir del tono del texto, se puede concluir que el autor es:", options: ["Un defensor de las últimas tendencias tecnológicas.", "Un vendedor de software interesado en nuevas actualizaciones.", "Un crítico de las prácticas comerciales de la industria tecnológica.", "Un programador que explica cómo funciona un código."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C. El uso de términos como 'obsolescencia programada' y la crítica a los 'libros contables' revela una postura de cuestionamiento hacia las empresas." },
                         { id: 208, context: "La fotosíntesis es el proceso mediante el cual las plantas convierten la luz solar en energía química. Sin este proceso, los niveles de oxígeno en la atmósfera caerían drásticamente, haciendo imposible la vida tal como la conocemos hoy.", question: "¿Cuál es la conclusión lógica que se deriva del texto?", options: ["Las plantas son los únicos seres vivos que necesitan luz.", "La luz solar es la única fuente de energía para todos los animales.", "La fotosíntesis es un proceso vital para el equilibrio de la vida en la Tierra.", "El oxígeno es un gas que se produce de forma artificial en la atmósfera."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C. El texto conecta la fotosíntesis con la existencia de oxígeno y, por ende, con la posibilidad de la vida, resumiendo su importancia global." }
                     ],
-                    // BLOQUE 3: Perspectivas y Voces
                     3: [
                         { id: 301, context: "Es curioso que llamemos 'progreso' a llenar nuestros océanos de plástico y nuestras ciudades de humo. Si este es el camino hacia el futuro, quizás deberíamos empezar a caminar hacia atrás.", question: "El tono que predomina en el texto anterior es:", options: ["Optimista y alentador.", "Irónico y crítico.", "Científico y objetivo.", "Indiferente y neutral."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la B. El autor utiliza la ironía al cuestionar la palabra 'progreso' para describir la contaminación, sugiriendo que lo que llamamos avance es en realidad un retroceso." },
                         { id: 302, context: "Autor A: La educación virtual es la solución definitiva a la falta de cobertura académica en zonas rurales. Autor B: La educación virtual, aunque útil, es insuficiente si no se garantiza primero el acceso a servicios básicos y conectividad estable en el campo.", question: "Una diferencia fundamental entre la postura del Autor A y el Autor B es que:", options: ["El Autor A rechaza la tecnología mientras que el Autor B la defiende.", "El Autor B condiciona el éxito de la educación virtual a factores externos.", "Ambos autores consideran que la educación virtual es imposible de implementar.", "El Autor A se enfoca en los costos y el Autor B en la calidad pedagógica."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La respuesta es la B. Mientras que el Autor A la ve como una solución directa, el Autor B señala que se necesitan requisitos previos (conectividad y servicios) para que funcione." },
@@ -318,7 +290,6 @@
                         { id: 307, context: "Imagen: Bosque quemado con eslogan 'Tu indiferencia los mata'", question: "El propósito comunicativo del eslogan en combinación con la imagen es:", options: ["Informar sobre el costo de la madera en el mercado.", "Persuadir al ciudadano para que cuide los recursos forestales.", "Explicar cómo se producen los incendios naturales.", "Promocionar un seguro contra incendios para el hogar."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la B. La combinación del impacto visual (bosque quemado) y el mensaje de advertencia busca generar conciencia y un cambio de conducta." },
                         { id: 308, context: "Unos defienden el uso de la energía nuclear por su baja emisión de carbono; otros la rechazan por el riesgo de accidentes y el manejo de residuos. En medio de este debate, la sociedad busca un equilibrio entre necesidad energética y seguridad ambiental.", question: "La idea que sintetiza el conflicto presentado es:", options: ["La energía nuclear es la más segura del mundo.", "Los accidentes nucleares son inevitables.", "Existe una tensión entre los beneficios ambientales y los riesgos operativos de la energía nuclear.", "El manejo de residuos es el único problema de la energía moderna."], correct: 2, difficulty: "medio", skill: "sintesis", timeEstimate: 120, justification: "La respuesta es la C. La respuesta engloba ambas partes del argumento presentadas en el texto (baja emisión vs. riesgo)." }
                     ],
-                    // BLOQUE 4: El Analista de Contextos
                     4: [
                         { id: 401, context: "La automatización no es un fenómeno nuevo; ya en la Revolución Industrial las máquinas reemplazaron tareas manuales. Sin embargo, hoy nos enfrentamos a algo distinto: la inteligencia artificial ya no solo reemplaza la fuerza física, sino que empieza a competir con la capacidad de decisión humana.", question: "¿Cuál es la función de mencionar la 'Revolución Industrial' en el texto?", options: ["Demostrar que la inteligencia artificial es un invento del siglo XVIII.", "Servir como un antecedente histórico para resaltar la diferencia con el fenómeno actual.", "Argumentar que todas las máquinas son peligrosas para el empleo.", "Explicar las leyes económicas que rigen la tecnología moderna."], correct: 1, difficulty: "medio", skill: "analisis", timeEstimate: 120, justification: "La respuesta es la B. Se usa como punto de comparación para enfatizar que la automatización actual (IA) tiene una naturaleza distinta a la del pasado." },
                         { id: 402, context: "Caricatura: Personas mirando celulares mientras un bosque se quema al fondo", question: "El mensaje central de la caricatura se enfoca en criticar:", options: ["La falta de cobertura de internet en las zonas rurales.", "El desarrollo tecnológico de las herramientas de tala de árboles.", "La distracción digital que invisibiliza los problemas ambientales graves.", "La necesidad de crear nuevas aplicaciones para el cuidado del bosque."], correct: 2, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la C. La imagen contrasta la 'hiperconexión' individual (celulares) con la 'desconexión' de la realidad física y el daño ecológico." },
@@ -330,39 +301,34 @@
                         { id: 408, context: "La 'huella de carbono' no es solo un número en un informe ambiental; es el rastro invisible de nuestro estilo de vida sobre el planeta. Cada vuelo, cada producto procesado y cada bombilla encendida suma a esta cuenta que la Tierra ya no puede pagar.", question: "En este contexto, la frase 'cuenta que la Tierra ya no puede pagar' sugiere que:", options: ["El costo económico del petróleo ha subido demasiado.", "El planeta ha llegado a un límite de resistencia ante el daño ambiental.", "Los ciudadanos deben pagar más impuestos por usar energía.", "Es necesario pedir préstamos internacionales para salvar el medio ambiente."], correct: 1, difficulty: "medio", skill: "interpretacion", timeEstimate: 120, justification: "La respuesta es la B. La metáfora económica ('cuenta que no se puede pagar') se usa para expresar que el impacto ambiental ha superado la capacidad de recuperación del planeta." }
                     ]
                 },
-                
-                // NIVEL 3 - BLOQUE 1: 8 PREGUNTAS
-                3: {
-                    1: [
-                        { id: 501, context: "Internet = libertad absoluta. Pero algoritmos nos rodean de espejos. Usuario flota en pecera digital.", question: "Supuesto necesario:", options: ["Tecnología manipula", "Autonomía requiere ideas contrarias", "Usuarios prefieren comodidad", "Sistema sin límites = democracia"], correct: 1, difficulty: "dificil", skill: "analisis", timeEstimate: 120, justification: "Libertad se pierde con espejos = necesitamos exposición a lo diferente." },
-                        { id: 502, context: "Internet = libertad absoluta. Pero algoritmos nos rodean de espejos. Usuario flota en pecera digital.", question: "Función 'pecera digital':", options: ["Fragilidad privacidad", "Entorno controlado = libre", "Fluidez información", "Superficialidad"], correct: 1, difficulty: "dificil", skill: "interpretacion", timeEstimate: 120, justification: "Vidrio permite ver pero restringe = ilusión de libertad." },
-                        { id: 503, context: "Algoritmo justicia penal: 99% precisión. ¿Reemplazar juez? Máquina = sin sesgo. Humano = redención.", question: "Conflicto ético:", options: ["Superioridad técnica", "Eficiencia vs libre albedrío", "Leyes antiguas vs nuevas", "Rapidez vs burocracia"], correct: 1, difficulty: "dificil", skill: "argumentacion", timeEstimate: 120, justification: "Debate filosófico: predicción exacta vs capacidad de cambiar." },
-                        { id: 504, context: "Arte no debe tener utilidad. Cuando educa o moraliza, deja de ser arte.", question: "Desafío a tesis:", options: ["Cuadros abstractos caros", "Poema en servilleta", "Mural bello que unió comunidad", "Película sin mensaje"], correct: 2, difficulty: "dificil", skill: "argumentacion", timeEstimate: 120, justification: "Obra bella Y útil invalida separación radical." },
-                        { id: 505, context: "Flexibilización contratos = única puerta al desarrollo. O aceptamos mercado global o industrias desaparecen.", question: "Recurso:", options: ["Evidencia estadística", "Falso dilema", "Autoridad expertos", "Lenguaje técnico"], correct: 1, difficulty: "dificil", skill: "analisis", timeEstimate: 120, justification: "'O X o tragedia Y' = elimina alternativas intermedias." },
-                        { id: 506, context: "Contradictorio: gobiernos invierten en anti-tabaco pero subsidian tabacaleras.", question: "Intención:", options: ["Subsidios insuficientes", "Inconsistencia ética", "Defender empresas", "Explicar balance"], correct: 1, difficulty: "dificil", skill: "analisis", timeEstimate: 120, justification: "Expone falta de coherencia: discurso vs acción." },
-                        { id: 507, context: "Meritocracia: éxito = esfuerzo. Pero carrera no empieza igual: unos con calzado, otros descalzos.", question: "Tesis central:", options: ["Esfuerzo = importante", "Meritocracia justa", "Mérito insuficiente sin igualdad", "Atletismo = economía"], correct: 2, difficulty: "dificil", skill: "interpretacion", timeEstimate: 120, justification: "Critica valorar resultado sin considerar condiciones previas." },
-                        { id: 508, context: "Meritocracia: éxito = esfuerzo. Narrativa seductora que premia con superioridad moral.", question: "'Seductora':", options: ["Fácil entender", "Justifica privilegio", "Motiva jóvenes", "Publicistas lujo"], correct: 1, difficulty: "dificil", skill: "interpretacion", timeEstimate: 120, justification: "Atrae porque exitoso cree que todo se lo debe a sí mismo." }
-                    ],
-                    2: [], 3: [], 4: []
-                }
+                3: { 1: [], 2: [], 3: [], 4: [] }
             },
             matematicas: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } },
             fisica: { 1: { 1: [], 2: [], 3: [], 4: [] }, 2: { 1: [], 2: [], 3: [], 4: [] }, 3: { 1: [], 2: [], 3: [], 4: [] } }
         };
 
         // ==================== DATA MANAGEMENT ====================
-        function loadData(key, defaultValue) { 
-            const stored = localStorage.getItem(key); 
-            if (stored) return JSON.parse(stored); 
-            if (defaultValue !== undefined) { localStorage.setItem(key, JSON.stringify(defaultValue)); return defaultValue; } 
-            return null; 
+        let students = [];
+        let currentUser = null;
+        let currentQuiz = null;
+        let selectedComponent = null;
+        let quizTimer = null, timeRemaining = 0;
+
+        // ==================== API CALLS ====================
+        async function callAPI(action, data = {}) {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action, ...data })
+                });
+                return { success: true };
+            } catch (error) {
+                console.error('API Error:', error);
+                return { success: false, error: error.toString() };
+            }
         }
-        function saveData(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
-        
-        let questions = loadData('lecmafis_questions_v17', defaultQuestions);
-        let students = loadData('lecmafis_students', []);
-        let currentUser = loadData('lecmafis_current_user', null);
-        let currentQuiz = loadData('lecmafis_current_quiz', null);
 
         // ==================== NAVIGATION ====================
         function showPage(page) { 
@@ -424,8 +390,6 @@
             }
         }
 
-        let quizTimer = null, timeRemaining = 0;
-        
         function startBlock(component, level, block, isReview) {
             const blockId = `${component}-l${level}-b${block}`;
             const blockQuestions = questions[component]?.[level]?.[block] || [];
@@ -441,7 +405,6 @@
                 timeLimit: LEVEL_TIMES[level] * 60, 
                 isReviewMode: isReview 
             };
-            saveData('lecmafis_current_quiz', currentQuiz);
             
             document.getElementById('levels-container').classList.remove('active');
             document.getElementById('quiz-section').classList.add('active');
@@ -478,18 +441,17 @@
             next.disabled = !currentQuiz.isReviewMode && currentQuiz.answers[currentQuiz.currentIndex] === undefined;
         }
 
-        function selectOption(i) { if (currentQuiz.isReviewMode) return; currentQuiz.answers[currentQuiz.currentIndex] = i; saveData('lecmafis_current_quiz', currentQuiz); showQuestion(); }
+        function selectOption(i) { if (currentQuiz.isReviewMode) return; currentQuiz.answers[currentQuiz.currentIndex] = i; showQuestion(); }
 
         function nextQuestion() {
             if (!currentQuiz.isReviewMode && currentQuiz.answers[currentQuiz.currentIndex] === currentQuiz.questions[currentQuiz.currentIndex].correct) currentQuiz.score++;
             currentQuiz.currentIndex++;
-            saveData('lecmafis_current_quiz', currentQuiz);
             if (currentQuiz.currentIndex >= 8) { currentQuiz.isReviewMode ? backToLevels() : endQuiz(false); } else showQuestion();
         }
 
-        function confirmExit() { if (confirm('¿Salir? Perderás progreso.')) { stopTimer(); currentQuiz = null; saveData('lecmafis_current_quiz', null); backToLevels(); } }
+        function confirmExit() { if (confirm('¿Salir? Perderás progreso.')) { stopTimer(); currentQuiz = null; backToLevels(); } }
 
-        function endQuiz(timeExpired) {
+        async function endQuiz(timeExpired) {
             stopTimer();
             const pct = Math.round((currentQuiz.score / 8) * 100);
             const timeUsed = currentQuiz.timeLimit - timeRemaining;
@@ -501,14 +463,18 @@
                 currentUser.progress[currentQuiz.component].completedBlocks.push(currentQuiz.blockId);
                 currentUser.progress[currentQuiz.component].blockScores[currentQuiz.blockId] = pct;
                 currentUser.progress[currentQuiz.component].blockAnswers[currentQuiz.blockId] = currentQuiz.answers;
+                
+                // Guardar en Google Sheets
+                await callAPI('guardarProgreso', {
+                    identificacion: currentUser.identification,
+                    componente: currentQuiz.component,
+                    nivel: currentQuiz.level,
+                    bloque: currentQuiz.block,
+                    puntaje: pct
+                });
             }
             
-            const idx = students.findIndex(s => s.identification === currentUser.identification);
-            if (idx !== -1) { students[idx] = currentUser; saveData('lecmafis_students', students); }
-            saveData('lecmafis_current_user', currentUser);
-            
             currentQuiz = null;
-            saveData('lecmafis_current_quiz', null);
             
             document.getElementById('quiz-section').classList.remove('active');
             document.getElementById('results-section').classList.add('active');
@@ -547,8 +513,7 @@
         function openModal(t) { document.getElementById(t + '-modal').classList.add('active'); }
         function closeModal(t) { document.getElementById(t + '-modal').classList.remove('active'); }
         
-        // ✅ REGISTRO SIN CÓDIGO
-        function handleRegister(e) { 
+        async function handleRegister(e) { 
             e.preventDefault(); 
             const id = document.getElementById('register-identification').value.trim(),
                 names = document.getElementById('register-names').value.trim(),
@@ -557,27 +522,73 @@
                 grade = document.getElementById('register-grade').value,
                 group = document.getElementById('register-group').value;
             
-            if (students.find(s => s.identification === id)) { alert('ID existente'); return; } 
-            const ns = { identification: id, names, surnames, age, grade, group, registeredAt: new Date().toISOString(), isAdmin: false, progress: { lectura: { completedBlocks: [], blockScores: {}, blockAnswers: {} }, matematicas: { completedBlocks: [], blockScores: {}, blockAnswers: {} }, fisica: { completedBlocks: [], blockScores: {}, blockAnswers: {} } } }; 
-            students.push(ns); 
-            saveData('lecmafis_students', students); 
-            currentUser = ns; 
-            saveData('lecmafis_current_user', currentUser); 
-            closeModal('register'); 
-            updateAuthUI(); 
-            showPage('dashboard'); 
-            alert('¡Registrado!'); 
+            const btn = document.getElementById('register-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> Registrando...';
+            
+            // Guardar en Google Sheets
+            const result = await callAPI('registrar', { identificacion: id, nombres: names, apellidos: surnames, edad: age, grado: grade, grupo: group });
+            
+            if (result.success) {
+                const ns = { identification: id, names, surnames, age, grade, group, registeredAt: new Date().toISOString(), isAdmin: false, progress: { lectura: { completedBlocks: [], blockScores: {}, blockAnswers: {} }, matematicas: { completedBlocks: [], blockScores: {}, blockAnswers: {} }, fisica: { completedBlocks: [], blockScores: {}, blockAnswers: {} } } }; 
+                students.push(ns); 
+                currentUser = ns; 
+                closeModal('register'); 
+                updateAuthUI(); 
+                showPage('dashboard'); 
+                alert('¡Registrado exitosamente!'); 
+            } else {
+                alert('Error al registrar. Intenta nuevamente.');
+            }
+            
+            btn.disabled = false;
+            btn.textContent = 'Registrarse';
         }
         
-        function handleLogin(e) { e.preventDefault(); const id = document.getElementById('login-identification').value.trim(); const s = students.find(x => x.identification === id); if (!s) { alert('No encontrado'); return; } currentUser = s; saveData('lecmafis_current_user', currentUser); closeModal('login'); updateAuthUI(); showPage('dashboard'); }
-        function logout() { currentUser = null; saveData('lecmafis_current_user', null); updateAuthUI(); showPage('home'); }
+        async function handleLogin(e) { 
+            e.preventDefault(); 
+            const id = document.getElementById('login-identification').value.trim();
+            const btn = document.getElementById('login-btn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span> Validando...';
+            
+            // Validar con Google Sheets
+            const result = await callAPI('validar', { identificacion: id });
+            
+            if (result.success && result.existe) {
+                const s = students.find(x => x.identification === id) || { identification: id, names: result.nombres, surnames: result.apellidos, progress: {} };
+                currentUser = s;
+                
+                // Obtener progreso
+                const progresoResult = await callAPI('obtenerProgreso', { identificacion: id });
+                if (progresoResult.success && progresoResult.progreso) {
+                    currentUser.progress = progresoResult.progreso;
+                }
+                
+                closeModal('login'); 
+                updateAuthUI(); 
+                showPage('dashboard'); 
+            } else {
+                alert('Usuario no encontrado. Regístrate primero.');
+            }
+            
+            btn.disabled = false;
+            btn.textContent = 'Ingresar';
+        }
+        
+        function logout() { currentUser = null; updateAuthUI(); showPage('home'); }
         function updateAuthUI() { const ab = document.getElementById('auth-buttons'), ui = document.getElementById('user-info'), ud = document.getElementById('username-display'), nd = document.getElementById('nav-dashboard'), na = document.getElementById('nav-admin'); if (currentUser) { ab.classList.add('hidden'); ui.classList.remove('hidden'); ud.textContent = '👤 ' + currentUser.names; nd.style.display = 'block'; na.style.display = currentUser.isAdmin ? 'block' : 'none'; } else { ab.classList.remove('hidden'); ui.classList.add('hidden'); nd.style.display = 'none'; na.style.display = 'none'; } }
-        function updateAdminPanel() { updateAdminStats(); updateStudentsTable(); }
-        function updateAdminStats() { let t = 0; Object.keys(questions).forEach(c => Object.keys(questions[c]).forEach(l => Object.keys(questions[c][l]).forEach(b => t += questions[c][l][b].length))); document.getElementById('questions-count').textContent = 'Total: ' + t; }
+        function updateAdminPanel() { updateStudentsTable(); }
         function updateStudentsTable() { document.getElementById('students-table-body').innerHTML = students.filter(s => !s.isAdmin).map(s => { let b = 0; Object.keys(s.progress || {}).forEach(c => b += s.progress[c]?.completedBlocks?.length || 0); return `<tr><td>${s.identification}</td><td>${s.names}</td><td>${s.grade}°</td><td>${s.group}</td><td>${new Date(s.registeredAt).toLocaleDateString()}</td><td>${Math.round((b/36)*100)}%</td><td><button class="student-delete-btn" onclick="deleteStudent('${s.identification}')">Eliminar</button></td></tr>`; }).join(''); }
-        function deleteStudent(id) { if (!confirm('¿Eliminar?')) return; const i = students.findIndex(s => s.identification === id); if (i !== -1) { students.splice(i, 1); saveData('lecmafis_students', students); updateStudentsTable(); } }
+        function deleteStudent(id) { if (!confirm('¿Eliminar?')) return; const i = students.findIndex(s => s.identification === id); if (i !== -1) { students.splice(i, 1); updateStudentsTable(); } }
 
-        document.addEventListener('DOMContentLoaded', function() { if (!students.find(s => s.identification === 'admin')) { students.push({ identification: 'admin', names: 'Admin', surnames: 'LECMAFIS', age: 30, grade: '', group: '', registeredAt: new Date().toISOString(), isAdmin: true, progress: {} }); saveData('lecmafis_students', students); } updateAuthUI(); showPage('home'); });
+        document.addEventListener('DOMContentLoaded', function() { 
+            if (!students.find(s => s.identification === 'admin')) { 
+                students.push({ identification: 'admin', names: 'Admin', surnames: 'LECMAFIS', age: 30, grade: '', group: '', registeredAt: new Date().toISOString(), isAdmin: true, progress: {} }); 
+            } 
+            updateAuthUI(); 
+            showPage('home'); 
+        });
         document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('active'); }));
         window.addEventListener('beforeunload', e => { if (currentQuiz) { e.preventDefault(); e.returnValue = ''; } });
     </script>
